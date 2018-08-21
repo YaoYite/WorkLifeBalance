@@ -21,6 +21,10 @@ app.get("/workaholic", function(req, res){
     res.render("workaholic.ejs");
 });
 
+app.get("/family", function(req, res){
+    res.render("family.ejs");
+});
+
 app.listen(process.env.PORT, process.env.IP, function(){
    console.log("The Work Life Balance Server Has Started!");
 });
