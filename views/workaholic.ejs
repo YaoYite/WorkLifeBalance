@@ -24,29 +24,64 @@
     <!--    </div>-->
     <!--  </div>-->
     <!--</div>-->
-    <h2>JavaScript Can Validate Input</h2>
+    <div class = "container">
+ <p>For work? (Average hours per week)</p>
+<select id="worktime">
+<option value="notsure">Not Sure</option>
+<option value="lt30">&lt 30</option>
+<option value="30-35">30-35</option>
+<option value="36-39">36-39</option>
+<option value="gt39">&gt 39</option>
+</select>
+<br>
+ <p>For sleep? (Average hours per day) </p>
+<select id="sleeptime">
+<option value="notsure">Not Sure</option>
+<option value="lt6">&lt 6</option>
+<option value="6-7">6-7</option>
+<option value="7-9">7-9</option>
+<option value="9-10">9-10</option>
+<option value="gt10">&gt 10</option>
+</select>
+<br>
+<p>For hobby?</p>
+<select id="hobbytime">
+<option value="notsure">Not Sure</option>
+<option value="lt1">&lt 1</option>
+<option value="1-5">1-5</option>
+<option value="6-10">6-10</option>
+<option value="gt10">&gt 10</option>
+</select>
+<br>
+<p>For exercise?</p>
+<select id="exercisetime">
+<option value="notsure">Not Sure</option>
+<option value="lt1">&lt 1</option>
+<option value="1-5">1-5</option>
+<option value="6-10">6-10</option>
+<option value="gt10">&gt 10</option>
+</select>
+<br>
+<button type="button" onclick="assess()">Get Assessment Result</button>
 
-<p>Please input a number between 1 and 10:</p>
-
-<input id="numb">
-
-<button type="button" onclick="myFunction()">Submit</button>
-
-<p id="demo"></p>
-
+<p id="demo"></p >
+</div>
 <script>
-function myFunction() {	
-    var x, text;
-
-    // Get the value of the input field with id="numb"
-    x = document.getElementById("numb").value;
-
-    // If x is Not a Number or less than one or greater than 10
-    if (isNaN(x) || x < 1 || x > 10) {
-        text = "Input not valid";
-    } else {
-        text = "Input OK";
-    }
+function assess() {
+    var wt = document.getElementById("worktime").value;
+    var st = document.getElementById("sleeptime").value;
+    var ht = document.getElementById("hobbytime").value;
+    var et = document.getElementById("exercisetime").value;
+    if(wt=="notsure")
+    {text ="please check";}
+    else if(wt=="lt30")
+    {text ="easy work";}
+    else if(wt=="30-35")
+    {text ="medium work";}
+    else if(wt=="36-39")
+    {text ="hard work";}
+    else if(wt=="gt39")
+    {text ="work too much";}
     document.getElementById("demo").innerHTML = text;
 }
 </script>
