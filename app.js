@@ -32,7 +32,7 @@ app.get("/whyus", function(req, res){
 });
 
 app.get("/important", function(req, res){
-    res.render("important.ejs");
+    res.render("whyimportant.ejs");
 });
 
 app.get("/whatisworkaholic", function(req, res){
