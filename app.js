@@ -31,7 +31,7 @@ app.get("/whyus", function(req, res){
     res.render("whyus.ejs");
 });
 
-app.get("/important", function(req, res){
+app.get("/whyimportant", function(req, res){
     res.render("whyimportant.ejs");
 });
 
