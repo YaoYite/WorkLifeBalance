@@ -27,26 +27,6 @@ app.get("/family", function(req, res){
     res.render("family.ejs");
 });
 
-app.get("/whyus", function(req, res){
-    res.render("whyus.ejs");
-});
-
-app.get("/whyimportant", function(req, res){
-    res.render("whyimportant.ejs");
-});
-
-app.get("/whatisworkaholic", function(req, res){
-    res.render("whatisworkaholic.ejs");
-});
-
-app.get("/difference", function(req, res){
-    res.render("difference.ejs");
-});
-
-app.get("/relatetomentalhealth", function(req, res){
-    res.render("relatetomentalhealth.ejs");
-});
-
 app.get("/workaholic", function(req, res){
     res.render("workaholic.ejs");
 });
