@@ -1,4 +1,5 @@
 <% include partials/header %>
+<!--Page Header-->
 <header class="masthead" style="background-image: url('/img/workaholic-min.jpg')">
       <div class="overlay"></div>
       <div class="container">
@@ -13,123 +14,124 @@
       </div>
     </header>
     
+    <!--Main content-->
 <div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">    
-<h2>Quick Assessment</h2>
-<h4>How many hours he/she spends</h4>
-For work? (Average hours per week)<br>
-<select id="worktime">
-<option value="lt40">&lt 40</option>
-<option value="40-50">40-50</option>
-<option value="50-60">50-60</option>
-<option value="gt60">&gt 60</option>
-</select>
-<br><br>
- For sleep? (Average hours per day) <br>
-<select id="sleeptime">
-<option value="lt6">&lt 6</option>
-<option value="6-7">6-7</option>
-<option value="7-9">7-9</option>
-<option value="9-10">9-10</option>
-<option value="gt10">&gt 10</option>
-</select>
-<br><br>
- For exercise? (Average hours per week)<br>
-<select id="exercisetime">
-<option value="lt1.25">&lt 1.25</option>
-<option value="1.25-2.5">1.25-2.5</option>
-<option value="2.5-5">2.5-5</option>
-<option value="gt5">&gt 5</option>
-</select>
-<br><br>
- Leisure? (Average hours per day)<br>
-<select id="leisure">
-<option value="0-3">0-3</option>
-<option value="4-6">4-6</option>
-<option value="ge7">&#8805 7</option>
-</select>
-<br><br>
-<button type="button" class = "btn btn-success btn-xs" onclick="assess()">Get Assessment Result</button>
-<br>
-<hr />
-<h3 id="result"></h3>
-<h4 id="risk"></h4>
-<p id="result1"></p >
-<p id="result2"></p >
-<p id="result3"></p >
-<p id="result4"></p >
-<script>
-function assess() {
-    document.getElementById("result").innerHTML = "Assessment Result: ";
-    var wt = document.getElementById("worktime").value;
-    var st = document.getElementById("sleeptime").value;
-    var et = document.getElementById("exercisetime").value;
-    var le = document.getElementById("leisure").value;
-    var risk = 0;
-    if(wt=="lt40")
-    {risk = risk+0;
-        text1 ="This work duration is ideal. ";}
-    else if(wt=="40-50")
-    {risk = risk+4;
-        text1 ="This work duration is acceptable, but may result in depression. ";}
-    else if(wt=="50-60")
-    {risk = risk+8;
-        text1 ="This work duration is out of the acceptable range, 10 percent possibility to raise relationship problems. ";}
-    else if(wt=="gt60")
-    {risk = risk+12;
-        text1 ="This work duration is crazy and there is 30 percent possibility to raise relationship problems. ";}
-    document.getElementById("result1").innerHTML = text1;
-    if(st=="lt6")
-    {risk = risk+6;
-        text2 ="This sleep duration is not recommended, minimum should be 6 hours, and 7-9 hours is recommended. ";}
-    else if(st=="6-7")
-    {risk = risk+3;
-        text2 ="This sleep duration is acceptable, but ideal durations is 7-9 hours. ";}
-    else if(st=="7-9")
-    {risk = risk+0;
-        text2 ="This sleep duration is ideal!";}
-    else if(st=="9-10")
-    {risk = risk+3;
-        text2 ="This sleep duration is acceptable, but ideal duration is 7-9 hours. ";}
-    else if(st=="gt10")
-    {risk = risk+6;
-        text2 ="This sleep duration is not recommended, maximum should be 10 hours, and 7-9 hours is recommended. ";}
-    document.getElementById("result2").innerHTML = text2;
-    if(et=="lt1.25")
-    {risk = risk+3;
-        text3 ="Exercise duration is not enough at all, 1.25-2.5 hours for vigorous intensity activity or 2.5-5 hours for moderate intensity activity is recommended.";}
-    else if(et=="1.25-2.5")
-    {risk = risk+0;
-        text3 ="Exercise duration is ideal for vigorous intensity activity, but not enough for moderate intensity activity. ";}
-    else if(et=="2.5-5")
-    {risk = risk+0;
-        text3 ="Exercise duration is ideal for moderate intensity activity, but too much for vigorous intensity activity.";}
-    else if(et=="gt5")
-    {risk = risk+0;
-        text3 ="Erercise duration is out of the recommended range (1.25-2.5 hours for vigorous intensity activity or 2.5-5 hours for moderate intensity activity), be careful to the body condition. ";}
-    document.getElementById("result3").innerHTML = text3;
-    if(le=="0-3")
-    {risk = risk+6;
-        text4 ="Leisure time is not enough at all, at least 7 hours is recommended. ";}
-    else if(le=="4-6")
-    {risk = risk+3;
-        text4 ="Leisure time is acceptable but not enough, at least 7 hours is recommended. ";}
-    else if(le=="ge7")
-    {risk = risk+0;
-        text4 ="Leisure time is ideal. ";}
-    document.getElementById("result4").innerHTML = text4;
-    if(risk<=9)
-       {riskAssess = "Low risk: Work life balance is good, don't worry.";}
-    else if(risk<=18)
-        {riskAssess = "Medium risk: Be careful in work life balance, or some mental problems may raise.";}
-    else
-        {riskAssess = "High risk: Serious imbalance between work and life, high possibility to raise mental problems";}
-    document.getElementById("risk").innerHTML = riskAssess;
-}
-</script>
-</div>
-</div>
+            <h2>Quick Assessment</h2>
+            <h4>How many hours he/she spends</h4>
+            For work? (Average hours per week)<br>
+            <select id="worktime">
+            <option value="lt40">&lt 40</option>
+            <option value="40-50">40-50</option>
+            <option value="50-60">50-60</option>
+            <option value="gt60">&gt 60</option>
+            </select>
+            <br><br>
+             For sleep? (Average hours per day) <br>
+            <select id="sleeptime">
+            <option value="lt6">&lt 6</option>
+            <option value="6-7">6-7</option>
+            <option value="7-9">7-9</option>
+            <option value="9-10">9-10</option>
+            <option value="gt10">&gt 10</option>
+            </select>
+            <br><br>
+             For exercise? (Average hours per week)<br>
+            <select id="exercisetime">
+            <option value="lt1.25">&lt 1.25</option>
+            <option value="1.25-2.5">1.25-2.5</option>
+            <option value="2.5-5">2.5-5</option>
+            <option value="gt5">&gt 5</option>
+            </select>
+            <br><br>
+             Leisure? (Average hours per day)<br>
+            <select id="leisure">
+            <option value="0-3">0-3</option>
+            <option value="4-6">4-6</option>
+            <option value="ge7">&#8805 7</option>
+            </select>
+            <br><br>
+            <button type="button" class = "btn btn-success btn-xs" onclick="assess()">Get Assessment Result</button>
+            <br>
+            <hr />
+            <h3 id="result"></h3>
+            <h4 id="risk"></h4>
+            <p id="result1"></p >
+            <p id="result2"></p >
+            <p id="result3"></p >
+            <p id="result4"></p >
+            <script>
+            function assess() {
+                document.getElementById("result").innerHTML = "Assessment Result: ";
+                var wt = document.getElementById("worktime").value;
+                var st = document.getElementById("sleeptime").value;
+                var et = document.getElementById("exercisetime").value;
+                var le = document.getElementById("leisure").value;
+                var risk = 0;
+                if(wt=="lt40")
+                {risk = risk+0;
+                    text1 ="This work duration is ideal. ";}
+                else if(wt=="40-50")
+                {risk = risk+4;
+                    text1 ="This work duration is acceptable, but may result in depression. ";}
+                else if(wt=="50-60")
+                {risk = risk+8;
+                    text1 ="This work duration is out of the acceptable range, 10 percent possibility to raise relationship problems. ";}
+                else if(wt=="gt60")
+                {risk = risk+12;
+                    text1 ="This work duration is crazy and there is 30 percent possibility to raise relationship problems. ";}
+                document.getElementById("result1").innerHTML = text1;
+                if(st=="lt6")
+                {risk = risk+6;
+                    text2 ="This sleep duration is not recommended, minimum should be 6 hours, and 7-9 hours is recommended. ";}
+                else if(st=="6-7")
+                {risk = risk+3;
+                    text2 ="This sleep duration is acceptable, but ideal durations is 7-9 hours. ";}
+                else if(st=="7-9")
+                {risk = risk+0;
+                    text2 ="This sleep duration is ideal!";}
+                else if(st=="9-10")
+                {risk = risk+3;
+                    text2 ="This sleep duration is acceptable, but ideal duration is 7-9 hours. ";}
+                else if(st=="gt10")
+                {risk = risk+6;
+                    text2 ="This sleep duration is not recommended, maximum should be 10 hours, and 7-9 hours is recommended. ";}
+                document.getElementById("result2").innerHTML = text2;
+                if(et=="lt1.25")
+                {risk = risk+3;
+                    text3 ="Exercise duration is not enough at all, 1.25-2.5 hours for vigorous intensity activity or 2.5-5 hours for moderate intensity activity is recommended.";}
+                else if(et=="1.25-2.5")
+                {risk = risk+0;
+                    text3 ="Exercise duration is ideal for vigorous intensity activity, but not enough for moderate intensity activity. ";}
+                else if(et=="2.5-5")
+                {risk = risk+0;
+                    text3 ="Exercise duration is ideal for moderate intensity activity, but too much for vigorous intensity activity.";}
+                else if(et=="gt5")
+                {risk = risk+0;
+                    text3 ="Erercise duration is out of the recommended range (1.25-2.5 hours for vigorous intensity activity or 2.5-5 hours for moderate intensity activity), be careful to the body condition. ";}
+                document.getElementById("result3").innerHTML = text3;
+                if(le=="0-3")
+                {risk = risk+6;
+                    text4 ="Leisure time is not enough at all, at least 7 hours is recommended. ";}
+                else if(le=="4-6")
+                {risk = risk+3;
+                    text4 ="Leisure time is acceptable but not enough, at least 7 hours is recommended. ";}
+                else if(le=="ge7")
+                {risk = risk+0;
+                    text4 ="Leisure time is ideal. ";}
+                document.getElementById("result4").innerHTML = text4;
+                if(risk<=9)
+                   {riskAssess = "Low risk: Work life balance is good, don't worry.";}
+                else if(risk<=18)
+                    {riskAssess = "Medium risk: Be careful in work life balance, or some mental problems may raise.";}
+                else
+                    {riskAssess = "High risk: Serious imbalance between work and life, high possibility to raise mental problems";}
+                document.getElementById("risk").innerHTML = riskAssess;
+            }
+            </script>
+        </div>
+    </div>
 </div>
     
 <% include partials/footer %>
