@@ -7,6 +7,7 @@ var LocalStrategy = require("passport-local");
 var passportLocalMongoose = require("passport-local-mongoose");
 
 var User = require("./models/user");
+var Record = require("./models/record");
 
 app.use( express.static( "public" ) );
 
@@ -61,6 +62,55 @@ app.get("/family", function(req, res){
 app.get("/workaholic", function(req, res){
     res.render("workaholic.ejs");
 });
+
+app.get("/records", function(req, res){
+    // Get all campgrounds from DB
+    Record.find({}, function(err, allRecords){
+       if(err){
+           console.log(err);
+       } else {
+          res.render("records",{records:allRecords});
+       }
+    });
+});
+
+//CREATE - add new record to DB
+app.post("/records", function(req, res){
+    // get data from form and add to records array
+    var date = req.body.date;
+    var sleep = req.body.sleep;
+    var work = req.body.work;
+    var sport = req.body.sport;
+    var leisure = req.body.leisure;
+    var newRecord = {date: date, sleep: sleep, woek: work, sport:sport, leisure:leisure}
+    // Create a new record and save to DB
+    Record.create(newRecord, function(err, newlyCreated){
+        if(err){
+            console.log(err);
+        } else {
+            //redirect back to campgrounds page
+            res.redirect("/records");
+        }
+    });
+});
+
+//NEW - show form to create new record
+app.get("/records/newRecord", function(req, res){
+   res.render("newRecord.ejs"); 
+});
+
+// SHOW - shows more info about one campground
+app.get("/records/:id", function(req, res){
+    //find the campground with provided ID
+    Record.findById(req.params.id, function(err, foundRecord){
+        if(err){
+            console.log(err);
+        } else {
+            //render show template with that campground
+            res.render("showRecord", {record: foundRecord});
+        }
+    });
+})
 
 app.get("/secret",isLoggedIn,function(req, res){
     res.render("secret.ejs");
