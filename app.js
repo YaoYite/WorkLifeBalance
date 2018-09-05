@@ -112,8 +112,8 @@ app.get("/records/:id", function(req, res){
     });
 })
 
-app.get("/secret",isLoggedIn,function(req, res){
-    res.render("secret.ejs");
+app.get("/track",isLoggedIn,function(req, res){
+    res.render("track.ejs");
 });
 
 //show sigu up form
