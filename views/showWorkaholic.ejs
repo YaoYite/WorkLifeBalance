@@ -1,0 +1,28 @@
+<% include partials/header %>
+<header class="masthead" style="background-image: url('/img/life-min.jpeg')">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="page-heading">
+              <h1>The detail infomation of the workaholic</h1>
+              <span class="subheading"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <h4>Name:<%= workaholic.name %></h4>
+          <h4>Email:<%= workaholic.email %></h4>
+          <h4>Gender:<%=  workaholic.gender %></h4>
+          <h4>Age:<%= workaholic.age %></h4>
+          <h4>Relation:<%= workaholic.relation %></h4>
+          <h4>Occupation:<%= workaholic.occupation %></h4>
+        </div>
+      </div>
+    </div>
+<% include partials/footer %>

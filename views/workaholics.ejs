@@ -1,0 +1,30 @@
+<% include partials/header %>
+<header class="masthead" style="background-image: url('/img/contact-min.jpeg')">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="page-heading">
+              <h1>Workaholics being tracked</h1>
+              <span class="subheading">This page show all workaholics that are tracked by you</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+<div class="row text-center" style="display:flex; flex-wrap: wrap;">
+        <% workaholics.forEach(function(workaholic){ %>
+            <div class="col-md-3 col-sm-6">
+                       <h4>Name:<%= workaholic.name %></h4>
+                       <h4>Gender:<%= workaholic.gender %></h4>
+                       <h4>Age:<%= workaholic.age %></h4>
+                       <h4>Relation:<%= workaholic.relation %></h4>
+                       <h4>Occupation:<%= workaholic.occupation %></h4>
+                   <p>
+                       <a href="/workaholics/<%= workaholic._id %>" class="btn btn-primary">More Info</a>
+                   </p>
+            </div>
+        <% }); %>
+    </div>
+<% include partials/footer %>

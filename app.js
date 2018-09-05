@@ -7,7 +7,7 @@ var LocalStrategy = require("passport-local");
 var passportLocalMongoose = require("passport-local-mongoose");
 
 var User = require("./models/user");
-var Record = require("./models/record");
+var Workaholic = require("./models/workaholic");
 
 app.use( express.static( "public" ) );
 
@@ -63,51 +63,52 @@ app.get("/workaholic", function(req, res){
     res.render("workaholic.ejs");
 });
 
-app.get("/records", function(req, res){
-    // Get all campgrounds from DB
-    Record.find({}, function(err, allRecords){
+app.get("/workaholics", function(req, res){
+    // Get all workaholics from DB
+    Workaholic.find({}, function(err, allWorkaholics){
        if(err){
            console.log(err);
        } else {
-          res.render("records",{records:allRecords});
+          res.render("workaholics",{workaholics:allWorkaholics});
        }
     });
 });
 
-//CREATE - add new record to DB
-app.post("/records", function(req, res){
-    // get data from form and add to records array
-    var date = req.body.date;
-    var sleep = req.body.sleep;
-    var work = req.body.work;
-    var sport = req.body.sport;
-    var leisure = req.body.leisure;
-    var newRecord = {date: date, sleep: sleep, woek: work, sport:sport, leisure:leisure}
+//CREATE - add new workaholic to DB
+app.post("/workaholics", function(req, res){
+    // get data from form and add to workaholics array
+    var name = req.body.name;
+    var email = req.body.email;
+    var gender = req.body.gender;
+    var age = req.body.age;
+    var occupation = req.body.occupation;
+    var relation = req.body.relation;
+    var newWorkaholic = {name: name, email: email, gender: gender, age:age, relation:relation, occupation:occupation}
     // Create a new record and save to DB
-    Record.create(newRecord, function(err, newlyCreated){
+    Workaholic.create(newWorkaholic, function(err, newlyCreated){
         if(err){
             console.log(err);
         } else {
-            //redirect back to campgrounds page
-            res.redirect("/records");
+            //redirect back to workaholics page
+            res.redirect("/workaholics");
         }
     });
 });
 
-//NEW - show form to create new record
-app.get("/records/newRecord", function(req, res){
-   res.render("newRecord.ejs"); 
+//NEW - show form to add new workaholic
+app.get("/workaholics/newWorkaholic", function(req, res){
+   res.render("newWorkaholic.ejs"); 
 });
 
 // SHOW - shows more info about one campground
-app.get("/records/:id", function(req, res){
+app.get("/workaholics/:id", function(req, res){
     //find the campground with provided ID
-    Record.findById(req.params.id, function(err, foundRecord){
+    Workaholic.findById(req.params.id, function(err, foundWorkaholic){
         if(err){
             console.log(err);
         } else {
             //render show template with that campground
-            res.render("showRecord", {record: foundRecord});
+            res.render("showWorkaholic", {workaholic: foundWorkaholic});
         }
     });
 })
