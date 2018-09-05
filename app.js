@@ -11,7 +11,7 @@ var Record = require("./models/record");
 
 app.use( express.static( "public" ) );
 
-mongoose.connect("mongodb://localhost/auth_demo_app",{ useNewUrlParser: true });
+mongoose.connect("mongodb://localhost/app",{ useNewUrlParser: true });
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 
@@ -125,13 +125,14 @@ app.get("/register", function(req, res){
 app.post("/register", function(req, res){
     req.body.username;
     req.body.password;
-    User.register(new User({username: req.body.username}), req.body.password, function(err, user){
+    req.body.email;
+    User.register(new User({username: req.body.username,email:req.body.email}), req.body.password, function(err, user){
         if(err){
             console.log(err);
             return res.render('register');
         }
         passport.authenticate("local")(req, res, function(){
-           res.redirect("/secret");
+           res.redirect("/track");
         });
     });
 });
@@ -144,7 +145,7 @@ app.get("/login", function(req, res){
 //login logic
 //middleware
 app.post("/login", passport.authenticate("local", {
-    successRedirect: "/secret",
+    successRedirect: "/track",
     failureRedirect: "/login"
 }) ,function(req, res){
 });
