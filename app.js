@@ -77,7 +77,7 @@ app.get("/workaholics", isLoggedIn, function(req, res){
 });
 
 //CREATE - add new workaholic to DB
-app.post("/workaholics", function(req, res){
+app.post("/workaholics",isLoggedIn, function(req, res){
     // get data from form and add to workaholics array
     var name = req.body.name;
     var email = req.body.email;
@@ -85,7 +85,11 @@ app.post("/workaholics", function(req, res){
     var age = req.body.age;
     var occupation = req.body.occupation;
     var relation = req.body.relation;
-    var newWorkaholic = {name: name, email: email, gender: gender, age:age, relation:relation, occupation:occupation}
+    var user = {
+        id: req.user._id,
+        username: req.user.username
+    }
+    var newWorkaholic = {name: name, email: email, gender: gender, age:age, relation:relation, occupation:occupation, user:user}
     // Create a new record and save to DB
     Workaholic.create(newWorkaholic, function(err, newlyCreated){
         if(err){
