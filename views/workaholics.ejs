@@ -15,6 +15,7 @@
 
 <div class="row text-center" style="display:flex; flex-wrap: wrap;">
         <% workaholics.forEach(function(workaholic){ %>
+        <% if(currentUser && workaholic.user.id.equals(currentUser._id)){ %>
             <div class="col-md-3 col-sm-6">
                        <h4>Name:<%= workaholic.name %></h4>
                        <h4>Gender:<%= workaholic.gender %></h4>
@@ -25,6 +26,7 @@
                        <a href="/workaholics/<%= workaholic._id %>" class="btn btn-primary">More Info</a>
                    </p>
             </div>
+        <% } %>
         <% }); %>
     </div>
 <% include partials/footer %>

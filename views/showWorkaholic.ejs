@@ -22,9 +22,17 @@
           <h4>Age:<%= workaholic.age %></h4>
           <h4>Relation:<%= workaholic.relation %></h4>
           <h4>Occupation:<%= workaholic.occupation %></h4>
-          
+          <br>
+          <% if(currentUser && workaholic.user.id.equals(currentUser._id)){ %>
+          <a class="btn btn-xs btn-warning" href="/workaholics/<%= workaholic._id %>/edit">Edit workaholic</a>
+          <br>
+          <form id="delete-form" action="/workaholics/<%= workaholic._id %>?_method=DELETE" method="POST">
+              <button class="btn btn-xs btn-danger">Delete workaholic</button>
+          </form>
+          <% }%>
+          <br>
           <a href = "/workaholics/<%= workaholic._id %>/dailys/new">Add new daily tracks</a>
-          
+          <br>
           <% workaholic.dailys.forEach(function(daily){ %>
           <p>
             <%= daily %>

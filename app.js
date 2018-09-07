@@ -6,6 +6,7 @@ var bodyParser = require("body-parser");
 var passport = require("passport");
 var LocalStrategy = require("passport-local");
 var passportLocalMongoose = require("passport-local-mongoose");
+var methodOverride = require("method-override");
 
 var User = require("./models/user");
 var Workaholic = require("./models/workaholic");
@@ -16,6 +17,7 @@ app.use( express.static( "public" ) );
 mongoose.connect("mongodb://localhost/app",{ useNewUrlParser: true });
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
+app.use(methodOverride("_method"));
 
 app.use(require("express-session")({
     secret: "abcd1234",
@@ -29,11 +31,14 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+app.use(function(req, res, next){
+   res.locals.currentUser = req.user;
+   next();
+});
+
 //=======================
 //Routes
 //=======================
-
-
 
 //Index page - landing page
 app.get("/", function(req, res){
@@ -119,6 +124,41 @@ app.get("/workaholics/:id", function(req, res){
         }
     });
 })
+
+// show workaholic information edit form
+app.get("/workaholics/:id/edit",checkWorkaholicOwnership , function(req, res){
+    Workaholic.findById(req.params.id, function(err, foundWorkaholic){
+        if(err){
+            console.log(err);
+        } else {
+        res.render("editWorkaholic", {workaholic: foundWorkaholic})
+        };
+    });
+});
+
+// workaholic information put route
+app.put("/workaholics/:id",checkWorkaholicOwnership , function(req, res){
+    // find and update the correct campground
+    Workaholic.findByIdAndUpdate(req.params.id, req.body.workaholic, function(err, updatedWorkaholic){
+       if(err){
+           res.redirect("/workaholics");
+       } else {
+           //redirect somewhere(show page)
+           res.redirect("/workaholics/" + req.params.id);
+       }
+    });
+});
+
+// destroy workaholic route
+app.delete("/workaholics/:id",checkWorkaholicOwnership, function(req, res){
+   Workaholic.findByIdAndRemove(req.params.id, function(err){
+      if(err){
+          res.redirect("/workaholics");
+      } else {
+          res.redirect("/workaholics");
+      }
+   });
+});
 
 
 app.get("/track",isLoggedIn,function(req, res){
@@ -212,6 +252,25 @@ function isLoggedIn(req, res, next){
         return next();
     }
     res.redirect("/login");
+}
+
+function checkWorkaholicOwnership(req, res, next) {
+ if(req.isAuthenticated()){
+        Workaholic.findById(req.params.id, function(err, foundWorkaholic){
+           if(err){
+               res.redirect("back");
+           }  else {
+               // does user own the campground?
+            if(foundWorkaholic.user.id.equals(req.user._id)) {
+                next();
+            } else {
+                res.redirect("back");
+            }
+           }
+        });
+    } else {
+        res.redirect("back");
+    }
 }
 
 app.listen(process.env.PORT, process.env.IP, function(){
