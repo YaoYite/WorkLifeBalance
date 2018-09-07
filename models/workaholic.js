@@ -6,7 +6,13 @@ var WorkaholicSchema = new mongoose.Schema({
     gender: String,
     age: Number,
     relation: String,
-    occupation: String
+    occupation: String,
+    dailys:[
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Daily"
+        }
+    ]
 });
 
 

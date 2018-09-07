@@ -1,3 +1,4 @@
+require('sqreen');
 var express = require("express");
 var app = express();
 var mongoose = require("mongoose");
@@ -8,6 +9,7 @@ var passportLocalMongoose = require("passport-local-mongoose");
 
 var User = require("./models/user");
 var Workaholic = require("./models/workaholic");
+var Daily = require("./models/daily");
 
 app.use( express.static( "public" ) );
 
@@ -63,7 +65,7 @@ app.get("/workaholic", function(req, res){
     res.render("workaholic.ejs");
 });
 
-app.get("/workaholics", function(req, res){
+app.get("/workaholics", isLoggedIn, function(req, res){
     // Get all workaholics from DB
     Workaholic.find({}, function(err, allWorkaholics){
        if(err){
@@ -96,26 +98,70 @@ app.post("/workaholics", function(req, res){
 });
 
 //NEW - show form to add new workaholic
-app.get("/workaholics/newWorkaholic", function(req, res){
+app.get("/workaholics/newWorkaholic",isLoggedIn, function(req, res){
    res.render("newWorkaholic.ejs"); 
 });
 
-// SHOW - shows more info about one campground
+// SHOW - shows more info about one workaholic
 app.get("/workaholics/:id", function(req, res){
-    //find the campground with provided ID
-    Workaholic.findById(req.params.id, function(err, foundWorkaholic){
+    //find the workaholic with provided ID
+    Workaholic.findById(req.params.id).populate("dailys").exec(function(err, foundWorkaholic){
         if(err){
             console.log(err);
         } else {
-            //render show template with that campground
+            // console.log(foundWorkaholic)
+            //render show template with that workaholic
             res.render("showWorkaholic", {workaholic: foundWorkaholic});
         }
     });
 })
 
+
 app.get("/track",isLoggedIn,function(req, res){
     res.render("track.ejs");
 });
+
+// ===============================================
+// Daily activities tracking routes
+// ===============================================
+
+app.get("/workaholics/:id/dailys/new", function(req, res){
+    // find campground by id
+    Workaholic.findById(req.params.id, function(err, workaholic){
+        if(err){
+            console.log(err);
+        } else {
+             res.render("dailys/new.ejs", {workaholic: workaholic});
+        }
+    })
+});
+
+app.post("/workaholics/:id/dailys", function(req, res){
+   //lookup workaholics using ID
+   Workaholic.findById(req.params.id, function(err, workaholic){
+       if(err){
+           console.log(err);
+           res.redirect("/workaholics");
+       } else {
+        Daily.create(req.body.daily, function(err, daily){
+           if(err){
+               console.log(err);
+           } else {
+               workaholic.dailys.push(daily);
+               workaholic.save();
+               res.redirect('/workaholics/' + workaholic._id);
+           }
+        });
+       }
+   });
+   //create new daily
+   //connect new daily to workaholic
+   //redirect workaholic show page
+});
+
+// ===============================================
+// Auth routes
+// ===============================================
 
 //show sigu up form
 app.get("/register", function(req, res){
