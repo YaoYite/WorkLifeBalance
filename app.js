@@ -277,7 +277,7 @@ app.get("/login", function(req, res){
 //login logic
 //middleware
 app.post("/login", passport.authenticate("local", {
-    successRedirect: "/track",
+    successRedirect: "/workaholics",
     failureRedirect: "/login"
 }) ,function(req, res){
 });
