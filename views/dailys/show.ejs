@@ -37,10 +37,6 @@
           <p>
             <%= daily %>
           </p>
-          <a class="btn btn-xs btn-warning"  href="/workaholics/<%=workaholic._id %>/dailys/<%=daily._id %>/edit">Edit</a>
-          <form id="delete-form" action="/workaholics/<%=workaholic._id %>/dailys/<%=daily._id %>?_method=DELETE" method="POST">
-                <input type="submit" class="btn btn-xs btn-danger" value="Delete">
-          </form>
           <% }) %>
         </div>
       </div>

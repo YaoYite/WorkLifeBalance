@@ -169,6 +169,47 @@ app.get("/track",isLoggedIn,function(req, res){
 // Daily activities tracking routes
 // ===============================================
 
+app.get("/workaholics/:id/dailys/:daily_id/show", function(req, res){
+   Daily.findById(req.params.daily_id, function(err, foundDaily){
+      if(err){
+          res.redirect("back");
+      } else {
+        res.render("dailys/show", {workaholic_id: req.params.id, daily: foundDaily});
+      }
+   });
+});
+
+app.get("/workaholics/:id/dailys/:daily_id/edit",  function(req, res){
+   Daily.findById(req.params.daily_id, function(err, foundDaily){
+      if(err){
+          res.redirect("back");
+      } else {
+        res.render("dailys/edit", {workaholic_id: req.params.id, daily: foundDaily});
+      }
+   });
+});
+
+app.put("/workaholics/:id/dailys/:daily_id",  function(req, res){
+   Daily.findByIdAndUpdate(req.params.daily_id, req.body.daily, function(err, updatedDaily){
+      if(err){
+          res.redirect("back");
+      } else {
+          res.redirect("/workaholics/" + req.params.id );
+      }
+   });
+});
+
+app.delete("/workaholics/:id/dailys/:daily_id", function(req, res){
+    //findByIdAndRemove
+    Daily.findByIdAndRemove(req.params.daily_id, function(err){
+       if(err){
+           res.redirect("back");
+       } else {
+           res.redirect("/workaholics/" + req.params.id);
+       }
+    });
+});
+
 app.get("/workaholics/:id/dailys/new", function(req, res){
     // find campground by id
     Workaholic.findById(req.params.id, function(err, workaholic){
