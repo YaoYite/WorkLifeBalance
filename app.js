@@ -138,11 +138,12 @@ app.post("/workaholics",isLoggedIn, function(req, res){
     var age = req.body.age;
     var occupation = req.body.occupation;
     var relation = req.body.relation;
+    var hobby = req.body.hobby;
     var user = {
         id: req.user._id,
         username: req.user.username
     }
-    var newWorkaholic = {name: name, email: email, gender: gender, age:age, relation:relation, occupation:occupation, user:user}
+    var newWorkaholic = {name: name, email: email, gender: gender, age:age, relation:relation, occupation:occupation, user:user, hobby:hobby}
     // Create a new record and save to DB
     Workaholic.create(newWorkaholic, function(err, newlyCreated){
         if(err){
@@ -160,7 +161,7 @@ app.get("/workaholics/newWorkaholic",isLoggedIn, function(req, res){
 });
 
 // SHOW - shows more info about one workaholic
-app.get("/workaholics/:id", function(req, res){
+app.get("/workaholics/:id",isLoggedIn, function(req, res){
     //find the workaholic with provided ID
     Workaholic.findById(req.params.id).populate("dailys").exec(function(err, foundWorkaholic){
         if(err){
@@ -217,7 +218,7 @@ app.get("/track",isLoggedIn,function(req, res){
 // Daily activities tracking routes
 // ===============================================
 
-app.get("/workaholics/:id/dailys/:daily_id/show", function(req, res){
+app.get("/workaholics/:id/dailys/:daily_id/show",isLoggedIn, function(req, res){
    Daily.findById(req.params.daily_id, function(err, foundDaily){
       if(err){
           res.redirect("back");
@@ -227,7 +228,7 @@ app.get("/workaholics/:id/dailys/:daily_id/show", function(req, res){
    });
 });
 
-app.get("/workaholics/:id/dailys/:daily_id/edit",  function(req, res){
+app.get("/workaholics/:id/dailys/:daily_id/edit",isLoggedIn,function(req, res){
    Daily.findById(req.params.daily_id, function(err, foundDaily){
       if(err){
           res.redirect("back");
@@ -237,7 +238,7 @@ app.get("/workaholics/:id/dailys/:daily_id/edit",  function(req, res){
    });
 });
 
-app.put("/workaholics/:id/dailys/:daily_id",  function(req, res){
+app.put("/workaholics/:id/dailys/:daily_id",isLoggedIn, function(req, res){
    Daily.findByIdAndUpdate(req.params.daily_id, req.body.daily, function(err, updatedDaily){
       if(err){
           res.redirect("back");
@@ -247,7 +248,7 @@ app.put("/workaholics/:id/dailys/:daily_id",  function(req, res){
    });
 });
 
-app.delete("/workaholics/:id/dailys/:daily_id", function(req, res){
+app.delete("/workaholics/:id/dailys/:daily_id",isLoggedIn, function(req, res){
     //findByIdAndRemove
     Daily.findByIdAndRemove(req.params.daily_id, function(err){
        if(err){
@@ -258,7 +259,7 @@ app.delete("/workaholics/:id/dailys/:daily_id", function(req, res){
     });
 });
 
-app.get("/workaholics/:id/dailys/new", function(req, res){
+app.get("/workaholics/:id/dailys/new",isLoggedIn, function(req, res){
     // find campground by id
     Workaholic.findById(req.params.id, function(err, workaholic){
         if(err){
@@ -269,7 +270,7 @@ app.get("/workaholics/:id/dailys/new", function(req, res){
     })
 });
 
-app.post("/workaholics/:id/dailys", function(req, res){
+app.post("/workaholics/:id/dailys",isLoggedIn, function(req, res){
    //lookup workaholics using ID
    Workaholic.findById(req.params.id, function(err, workaholic){
        if(err){

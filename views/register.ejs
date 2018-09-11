@@ -18,9 +18,10 @@
         <div class="col-lg-8 col-md-10 mx-auto">
         <h1>Sigh up form</h1>
         <form action="/register" method="POST">
-            <input type="text" name="username" placeholder="username">
-            <input type="password" name="password" placeholder="password">
-            <input type="text" name="email" placeholder="email">
+            <input type="text" required maxlength="50" pattern="[A-Za-z0-9]+" title="Only number and letters allowed" name="username" placeholder="username">
+            <input type="password" required name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+            title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" placeholder="password">
+            <input type="email" required maxlength="50" name="email" placeholder="email">
             <button class = "btn btn-primary btn-sm">Submit</button>
         </form>
 

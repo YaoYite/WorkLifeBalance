@@ -18,12 +18,13 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-10 col-md-11 mx-auto">
-          <p>Name:<%= workaholic.name %></p>
-          <p>Email:<%= workaholic.email %></p>
-          <p>Gender:<%=  workaholic.gender %></p>
-          <p>Age:<%= workaholic.age %></p>
-          <p>Relation:<%= workaholic.relation %></p>
-          <p>Occupation:<%= workaholic.occupation %></p>
+          <p>Name: <%= workaholic.name %></p>
+          <p>Email: <%= workaholic.email %></p>
+          <p>Gender: <%=  workaholic.gender %></p>
+          <p>Age: <%= workaholic.age %></p>
+          <p>Relation: <%= workaholic.relation %></p>
+          <p>Occupation: <%= workaholic.occupation %></p>
+          <p>Hobby: <%= workaholic.hobby %></p>
           <br>
           <% if(currentUser && workaholic.user.id.equals(currentUser._id)){ %>
           <a class="btn btn-xs btn-warning" href="/workaholics/<%= workaholic._id %>/edit">Edit workaholic</a>
@@ -40,8 +41,8 @@
         <thead>
             <tr>
                 <th>Date</th>
-                <th>Family</th>
-                <th>Hobbies</th>
+                <th>Family (hour)</th>
+                <th>Hobbies (hour)</th>
                 <th>Detail</th>
             </tr>
         </thead>

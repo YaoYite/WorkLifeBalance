@@ -17,14 +17,13 @@
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
           <form action="/login" method="POST">
-          <input type="text" name="username" placeholder="username">
-          <input type="password" name="password" placeholder="password">
+          <input type="text" required maxlength="50" name="username" pattern="[A-Za-z0-9]+" title="Only number and letters allowed" placeholder="username">
+          <input type="password" required name="password" placeholder="password">
           <button class = "btn btn-primary btn-sm">Login</button>
           </form>
           <p>If you do not have an account, please sign up</p>
           <a href="/register" class = "btn btn-primary btn-sm">Sign Up</a>
-          <!--<a href="/login" class = "btn btn-primary btn-sm">Login</a>-->
-          <!--<a href="/logout" class = "btn btn-warning btn-sm">Logout</a>-->
+
         </div>
       </div>
     </div>

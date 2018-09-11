@@ -14,6 +14,7 @@ var WorkaholicSchema = new mongoose.Schema({
     age: Number,
     relation: String,
     occupation: String,
+    hobby: String,
     dailys:[
         {
             type: mongoose.Schema.Types.ObjectId,

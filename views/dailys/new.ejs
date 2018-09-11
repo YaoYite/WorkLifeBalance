@@ -12,47 +12,6 @@
         </div>
       </div>
     </header>
-<!--<div class="container">-->
-<!--    <div class="row">-->
-<!--        <div class="col-lg-8 col-md-10 mx-auto">-->
-<!--        <h1 style="text-align: center">Add new record to <%= workaholic.name %></h1>-->
-        <!--<div style="width: 30%; margin: 25px auto;">-->
-<!--            <form action="/workaholics/<%= workaholic._id %>/dailys" method="POST">-->
-<!--                <div class="form-group">-->
-<!--                    <input class="form-control" type="text" name="daily[date]" placeholder="date">-->
-<!--                </div>-->
-<!--                <div class="form-group">-->
-<!--                    <input class="form-control" type="text" name="daily[careofchildren]" placeholder="careofchildren">-->
-<!--                </div>-->
-<!--                <div class="form-group">-->
-<!--                    <input class="form-control" type="text" name="daily[teachhelpchildren]" placeholder="teachhelpchildren">-->
-<!--                </div>-->
-<!--                <div class="form-group">-->
-<!--                    <input class="form-control" type="text" name="daily[playreadtalkwithchildren]" placeholder="playreadtalkwithchildren">-->
-<!--                </div>-->
-<!--                <div class="form-group">-->
-<!--                    <input class="form-control" type="text" name="daily[socialcommunity]" placeholder="socialcommunity">-->
-<!--                </div>-->
-<!--                <div class="form-group">-->
-<!--                    <input class="form-control" type="text" name="daily[sportoutdoor]" placeholder="sportoutdoor">-->
-<!--                </div>-->
-<!--                <div class="form-group">-->
-<!--                    <input class="form-control" type="text" name="daily[hobbyarts]" placeholder="hobbyarts">-->
-<!--                </div>-->
-<!--                <div class="form-group">-->
-<!--                    <input class="form-control" type="text" name="daily[media]" placeholder="media">-->
-<!--                </div>-->
-<!--                <div class="form-group">-->
-<!--                    <input class="form-control" type="text" name="daily[talkingreadingwriting]" placeholder="talkingreadingwriting">-->
-<!--                </div>-->
-<!--                <div class="form-group">-->
-<!--                    <button class="btn btn-lg btn-primary btn-block">Submit!</button>-->
-<!--                </div>-->
-<!--            </form>-->
-<!--            <a href="/workaholics/<%= workaholic._id %>">Go Back</a>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
 
 <div class="container">
     <div class="row">
@@ -61,7 +20,7 @@
             <form action="/workaholics/<%= workaholic._id %>/dailys" method="POST">
                 <div class="form-group">
                   <label for="datepicker">Date</label>
-                  <input type="date" class="form-control" id="datepicker" name="daily[date]" placeholder="date">
+                  <input type="date" required class="form-control" id="datepicker" name="daily[date]" placeholder="date">
                 </div>
                 <p>              </p>
                 <div class="col-sm-8">
@@ -71,7 +30,7 @@
                 </div>
                 <div class="form-group ">
                   <label for="inputFamily">How much time does he/she spend with family (hour)</label>
-                  <select id="inputFamily" class="form-control" name="daily[family]">
+                  <select id="inputFamily" required min="0" max="24" class="form-control" name="daily[family]">
                     <option selected >Choose...</option>
                     <option>0</option>
                     <option>1</option>
@@ -82,6 +41,14 @@
                     <option>6</option>
                     <option>7</option>
                     <option>8</option>
+                    <option>9</option>
+                    <option>10</option>
+                    <option>11</option>
+                    <option>12</option>
+                    <option>13</option>
+                    <option>14</option>
+                    <option>15</option>
+                    <option>16</option>
                   </select>
                 </div>
                 <p>              </p>
@@ -92,7 +59,7 @@
                 </div>
                 <div class="form-group ">
                   <label for="inputHobbies">How much time does he/she spend on hobbies (hour)</label>
-                  <select id="inputHobbies" class="form-control" name="daily[hobbies]">
+                  <select id="inputHobbies" required min="0" max="24" class="form-control" name="daily[hobbies]">
                     <option selected>Choose...</option>
                     <option>0</option>
                     <option>1</option>
@@ -103,40 +70,16 @@
                     <option>6</option>
                     <option>7</option>
                     <option>8</option>
+                    <option>9</option>
+                    <option>10</option>
+                    <option>11</option>
+                    <option>12</option>
+                    <option>13</option>
+                    <option>14</option>
+                    <option>15</option>
+                    <option>16</option>
                   </select>
                 </div>
-            <!--    <div class="form-group">-->
-            <!--      <label for="inputCoc">Physical and emotional care of children</label>-->
-            <!--      <input type="number" class="form-control" id="inputCoc" name="daily[careofchildren]" placeholder="How many minutes did she/he spend on it">-->
-            <!--    </div>-->
-            <!--  <div class="form-group" >-->
-            <!--    <label for="inputTeach">Teaching/helping/reprimanding children</label>-->
-            <!--    <input type="number" class="form-control" id="inputTeach" name="daily[teachhelpchildren]" placeholder="How many minutes did she/he spend on it">-->
-            <!--  </div>-->
-            <!--  <div class="form-group">-->
-            <!--    <label for="inputPrt">Playing/reading/talking with child</label>-->
-            <!--    <input type="number" class="form-control" id="inputPrt" name="daily[playreadtalkwithchildren]" placeholder="How many minutes did she/he spend on it">-->
-            <!--  </div>-->
-            <!--  <div class="form-group">-->
-            <!--      <label for="inputSocial">Social and community interaction</label>-->
-            <!--      <input type="number" class="form-control" id="inputSocial" name="daily[socialcommunity]" placeholder="How many minutes did she/he spend on it">-->
-            <!--    </div>-->
-            <!--    <div class="form-group">-->
-            <!--      <label for="inputSport">Sport and outdoor activity</label>-->
-            <!--      <input type="number" class="form-control" id="inputSport" name="daily[sportoutdoor]" placeholder="How many minutes did she/he spend on it">-->
-            <!--    </div>-->
-            <!--  <div class="form-group" >-->
-            <!--    <label for="inputArts">Games,hobbies,arts,crafts</label>-->
-            <!--    <input type="number" class="form-control" id="inputAgrts" name="daily[hobbyarts]" placeholder="How many minutes did she/he spend on it">-->
-            <!--  </div>-->
-            <!--  <div class="form-group">-->
-            <!--    <label for="inputMedia">Audio/visual media</label>-->
-            <!--    <input type="number" class="form-control" id="inputMedia" name="daily[media]" placeholder="How many minutes did she/he spend on it">-->
-            <!--  </div>-->
-            <!--  <div class="form-group">-->
-            <!--    <label for="inputTw">Talking (including phone) or writing/reading own correspondence</label>-->
-            <!--    <input type="number" class="form-control" id="inputTw" name="daily[talkingreadingwriting]" placeholder="How many minutes did she/he spend on it">-->
-            <!--  </div>-->
               <button type="submit" class="btn btn-primary">Submit</button>
             </form>
             <p>            </p>
