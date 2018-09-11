@@ -14,7 +14,8 @@ var Daily = require("./models/daily");
 
 app.use( express.static( "public" ) );
 
-mongoose.connect("mongodb://localhost/app",{ useNewUrlParser: true });
+// mongoose.connect("mongodb://localhost/app",{ useNewUrlParser: true });
+mongoose.connect("mongodb://problemsolvers:chelsea8YYT@ds151612.mlab.com:51612/worklifebalance",{ useNewUrlParser: true });
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(methodOverride("_method"));
@@ -313,7 +314,7 @@ app.post("/register", function(req, res){
             return res.render('register');
         }
         passport.authenticate("local")(req, res, function(){
-           res.redirect("/track");
+           res.redirect("/workaholics");
         });
     });
 });
