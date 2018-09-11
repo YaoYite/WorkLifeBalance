@@ -3,8 +3,11 @@
 <style>
 #select{
 	position:absolute;
-	top:10px;
-	left:10px;
+	top:1px;
+	left:1px;
+	width:180px;
+	height:35px;
+	font-size:20px;
 }
     .axis path,
     .axis line {
@@ -14,11 +17,10 @@
         shape-rendering: crispEdges;
     }
 </style>
-
 <body>
     <svg></svg>
     <script src="https://d3js.org/d3.v3.min.js"></script>
-    /<select id="select">
+    <select id="select">
 		<option value="no" selected="selected">please select</option>
 		<option value="17 years and under">17 years and under</option>
 		<option value="18 to 20 years">18 to 20 years</option>
@@ -145,5 +147,6 @@
                 })
             }
     </script>
+<hr>
 </body>
 </html>

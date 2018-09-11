@@ -49,21 +49,48 @@ app.get("/worktimegraph", function(req, res){
     res.render("graph/graph_worktime.ejs");
 });
 
+app.get("/showworktimegraph", function(req, res){
+    res.render("graph/graph_worktime_show.ejs");
+});
+
 app.get("/paidjobgraph", function(req, res){
     res.render("graph/graph_paid_job.ejs");
+});
+
+app.get("/showpaidjobgraph", function(req, res){
+    res.render("graph/graph_paid_job_show.ejs");
 });
 
 app.get("/paidindustrygraph", function(req, res){
     res.render("graph/graph_paid_industry.ejs");
 });
+
+app.get("/showpaidindustrygraph", function(req, res){
+    res.render("graph/graph_paid_industry_show.ejs");
+});
+
 app.get("/paidgendergraph", function(req, res){
     res.render("graph/graph_paid_gender.ejs");
 });
+
+app.get("/showpaidgendergraph", function(req, res){
+    res.render("graph/graph_paid_gender_show.ejs");
+});
+
 app.get("/maleexercisegraph", function(req, res){
     res.render("graph/graph_exercise_male.ejs");
 });
+
+app.get("/showmaleexercisegraph", function(req, res){
+    res.render("graph/graph_exercise_male_show.ejs");
+});
+
 app.get("/femaleexercisegraph", function(req, res){
     res.render("graph/graph_exercise_female.ejs");
+});
+
+app.get("/showfemaleexercisegraph", function(req, res){
+    res.render("graph/graph_exercise_female_show.ejs");
 });
 
 //About page - website and team information
