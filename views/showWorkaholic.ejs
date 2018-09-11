@@ -17,7 +17,7 @@
 
     <div class="container">
       <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="col-lg-10 col-md-11 mx-auto">
           <p>Name:<%= workaholic.name %></p>
           <p>Email:<%= workaholic.email %></p>
           <p>Gender:<%=  workaholic.gender %></p>
@@ -32,46 +32,46 @@
           </form>
           <% }%>
           <hr>
-          <a href = "/workaholics/<%= workaholic._id %>/dailys/new" class="btn btn-primary">Add new daily tracks</a>
+          <a href = "/workaholics/<%= workaholic._id %>/dailys/new" class="btn btn-success">Add new daily tracks</a>
           <br>
-          <% workaholic.dailys.forEach(function(daily){ %>
+          <p>      </p>
+          <br>
           <table class="display" id="example" style="width:100%">
         <thead>
             <tr>
                 <th>Date</th>
-                <th>Child Childare</th>
-                <th>Social and Community Interaction</th>
-                <th>Recreation and Leisure</th>
-                <th>Recreation and Leisure</th>
+                <th>Family</th>
+                <th>Hobbies</th>
+                <th>Detail</th>
             </tr>
         </thead>
         <tbody>
+          <% workaholic.dailys.forEach(function(daily){ %>
             <tr>
                 <td><%= daily.date %></td>
-                <td><%= daily.careofchildren %></td>
-                <td><%= daily.socialcommunity %></td>
-                <td><%= daily.hobbyarts %></td>
-                <td><a class="btn btn-xs btn-warning"  href="/workaholics/<%=workaholic._id %>/dailys/<%=daily._id %>/edit">Edit daily record</a>
-          <form id="delete-form" action="/workaholics/<%=workaholic._id %>/dailys/<%=daily._id %>?_method=DELETE" method="POST">
-                <input type="submit" class="btn btn-xs btn-danger" value="Delete daily record">
-          </form></td>
+                <td><%= daily.family %></td>
+                <td><%= daily.hobbies %></td>
+                <td>
+                    <a type = "button" class="btn btn-info" href="/workaholics/<%=workaholic._id %>/dailys/<%=daily._id %>/show">Detail</a>
+                    <a type = "button" class="btn btn-warning " href="/workaholics/<%=workaholic._id %>/dailys/<%=daily._id %>/edit">Edit</a>
+                    <form id="delete-form" action="/workaholics/<%=workaholic._id %>/dailys/<%=daily._id %>?_method=DELETE" method="POST">
+                          <input type="submit" value = "Delete" type = "button" class="btn btn-danger">
+                    </form>
+                </td>
             </tr>
+            <% }) %>
             </tbody>
         <tfoot>
             <tr>
-                <th>Date</th>
-                <th>Child Childare</th>
-                <th>Social and Community Interaction</th>
-                <th>Recreation and Leisure</th>
-                <th>Recreation and Leisure</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
             </tr>
         </tfoot>
     </table>
-          <!--<p>-->
-          <!--  <%= daily %>-->
-          <!--</p>-->
           
-          <% }) %>
+          
         </div>
       </div>
     </div>

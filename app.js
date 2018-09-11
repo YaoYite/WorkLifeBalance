@@ -45,6 +45,27 @@ app.get("/", function(req, res){
     res.render("index.ejs");
 });
 
+app.get("/worktimegraph", function(req, res){
+    res.render("graph/graph_worktime.ejs");
+});
+
+app.get("/paidjobgraph", function(req, res){
+    res.render("graph/graph_paid_job.ejs");
+});
+
+app.get("/paidindustrygraph", function(req, res){
+    res.render("graph/graph_paid_industry.ejs");
+});
+app.get("/paidgendergraph", function(req, res){
+    res.render("graph/graph_paid_gender.ejs");
+});
+app.get("/maleexercisegraph", function(req, res){
+    res.render("graph/graph_exercise_male.ejs");
+});
+app.get("/femaleexercisegraph", function(req, res){
+    res.render("graph/graph_exercise_female.ejs");
+});
+
 //About page - website and team information
 app.get("/about", function(req, res){
     res.render("about.ejs");

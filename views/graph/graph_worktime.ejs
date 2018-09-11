@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+#select{
+	position:absolute;
+	top:10px;
+	left:10px;
+}
+    .axis path,
+    .axis line {
+        fill: none;
+        stroke: grey;
+        stroke-width: 1;
+        shape-rendering: crispEdges;
+    }
+</style>
+
+<body>
+    <svg></svg>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    /<select id="select">
+		<option value="no" selected="selected">please select</option>
+		<option value="Fathers">Fathers</option>
+		<option value="Mothers">Mothers</option>
+        <option value="Parents">Parents</option>
+    </select>
+    <script>
+        // Set svg width & height
+        var margin = {top: 20, right: 20, bottom: 30, left: 40},
+            width = 1200 - margin.left - margin.right,
+            height = 800 - margin.top - margin.bottom;
+        var svg = d3.select('svg')
+                    .attr("width", width + margin.left + margin.right)
+                    .attr("height", height + margin.top + margin.bottom)
+
+        var tooltip = d3.select("body")
+            .append("div")
+            .attr("class", "tooltip")
+            .style("position", "absolute")
+            .style("text-align", "center")
+            .style("color", "black")
+            .style("width", "80px")
+            .style("height", "22px")
+            .style("padding", "5px")
+            .style("border", "2px")
+            .style("font-size", "15px")
+            .style("font-family", "Futura")
+            .style("background", "silver")
+            .style("visibility", "hidden")
+        
+        
+        d3.select('#select')
+			.on("change", function () {
+            d3.select('.wg').remove();
+				var se = document.getElementById("select");
+                var status = se.options[se.selectedIndex].value;
+            if (status != "no") {
+                    workBarchart(status);
+                }
+                });
+        
+        function workBarchart(status) {
+                d3.csv("/csv/time.csv", function (csv) {
+                    var workTimeData = csv.filter(function (row) {
+                        return row['Status'] == status;
+                    })
+                    //console.log(workTimeData)
+                    var wg = svg.append('g').attr("class", "wg");
+                    var barchart = wg.append("g")
+                        .attr("transform", "translate(100,50)")
+                        .attr("class", "barchart");
+
+
+                    var x = d3.scale.ordinal()
+                        .domain(workTimeData.map(function (d) {
+                            return d['Activity'];
+                        }))
+                        .rangeRoundBands([0, 1000], .1);
+
+                    var y = d3.scale.linear()
+                        .domain([0, d3.max(workTimeData, function (d) {
+                            return Number(d['Time']);
+                        })])
+                        .range([400, 0]);
+                    
+                    var xAxis = d3.svg.axis()
+                        .scale(x)
+                        .orient("bottom");
+
+                    var yAxis = d3.svg.axis()
+                        .scale(y)
+                        .orient("left");
+
+                    barchart.append("g")
+                        .attr("class", "x axis")
+                        .attr("transform", "translate(0," + 400 + ")")
+                        .call(xAxis)
+                        .selectAll("text")
+                        .style("text-anchor", "end")
+                        .attr("dx", "-.8em")
+                        .attr("dy", ".15em")
+                        .attr("transform", function (d) {
+                            return "rotate(-65)"
+                        });
+
+                    barchart.append("g")
+                        .attr("class", "y axis")
+                        .call(yAxis)
+                    .append("text")
+                        .attr("transform", "rotate(-90)")
+                        .attr("x", -110)
+                        .attr("y", -45)
+                        .attr("dy", ".71em")
+                        .style("text-anchor", "end")
+                        .text("Duration (hours)");
+
+                    barchart.append("text")
+                        .text('How '+status +' Spend Their Time')
+                        .style('font-family', 'Futura')
+                        .style('font-size', '24px')
+                        .attr("text-anchor", "middle")
+                        .attr("class", "graph-title")
+                        .attr("y", 5)
+                        .attr("x", 500);
+
+                    var bar = barchart.selectAll(".bar")
+                        .data(workTimeData)
+                        .enter().append("rect")
+                        .attr("class", "bar")
+                        .attr("x", function (d) {
+                            return x(d['Activity']);
+                        })
+                        .attr("y", 800)
+                        .attr("width", x.rangeBand())
+                        .attr("height", 0)
+                        .style("fill", function (d) {
+                            if (d['Category']=='Personal Care')
+                            {
+                                return '#3366cc';
+                            }
+                            if (d['Category']=='Employment Related')
+                            {
+                                return '#dc3912';
+                            }
+                            if (d['Category']=='Education')
+                            {
+                                return '#ff9900';
+                            }
+                            if (d['Category']=='Domestic Activities')
+                            {
+                                return '#109618';
+                            }
+                            if (d['Category']=='Child Care')
+                            {
+                                return '#990099';
+                            }
+                            if (d['Category']=='Purchasing Goods and Services')
+                            {
+                                return '#0099c6';
+                            }
+                            if (d['Category']=='Voluntary Work and Care')
+                            {
+                                return '#dd4477';
+                            }
+                            if (d['Category']=='Social and Community Interaction')
+                            {
+                                return '#66aa00';
+                            }
+                            if (d['Category']=='Recreation and Leisure')
+                            {
+                                return '#b82e2e';
+                            }
+                        });
+
+                    bar.transition()
+                        .duration(1500)
+                        .ease("elastic")
+                        .attr("y", function (d) {
+                            return y(d['Time']);
+                        })
+                        .attr("height", function (d) {
+                            return 400 - y(d['Time']);
+                        })
+
+                    bar.on("mouseover", function (d) {
+                            d3.select(this).style("fill", "black")
+                            return tooltip.style("visibility", "visible").text(d['Time']+' hours');
+                        })
+                        .on("mousemove", function (d) {
+                            d3.select(this).style("fill", "black");
+                            return tooltip.style("top", (event.pageY - 10) + "px").style("left", (event.pageX + 10) + "px");
+                        })
+                        .on("mouseout", function (d) {
+                            d3.select(this).style("fill", function (d) {
+                            if (d['Category']=='Personal Care')
+                            {
+                                return '#3366cc';
+                            }
+                            if (d['Category']=='Employment Related')
+                            {
+                                return '#dc3912';
+                            }
+                            if (d['Category']=='Education')
+                            {
+                                return '#ff9900';
+                            }
+                            if (d['Category']=='Domestic Activities')
+                            {
+                                return '#109618';
+                            }
+                            if (d['Category']=='Child Care')
+                            {
+                                return '#990099';
+                            }
+                            if (d['Category']=='Purchasing Goods and Services')
+                            {
+                                return '#0099c6';
+                            }
+                            if (d['Category']=='Voluntary Work and Care')
+                            {
+                                return '#dd4477';
+                            }
+                            if (d['Category']=='Social and Community Interaction')
+                            {
+                                return '#66aa00';
+                            }
+                            if (d['Category']=='Recreation and Leisure')
+                            {
+                                return '#b82e2e';
+                            }
+                        });
+                            return tooltip.style('visibility', 'hidden');
+                        });
+                    
+                    var legendVals = ['Personal Care', 'Employment Related', 'Education', 'Domestic Activities', 'Child Care', 'Purchasing Goods and Services', 'Voluntary Work and Care', 'Social and Community Interaction', 'Recreation and Leisure'];
+                    var color = ["#3366cc", "#dc3912", "#ff9900", "#109618", "#990099", "#0099c6", "#dd4477", "#66aa00", "#b82e2e"];
+                    var legend = wg.append("g")
+                            .attr("font-family", "sans-serif")
+                            .attr("font-size", 10)
+                            .selectAll(".legend")
+                            .data(legendVals)
+                            .enter().append("g")                                
+                                .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+
+                    legend.append("rect")
+                            .attr("x", 925)
+                            .attr("width", 18)
+                            .attr("height", 18)
+                            .attr("fill", function (d, i) 
+                                  {
+                                    return color[i];
+                                    });
+
+                    legend.append("text")
+                            .attr("x", 950)
+                            .attr("y", 9)
+                            .attr("dy", "0.32em")
+                            .text(function(d) { return d; });
+                })
+            }
+    </script>
+</body>
+</html>

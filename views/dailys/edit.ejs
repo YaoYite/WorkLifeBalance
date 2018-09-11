@@ -12,11 +12,6 @@
         </div>
       </div>
     </header>
-    <script>
-  $( function() {
-    $( "#datepicker" ).datepicker();
-  } );
-  </script>
 <!--<div class="container">-->
 <!--    <div class="row">-->
 <!--        <div class="col-lg-8 col-md-10 mx-auto">-->
@@ -64,50 +59,88 @@
             <form action="/workaholics/<%= workaholic_id %>/dailys/<%= daily._id %>?_method=PUT" method="POST">
                 <div class="form-group">
                   <label for="datepicker">Date</label>
-                  <input type="text" class="form-control" id="datepicker" name="daily[date]" value="<%= daily.date %>">
+                  <input type="date" class="form-control" id="datepicker" name="daily[date]" value="<%= daily.date %>">
                 </div>
-                <div class="form-group">
-                  <label for="inputCoc">Physical and emotional care of children</label>
-                  <input type="number" class="form-control" id="inputCoc" name="daily[careofchildren]" value="<%= daily.careofchildren %>">
+                <p>              </p>
+                <div class="col-sm-8">
+                  <div class="thumbnail">
+                      <img  src="/img/memory-min.jpeg" style = "width:100%">
+                  </div>
                 </div>
-              <div class="form-group" >
-                <label for="inputTeach">Teaching/helping/reprimanding children</label>
-                <input type="number" class="form-control" id="inputTeach" name="daily[teachhelpchildren]" value="<%= daily.teachhelpchildren %>">
-              </div>
-              <div class="form-group">
-                <label for="inputPrt">Playing/reading/talking with child</label>
-                <input type="number" class="form-control" id="inputPrt" name="daily[playreadtalkwithchildren]" value="<%= daily.playreadtalkwithchildren %>">
-              </div>
-              <div class="form-group">
-                  <label for="inputSocial">Social and community interaction</label>
-                  <input type="number" class="form-control" id="inputSocial" name="daily[socialcommunity]" value="<%= daily.socialcommunity %>">
+                <div class="form-group ">
+                  <label for="inputFamily">How much time does he/she spend with family (hour)</label>
+                  <select id="inputFamily" class="form-control" name="daily[family]" value="<%= daily.family %>">
+                    <option selected >Choose...</option>
+                    <option>0</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                  </select>
                 </div>
-                <div class="form-group">
-                  <label for="inputSport">Sport and outdoor activity</label>
-                  <input type="number" class="form-control" id="inputSport" name="daily[sportoutdoor]" value="<%= daily.sportoutdoor %>">
+                <p>              </p>
+                <div class="col-sm-8">
+                  <div class="thumbnail">
+                      <img  src="/img/hobbies-min.jpeg" style = "width:100%">
+                  </div>
                 </div>
-              <div class="form-group" >
-                <label for="inputArts">Games,hobbies,arts,crafts</label>
-                <input type="number" class="form-control" id="inputAgrts" name="daily[hobbyarts]" value="<%= daily.hobbyarts %>">
-              </div>
-              <div class="form-group">
-                <label for="inputMedia">Audio/visual media</label>
-                <input type="number" class="form-control" id="inputMedia" name="daily[media]" value="<%= daily.media %>">
-              </div>
-              <div class="form-group">
-                <label for="inputTw">Talking (including phone) or writing/reading own correspondence</label>
-                <input type="number" class="form-control" id="inputTw" name="daily[talkingreadingwriting]" value="<%= daily.talkingreadingwriting %>">
-              </div>
-              <button type="submit" class="btn btn-primary">Submit</button>
+                <div class="form-group ">
+                  <label for="inputHobbies">How much time does he/she spend on hobbies (hour)</label>
+                  <select id="inputHobbies" class="form-control" name="daily[hobbies]" value="<%= daily.hobbies %>">
+                    <option selected>Choose...</option>
+                    <option>0</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                  </select>
+                </div>
+              <!--  <div class="form-group">-->
+              <!--    <label for="inputCoc">Physical and emotional care of children</label>-->
+              <!--    <input type="number" class="form-control" id="inputCoc" name="daily[careofchildren]" value="<%= daily.careofchildren %>">-->
+              <!--  </div>-->
+              <!--<div class="form-group" >-->
+              <!--  <label for="inputTeach">Teaching/helping/reprimanding children</label>-->
+              <!--  <input type="number" class="form-control" id="inputTeach" name="daily[teachhelpchildren]" value="<%= daily.teachhelpchildren %>">-->
+              <!--</div>-->
+              <!--<div class="form-group">-->
+              <!--  <label for="inputPrt">Playing/reading/talking with child</label>-->
+              <!--  <input type="number" class="form-control" id="inputPrt" name="daily[playreadtalkwithchildren]" value="<%= daily.playreadtalkwithchildren %>">-->
+              <!--</div>-->
+              <!--<div class="form-group">-->
+              <!--    <label for="inputSocial">Social and community interaction</label>-->
+              <!--    <input type="number" class="form-control" id="inputSocial" name="daily[socialcommunity]" value="<%= daily.socialcommunity %>">-->
+              <!--  </div>-->
+              <!--  <div class="form-group">-->
+              <!--    <label for="inputSport">Sport and outdoor activity</label>-->
+              <!--    <input type="number" class="form-control" id="inputSport" name="daily[sportoutdoor]" value="<%= daily.sportoutdoor %>">-->
+              <!--  </div>-->
+              <!--<div class="form-group" >-->
+              <!--  <label for="inputArts">Games,hobbies,arts,crafts</label>-->
+              <!--  <input type="number" class="form-control" id="inputAgrts" name="daily[hobbyarts]" value="<%= daily.hobbyarts %>">-->
+              <!--</div>-->
+              <!--<div class="form-group">-->
+              <!--  <label for="inputMedia">Audio/visual media</label>-->
+              <!--  <input type="number" class="form-control" id="inputMedia" name="daily[media]" value="<%= daily.media %>">-->
+              <!--</div>-->
+              <!--<div class="form-group">-->
+              <!--  <label for="inputTw">Talking (including phone) or writing/reading own correspondence</label>-->
+              <!--  <input type="number" class="form-control" id="inputTw" name="daily[talkingreadingwriting]" value="<%= daily.talkingreadingwriting %>">-->
+              <!--</div>-->
+            <button type="submit" class="btn btn-primary">Submit</button>
             </form>
-            <a href="/workaholics/<%= workaholic_id %>">Go Back</a>
+            <p>            </p>
+            <a href="/workaholics/<%= workaholic_id %>" class="btn btn-secondary">Go Back</a>
         </div>
     </div>
 </div>
-// <script>
-//         $('#datepicker').datepicker({
-//             uiLibrary: 'bootstrap'
-//         });
-//     </script>
 <% include ../partials/footer %>
 
