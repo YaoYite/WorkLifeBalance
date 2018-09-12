@@ -14,7 +14,7 @@ var Daily = require("./models/daily");
 
 app.use( express.static( "public" ) );
 
-mongoose.connect("process.env.DATABASEURL");
+mongoose.connect(process.env.DATABASEURL);
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
