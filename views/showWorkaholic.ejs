@@ -42,8 +42,8 @@
             <tr>
                 <th>Date</th>
                 <th>Family (hour)</th>
-                <th>Hobbies (hour)</th>
-                <th>Detail</th>
+                <th>Hobby (hour)</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -53,7 +53,7 @@
                 <td><%= daily.family %></td>
                 <td><%= daily.hobbies %></td>
                 <td>
-                    <a type = "button" class="btn btn-info" href="/workaholics/<%=workaholic._id %>/dailys/<%=daily._id %>/show">Detail</a>
+                    <!--<a type = "button" class="btn btn-info" href="/workaholics/<%=workaholic._id %>/dailys/<%=daily._id %>/show">Detail</a>-->
                     <a type = "button" class="btn btn-warning " href="/workaholics/<%=workaholic._id %>/dailys/<%=daily._id %>/edit">Edit</a>
                     <form id="delete-form" action="/workaholics/<%=workaholic._id %>/dailys/<%=daily._id %>?_method=DELETE" method="POST">
                           <input type="submit" value = "Delete" type = "button" class="btn btn-danger">

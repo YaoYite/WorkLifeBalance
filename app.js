@@ -41,8 +41,12 @@ app.use(function(req, res, next){
 //Routes
 //=======================
 
-//Index page - landing page
 app.get("/", function(req, res){
+    res.render("landing.ejs");
+});
+
+//Index page - landing page
+app.get("/index", function(req, res){
     res.render("index.ejs");
 });
 
