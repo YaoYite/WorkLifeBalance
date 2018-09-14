@@ -16,7 +16,21 @@
     <!--Main content-->
      <div class="container">
       <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="col-sm-3">
+            <div class="list-group">
+              <a href = "#graph" class="list-group-item list-group-item-action active">
+                Interactive graph
+              </a>
+              <a id = "graph" href="/showworktimegraph" class="list-group-item list-group-item-action">How Australian spend their time everyday</a>
+              <a href="/showpaidjobgraph" class="list-group-item list-group-item-action">Australian worker's paid hours per week</a>
+              <a href="/showpaidindustrygraph" class="list-group-item list-group-item-action">Australian worker's paid hours per week by industry</a>
+              <a href="/showpaidgendergraph" class="list-group-item list-group-item-action">Australian worker's paid hours per week by gender</a>
+              <a href="/showmaleexercisegraph" class="list-group-item list-group-item-action">Australian male exercise data</a>
+              <a href="/showfemaleexercisegraph" class="list-group-item list-group-item-action">Australian female exercise data</a>
+            </div>
+            </div>
+
+        <div class="col-sm-9">
           <div class="post-preview">
               <h2 class="post-title">
                 What is workaholic?
@@ -154,5 +168,5 @@
         </div>
       </div>
     </div>
-
+    <hr>
 <% include partials/footer %>
