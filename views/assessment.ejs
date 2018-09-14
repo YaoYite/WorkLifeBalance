@@ -7,7 +7,7 @@
           <div class="col-lg-8 col-md-10 mx-auto">
             <div class="post-heading">
               <h1>Workaholic quick assessment</h1>
-              <span class="subheading">Is your loved one a workaholic?</span>
+              <span class="subheading">Is your loved one works too much?</span>
             </div>
           </div>
         </div>
@@ -36,7 +36,7 @@
             <div class="col-sm-8">
             <h2>Quick Assessment</h2>
             <h4>How many hours he/she spends</h4>
-            For work? (Average hours per week)<br>
+            for work? (Average hours per week)<br>
             <select id="worktime">
             <option value="lt40">&lt 40</option>
             <option value="40-50">40-50</option>
@@ -101,7 +101,7 @@
                 document.getElementById("result1").innerHTML = text1;
                 if(st=="lt6")
                 {risk = risk+6;
-                    text2 ="This sleep duration is not recommended, minimum should be 6 hours, and 7-9 hours is recommended. ";}
+                    text2 ="This sleep duration is not ideal, minimum should be 6 hours, and 7-9 hours is recommended. ";}
                 else if(st=="6-7")
                 {risk = risk+3;
                     text2 ="This sleep duration is acceptable, but ideal durations is 7-9 hours. ";}
@@ -113,7 +113,7 @@
                     text2 ="This sleep duration is acceptable, but ideal duration is 7-9 hours. ";}
                 else if(st=="gt10")
                 {risk = risk+6;
-                    text2 ="This sleep duration is not recommended, maximum should be 10 hours, and 7-9 hours is recommended. ";}
+                    text2 ="This sleep duration is not ideal, maximum should be 10 hours, and 7-9 hours is recommended. ";}
                 document.getElementById("result2").innerHTML = text2;
                 if(et=="lt1.25")
                 {risk = risk+3;
