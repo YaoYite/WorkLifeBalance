@@ -7,7 +7,7 @@
             <div class="page-heading">
               <h1>The detail infomation of the person</h1>
               <span class="subheading">Personal information and tracking records</span>
-            </div>
+            </div
           </div>
         </div>
       </div>
@@ -37,6 +37,24 @@
           <br>
           <p>      </p>
           <br>
+          <% var familysum = 0;  %> 
+          <% var familycount = 0;  %> 
+          <% workaholic.dailys.forEach(function(daily){ %>
+          <% familysum += daily.family;  %> 
+          <% familycount += 1;  %> 
+          <% }); %>
+          <% var familyavg = familysum/familycount  %>
+          
+          <% var hobbysum = 0;  %> 
+          <% var hobbycount = 0;  %> 
+          <% workaholic.dailys.forEach(function(daily){ %>
+          <% hobbysum += daily.hobbies;  %> 
+          <% hobbycount += 1;  %> 
+          <% }); %>
+          <% var hobbyavg = hobbysum/hobbycount  %>
+          
+        <h1><%= workaholic.name %> spend <%= familyavg %> hours everyday on family</h1>
+        <h1><%= workaholic.name %> spend <%= hobbyavg %> hours everyday on family</h1>
           <table class="display" id="example" style="width:100%">
         <thead>
             <tr>
@@ -76,5 +94,4 @@
         </div>
       </div>
     </div>
-    
 <% include partials/footer %>

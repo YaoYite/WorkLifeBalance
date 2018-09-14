@@ -11,6 +11,7 @@ var methodOverride = require("method-override");
 var User = require("./models/user");
 var Workaholic = require("./models/workaholic");
 var Daily = require("./models/daily");
+var nodemailer = require("nodemailer");
 
 app.use( express.static( "public" ) );
 
@@ -107,6 +108,7 @@ app.get("/about", function(req, res){
 app.get("/contact", function(req, res){
     res.render("contact.ejs");
 });
+
 
 //Assessment page - workaholic quick assessment
 app.get("/assessment", function(req, res){
