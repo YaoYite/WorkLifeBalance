@@ -51,6 +51,22 @@ app.get("/index", function(req, res){
     res.render("index.ejs");
 });
 
+app.get("/timetreemap", function(req, res){
+    res.render("graph/timetreemap.ejs");
+});
+
+app.get("/diffchart", function(req, res){
+    res.render("graph/diffchart.ejs");
+});
+
+app.get("/calendarchart", function(req, res){
+    res.render("graph/calendarchart.ejs");
+});
+
+app.get("/linechart", function(req, res){
+    res.render("graph/linechart.ejs");
+});
+
 app.get("/worktimegraph", function(req, res){
     res.render("graph/graph_worktime.ejs");
 });
@@ -341,6 +357,17 @@ app.post("/login", passport.authenticate("local", {
 app.get("/logout", function(req, res){
     req.logout();
     res.redirect("/index");
+});
+
+app.get("/userprofile", isLoggedIn, function(req, res){
+    // Get all workaholics from DB
+    User.find({}, function(err, allUsers){
+       if(err){
+           console.log(err);
+       } else {
+          res.render("userprofile",{users:allUsers});
+       }
+    });
 });
 
 

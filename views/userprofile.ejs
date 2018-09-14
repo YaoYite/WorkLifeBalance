@@ -1,0 +1,37 @@
+<% include partials/header %>
+<header class="masthead" style="background-image: url('/img/track-min.jpeg')">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="page-heading">
+              <h1>User's Profile </h1>
+              <span class="subheading"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+    
+        <% users.forEach(function(user){ %>
+        <% if(currentUser && user._id.equals(currentUser._id)){ %>
+            
+                    <h3>Name: <%= user.username %></h3>
+                    <br>
+                    <h3>Email: <%= user.email %></h3>
+                    <p>             </p>
+                   <p>
+                       <a href="/index" class="btn btn-secondary">Back to home</a>
+                   </p>
+        <% } %>
+        <% }); %>
+        </div>
+     </div>
+</div>
+<% include partials/footer %>
