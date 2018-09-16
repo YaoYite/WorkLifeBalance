@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <button type="button" onclick="p()">Parents</button>
+      <button type="button" onclick="f()">Fathers</button>
+      <button type="button" onclick="m()">Mother</button>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        
+function p() {
+      google.charts.load('current', {'packages':['treemap']});
+      google.charts.setOnLoadCallback(drawChart);
+        
+      function drawChart() {
+          var data = google.visualization.arrayToDataTable([
+          ['Activity', 'Parent', 'Time', 'Color'],
+          ['24 hour activities', null, 0, 0],
+        ['Personal Care', '24 hour activities', 9.92, 0],
+        ['Employment Related', '24 hour activities', 6.79, 0],
+            ['Education', '24 hour activities', 0.08, 0],
+            ['Domestic Activities', '24 hour activities', 2.97, 0],
+            ['Child Care', '24 hour activities', 1.86, 0],
+            ['Purchasing', '24 hour activities', 0.5, 0],
+            ['Voluntary', '24 hour activities', 0.2, 0],
+            ['Society', '24 hour activities', 0.53, 0],
+            ['Recreation and Leisure', '24 hour activities', 2.26, 0],
+['Sleeping', 'Personal Care', 8.05, 8.05],
+ ['Personal hygiene', 'Personal Care', 0.65, 0.65],
+ ['Eating and drinking', 'Personal Care', 1.22, 1.22],
+ ['Main and other jobs', 'Employment Related', 6.12, 6.12],
+ ['Associated travel', 'Employment Related', 0.67, 0.67],
+ ['Education/training', 'Education', 0.08, 0.08],
+ ['Total housework', 'Domestic Activities', 0.92, 0.92],
+ ['Food and drink preparation/cleanup', 'Domestic Activities', 0.57, 0.57],
+ ['Laundry and clothes care', 'Domestic Activities', 0.15, 0.15],
+ ['Other housework', 'Domestic Activities', 0.2, 0.2],
+ ['Total other household work', 'Domestic Activities', 0.57, 0.57],
+ ['Grounds and animal care', 'Domestic Activities', 0.25, 0.25],
+ ['Home maintenance', 'Domestic Activities', 0.18, 0.18],
+ ['Household management', 'Domestic Activities', 0.13, 0.13],
+ ['Physical and emotional care of children', 'Child Care', 0.47, 0.47],
+ ['Teaching/helping/reprimanding children', 'Child Care', 0.05, 0.05],
+ ['Playing/reading/talking with child', 'Child Care', 0.48, 0.48],
+ ['Minding child', 'Child Care', 0.13, 0.13],
+ ['Associated travel with child', 'Child Care', 0.2, 0.2],
+ ['Other', 'Child Care', 0.53, 0.53],
+ ['Purchasing goods and services', 'Purchasing', 0.5, 0.5],
+ ['Voluntary work and care', 'Voluntary', 0.2, 0.2],
+ ['Social and community interaction','Society',0.53, 0.53],
+ ['Sport and outdoor activity', 'Recreation and Leisure', 0.28, 0.28],
+ ['Games, hobbies, arts, crafts', 'Recreation and Leisure', 0.08, 0.08],
+ ['Audio/visual media', 'Recreation and Leisure', 1.55, 1.55],
+ ['Talking (including phone) or reading/writing own correspondence','Recreation and Leisure',0.35, 0.35]
+        ]);
+
+        tree = new google.visualization.TreeMap(document.getElementById('chart_div'));
+
+        var options = {
+    minColor: 'lightskyblue',
+         color: 'orange',
+          maxColor: 'blue',
+          headerHeight: 15,
+          fontColor: 'black',
+
+    generateTooltip: showFullTooltip
+  };
+
+  tree.draw(data, options);
+
+  function showFullTooltip(row, size, value) {
+    return '<div style="background:#fd9; padding:10px; border-style:solid">' +
+           '<span style="font-family:Courier"><b>' + data.getValue(row, 0) +'<br>'
+           +'Time: '+ data.getValue(row, 2) + ' hours</span><br>';
+  }
+
+}
+}
+        function f() {
+      google.charts.load('current', {'packages':['treemap']});
+      google.charts.setOnLoadCallback(drawChart);
+        
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Activity', 'Parent', 'Time', 'Color'],
+          ['24 hour activities', null, 0, 0],
+        ['Personal Care', '24 hour activities', 9.88, 0],
+        ['Employment Related', '24 hour activities', 7.35, 0],
+            ['Education', '24 hour activities', 0.07, 0],
+            ['Domestic Activities', '24 hour activities', 2.42, 0],
+            ['Child Care', '24 hour activities', 1.49, 0],
+            ['Purchasing', '24 hour activities', 0.43, 0],
+            ['Voluntary', '24 hour activities', 0.17, 0],
+        ['Society', '24 hour activities', 0.53, 0],
+         ['Recreation and Leisure', '24 hour activities', 2.37, 0],
+          ['Sleeping', 'Personal Care', 8.03, 8.03],
+            ['Personal hygiene', 'Personal Care', 0.63, 0.63],
+ ['Eating and drinking', 'Personal Care', 1.22, 1.22],
+ ['Main and other jobs', 'Employment Related', 6.62, 6.62],
+ ['Associated travel', 'Employment Related', 0.73, 0.73],
+ ['Education/training', 'Education', 0.07, 0.07],
+ ['Total housework', 'Domestic Activities', 0.6, 0.6],
+ ['Food and drink preparation/cleanup', 'Domestic Activities', 0.4, 0.4],
+ ['Laundry and clothes care', 'Domestic Activities', 0.05, 0.05],
+ ['Other housework', 'Domestic Activities', 0.13, 0.13],
+ ['Total other household work', 'Domestic Activities', 0.62, 0.62],
+ ['Grounds and animal care', 'Domestic Activities', 0.28, 0.28],
+ ['Home maintenance', 'Domestic Activities', 0.22, 0.22],
+ ['Household management', 'Domestic Activities', 0.12, 0.12],
+ ['Physical and emotional care of children', 'Child Care', 0.35, 0.35],
+ ['Teaching/helping/reprimanding children', 'Child Care', 0.03, 0.03],
+ ['Playing/reading/talking with child', 'Child Care', 0.48, 0.48],
+ ['Minding child', 'Child Care', 0.12, 0.12],
+ ['Associated travel with child', 'Child Care', 0.13, 0.13],
+ ['Other', 'Child Care', 0.38, 0.38],
+ ['Purchasing goods and services', 'Purchasing', 0.43, 0.43],
+ ['Voluntary work and care', 'Voluntary', 0.17, 0.17],
+ ['Social and community interaction','Society',0.53, 0.53],
+ ['Sport and outdoor activity', 'Recreation and Leisure', 0.3, 0.3],
+ ['Games, hobbies, arts, crafts', 'Recreation and Leisure', 0.08, 0.08],
+ ['Audio/visual media', 'Recreation and Leisure', 1.67, 1.67],
+ ['Talking (including phone) or reading/writing own correspondence','Recreation and Leisure',0.32, 0.32]
+        ]);
+          
+
+        tree = new google.visualization.TreeMap(document.getElementById('chart_div'));
+
+        var options = {
+    minColor: 'lightskyblue',
+         color: 'orange',
+          maxColor: 'blue',
+          headerHeight: 15,
+          fontColor: 'black',
+
+    generateTooltip: showFullTooltip
+  };
+
+  tree.draw(data, options);
+
+  function showFullTooltip(row, size, value) {
+    return '<div style="background:#fd9; padding:10px; border-style:solid">' +
+           '<span style="font-family:Courier"><b>' + data.getValue(row, 0) +'<br>'
+           +'Time: '+ data.getValue(row, 2) + ' hours</span><br>';
+  }
+
+}
+}
+        function m() {
+      google.charts.load('current', {'packages':['treemap']});
+      google.charts.setOnLoadCallback(drawChart);
+        
+      function drawChart() {
+        
+          var data = google.visualization.arrayToDataTable([
+          ['Activity', 'Parent', 'Time', 'Color'],
+          ['24 hour activities', null, 0, 0],
+        ['Personal Care', '24 hour activities', 10.03, 0],
+        ['Employment Related', '24 hour activities', 4.72, 0],
+            ['Education', '24 hour activities', 0.1, 0],
+            ['Domestic Activities', '24 hour activities', 4.94, 0],
+            ['Child Care', '24 hour activities', 3.21, 0],
+            ['Purchasing', '24 hour activities', 0.77, 0],
+            ['Voluntary', '24 hour activities', 0.33, 0],
+            ['Society', '24 hour activities', 0.58, 0],
+            ['Recreation and Leisure', '24 hour activities', 1.93, 0],
+           ['Sleeping', 'Personal Care', 8.1, 8.1],
+ ['Personal hygiene', 'Personal Care', 0.73, 0.73],
+ ['Eating and drinking', 'Personal Care', 1.2, 1.2],
+ ['Main and other jobs', 'Employment Related', 4.32, 4.32],
+ ['Associated travel', 'Employment Related', 0.4, 0.4],
+ ['Education/training', 'Education', 0.1, 0.1],
+ ['Total housework', 'Domestic Activities', 2.07, 2.07],
+ ['Food and drink preparation/cleanup', 'Domestic Activities', 1.15, 1.15],
+ ['Laundry and clothes care', 'Domestic Activities', 0.5, 0.5],
+ ['Other housework', 'Domestic Activities', 0.42, 0.42],
+ ['Total other household work', 'Domestic Activities', 0.4, 0.4],
+ ['Grounds and animal care', 'Domestic Activities', 0.18, 0.18],
+ ['Home maintenance', 'Domestic Activities', 0.05, 0.05],
+ ['Household management', 'Domestic Activities', 0.17, 0.17],
+ ['Physical and emotional care of children', 'Child Care', 0.93, 0.93],
+ ['Teaching/helping/reprimanding children', 'Child Care', 0.1, 0.1],
+ ['Playing/reading/talking with child', 'Child Care', 0.53, 0.53],
+ ['Minding child', 'Child Care', 0.17, 0.17],
+ ['Associated travel with child', 'Child Care', 0.43, 0.43],
+ ['Other', 'Child Care', 1.05, 1.05],
+ ['Purchasing goods and services', 'Purchasing', 0.77, 0.77],
+ ['Voluntary work and care', 'Voluntary', 0.33, 0.33],
+ ['Social and community interaction','Society', 0.58, 0.58],
+ ['Sport and outdoor activity', 'Recreation and Leisure', 0.2, 0.2],
+ ['Games, hobbies, arts, crafts', 'Recreation and Leisure', 0.08, 0.08],
+ ['Audio/visual media', 'Recreation and Leisure', 1.17, 1.17],
+ ['Talking (including phone) or reading/writing own correspondence', 'Recreation and Leisure', 0.48, 0.48]
+        ]);
+          
+        tree = new google.visualization.TreeMap(document.getElementById('chart_div'));
+
+        var options = {
+    minColor: 'lightskyblue',
+         color: 'orange',
+          maxColor: 'blue',
+          headerHeight: 15,
+          fontColor: 'black',
+
+    generateTooltip: showFullTooltip
+  };
+
+  tree.draw(data, options);
+
+  function showFullTooltip(row, size, value) {
+    return '<div style="background:#fd9; padding:10px; border-style:solid">' +
+           '<span style="font-family:Courier"><b>' + data.getValue(row, 0) +'<br>'
+           +'Time: '+ data.getValue(row, 2) + ' hours</span><br>';
+  }
+
+}
+}
+      
+    </script>
+  </head>
+  <body>
+    <div id="chart_div" style="width: 750px; height: 420px;"></div>
+  </body>
+</html>

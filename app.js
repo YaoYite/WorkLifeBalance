@@ -55,6 +55,10 @@ app.get("/timetreemap", function(req, res){
     res.render("graph/timetreemap.ejs");
 });
 
+app.get("/showtimetreemap", function(req, res){
+    res.render("graph/showtimetreemap.ejs");
+});
+
 app.get("/diffchart", function(req, res){
     res.render("graph/diffchart.ejs");
 });
