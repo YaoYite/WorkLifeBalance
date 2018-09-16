@@ -6,7 +6,7 @@
           <div class="col-lg-8 col-md-10 mx-auto">
             <div class="page-heading">
               <h1>The detail infomation of the person</h1>
-              <span class="subheading">Personal information and tracking records</span>
+              <span class="subheading">Personal information and records</span>
             </div
           </div>
         </div>
@@ -18,7 +18,8 @@
           <% familysum += daily.family;  %> 
           <% familycount += 1;  %> 
           <% }); %>
-          <% var familyavg = familysum/familycount  %>
+          <% var familyavg = familysum/familycount;  %>
+          <% var familyavg = familyavg.toFixed(2);  %>
           
           <% var hobbysum = 0;  %> 
           <% var hobbycount = 0;  %> 
@@ -26,7 +27,9 @@
           <% hobbysum += daily.hobbies;  %> 
           <% hobbycount += 1;  %> 
           <% }); %>
-          <% var hobbyavg = hobbysum/hobbycount  %>
+          <% var hobbyavg = hobbysum/hobbycount;  %>
+          <% var hobbyavg = hobbyavg.toFixed(2);  %>
+          
           
   <div class="container">
     <div class="row">
@@ -94,8 +97,8 @@
             <div class="col-sm-12">  
             <a href = "/workaholics/<%= workaholic._id %>/dailys/new" class="btn btn-success">Add new daily tracks</a>
     <br>
-        <p><%= workaholic.name %> spend <%= familyavg %> hours average everyday on family</p>
-        <p><%= workaholic.name %> spend <%= hobbyavg %> hours average everyday on hobby</p>
+        <p><%= workaholic.name %> spends <%= familyavg %> hours on average everyday with family</p>
+        <p><%= workaholic.name %> spends <%= hobbyavg %> hours on average everyday on their hobbies</p>
         <hr>
           <table class="display" id="example" style="width:100%">
         <thead>
