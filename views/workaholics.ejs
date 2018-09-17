@@ -14,66 +14,81 @@
       </div>
     </header>
 
-<div class="container">
-  <div class="row">
-    <div class="col-sm-6">
-        <div class="thumbnail">
-                   <img  src="/img/memory-min.jpeg" style = "width:100%">
-        </div>
-    </div>
-    <div class="col-sm-6">
-      <h2 class="section-heading">Family time</h2>
-      <p>"A happy family is but an earlier heaven." ― George Bernard Shaw</p>
-    </div>
-  </div>
-</div>
-
-<hr>
-
-<div class="container">
-  <div class="row">
-    <div class="col-sm-6">
-      <h2 class="section-heading">Hobby</h2>
-      <p>“You never lose a dream, it just incubates as a hobby.” ― Larry Page </p>
-    </div>
-    <div class="col-sm-6">
-        <div class="thumbnail">
-                   <img  src="/img/hobbies-min.jpeg" style = "width:100%">
-        </div>
-    </div>
-  </div>
-</div>
-
-<hr>
-
     <div class="container">
       <div class="row">
         <div class="col-lg-12 col-md-12 mx-auto"> 
-    <a href="/workaholics/newWorkaholic" class="btn btn-success">Add person you want to track</a> 
+    <a href="/workaholics/newWorkaholic" class="btn btn-success">Add person you want to record</a> 
         </div>
       </div>
     </div>
 
-<hr>
+    <hr>
 
 <div class="container">
-    <div class="row text-center" style="display:flex; flex-wrap: wrap;">
-        <% workaholics.forEach(function(workaholic){ %>
-        <% if(currentUser && workaholic.user.id.equals(currentUser._id)){ %>
-            <div class="col-md-4 col-sm-6">
-                       <p>Name: <%= workaholic.name %></p>
-                       <p>Email: <%= workaholic.email %></p>
-                       <p>Gender: <%= workaholic.gender %></p>
-                       <p>Age: <%= workaholic.age %></p>
-                       <p>Relation: <%= workaholic.relation %></p>
-                       <p>Occupation: <%= workaholic.occupation %></p>
-                       <p>hobby: <%= workaholic.hobby %></p>
-                   <p>
-                       <a href="/workaholics/<%= workaholic._id %>" class="btn btn-primary">Tracking records</a>
-                   </p>
+    <div class="row">
+           <div class="col-lg-12 col-md-12 mx-auto">
+               <div class="topnav">
+                  <a class="active" href="">All people eing recorded:</a>
+                    <% workaholics.forEach(function(workaholic){ %>
+                    <% if(currentUser && workaholic.user.id.equals(currentUser._id)){ %>
+                  <a href="/workaholics/<%= workaholic._id %>"><%= workaholic.name %></a>
+                    <% } %>
+                    <% }); %>
+                </div>
             </div>
-        <% } %>
-        <% }); %>
       </div>
     </div>
+
+<!--<div class="container">-->
+<!--    <div class="row text-center" style="display:flex; flex-wrap: wrap;">-->
+<!--        <% workaholics.forEach(function(workaholic){ %>-->
+<!--        <% if(currentUser && workaholic.user.id.equals(currentUser._id)){ %>-->
+<!--            <div class="col-md-4 col-sm-6">-->
+<!--                       <p>Name: <%= workaholic.name %></p>-->
+<!--                       <p>Email: <%= workaholic.email %></p>-->
+<!--                       <p>Gender: <%= workaholic.gender %></p>-->
+<!--                       <p>Age: <%= workaholic.age %></p>-->
+<!--                       <p>Relation: <%= workaholic.relation %></p>-->
+<!--                       <p>Occupation: <%= workaholic.occupation %></p>-->
+<!--                       <p>hobby: <%= workaholic.hobby %></p>-->
+<!--                   <p>-->
+<!--                       <a href="/workaholics/<%= workaholic._id %>" class="btn btn-primary">Tracking records</a>-->
+<!--                   </p>-->
+<!--            </div>-->
+<!--        <% } %>-->
+<!--        <% }); %>-->
+<!--      </div>-->
+<!--    </div>-->
+    
+    <!--<div class="container">-->
+    <!--  <div class="row">-->
+    <!--    <div class="col-sm-6">-->
+    <!--        <div class="thumbnail">-->
+    <!--                   <img  src="/img/memory-min.jpeg" style = "width:100%">-->
+    <!--        </div>-->
+    <!--    </div>-->
+    <!--    <div class="col-sm-6">-->
+    <!--      <h2 class="section-heading">Family time</h2>-->
+    <!--      <p>"A happy family is but an earlier heaven." ― George Bernard Shaw</p>-->
+    <!--    </div>-->
+    <!--  </div>-->
+    <!--</div>-->
+
+    <!--<hr>-->
+
+    <!--<div class="container">-->
+    <!--  <div class="row">-->
+    <!--    <div class="col-sm-6">-->
+    <!--      <h2 class="section-heading">Hobby</h2>-->
+    <!--      <p>“You never lose a dream, it just incubates as a hobby.” ― Larry Page </p>-->
+    <!--    </div>-->
+    <!--    <div class="col-sm-6">-->
+    <!--      <div class="thumbnail">-->
+    <!--        <img  src="/img/hobbies-min.jpeg" style = "width:100%">-->
+    <!--      </div>-->
+    <!--    </div>-->
+    <!--  </div>-->
+    <!--</div>-->
+
+    <!--<hr>-->
 <% include partials/footer %>

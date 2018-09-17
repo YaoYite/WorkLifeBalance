@@ -46,6 +46,10 @@ app.get("/", function(req, res){
     res.render("landing.ejs");
 });
 
+app.get("/facts", function(req, res){
+    res.render("facts.ejs");
+});
+
 //Index page - landing page
 app.get("/index", function(req, res){
     res.render("index.ejs");

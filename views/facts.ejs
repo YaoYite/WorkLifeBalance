@@ -1,0 +1,197 @@
+<% include partials/header %>
+<!--Page Header-->
+    <header class="masthead" style="background-image: url('/img/workaholic-min.jpg')">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="page-heading">
+              <h1>Facts about work life balance</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    
+    <!--Main content-->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 mx-auto">
+                <style>
+                * {box-sizing: border-box}
+                
+                /* Set height of body and the document to 100% */
+                body, html {
+                    height: 100%;
+                    margin: 0;
+                    font-family: Arial;
+                }
+                
+                /* Style tab links */
+                .tablink {
+                    background-color: #555;
+                    color: white;
+                    float: left;
+                    border: none;
+                    outline: none;
+                    cursor: pointer;
+                    padding: 14px 16px;
+                    font-size: 17px;
+                    width: 25%;
+                }
+                
+                .tablink:hover {
+                    background-color: #777;
+                }
+                
+                /* Style the tab content (and add height:100% for full page content) */
+                .tabcontent {
+                    color: black;
+                    display: none;
+                    padding: 100px 20px;
+                    height: 100%;
+                }
+                
+                #Home {background-color: white;}
+                #News {background-color: white;}
+                #Contact {background-color: white;}
+                #About {background-color: white;}
+                
+                table, th, td {
+                    border: 1px solid black;
+                    border-collapse: collapse;
+                }
+                th, td {
+                    padding: 5px;
+                }
+                th {
+                    text-align: left;
+                }
+                </style>
+                </head>
+                <body>
+                <a href="/assessment" class="btn btn-info btn-xs">Is your family member working too much? quick assessment >></a>
+                <hr>
+                <button class="tablink" onclick="openPage('Work', this, 'blue')" id="defaultOpen">Work</button>
+                <button class="tablink" onclick="openPage('Sleep', this, 'blue')" >Sleep</button>
+                <button class="tablink" onclick="openPage('Exercise', this, 'blue')">Exercise</button>
+                <button class="tablink" onclick="openPage('Leisure', this, 'blue')">Leisure</button>
+                
+                <div id="Work" class="tabcontent">
+                    <h4>The harm of overwork</h4>
+                      <p>Do you work more than 40 hours a week? If your family member is an entrepreneur or small business owner, it's hard 
+                      not to, but all that extra time in the workplace isn't necessarily a good thing. After a certain point,
+                      it can be counterproductive and even hazardous to your family member's health, so it's imperative for your family member 
+                      to know when to say no to more working hours. </p>
+                    <ul>
+                        <li>Working more than 10 hours a day is associated with a 60 percent jump in risk of cardiovascular issues.</li>
+                        <li>10 percent of those working 50 to 60 hours report relationship problems; the rate increases to 30 percent for those working more than 60 hours.</li>
+                        <li>Working more than 40 hours a week is associated with increased alcohol and tobacco consumption, as well as unhealthy weight gain in men and depression in women.</li>
+                        <li>Individuals working 11 hours or more of overtime have an increased depression risk.</li>
+                        <li>Many of the problems identified above tie to stress, which connect to hormonal balances. Specifically, 
+                        stress raises cortisol, which can disrupt sleep, appetite, blood pressure, immune system function, 
+                        memory/cognition, mood, and more.</li>
+                    </ul>
+                    <h4>Australian Workers Data (by gender)</h4>
+                    <p>All full time employees in Australia, average weekly total working hours is 39.3 hours (40.3 hours for males and 37.9 hours for females)</p>
+                    <iframe  width=100% height=580 src="/paidgendergraph" frameborder=0 marginwidth="50">
+                    </iframe>
+                    <h4>Australian Workers Data (by industry)</h4>
+                    <p>Among full-time non-managerial employees paid at the adult rate, Machinery operators and drivers had the highest average 
+                    weekly total hours paid for (43.3 hours). Clerical and administrative workers and Professionals both had the lowest average 
+                    weekly total hours paid for (37.9 hours).</p>
+                    <iframe  width=100% height=720 src="/paidindustrygraph" frameborder=0 marginwidth="50">
+                    </iframe>
+                </div>
+                
+                <div id="Sleep" class="tabcontent">
+                    <h4>Sleep is a crucial part of work life balance</h4>
+                    <p>Not getting enough sleep can lead to a host of negative outcomes that in turn can make it hard to effectively juggle work and life. 
+                     For example, lack of sleep is associated with increased stress levels. And increased stress levels due to lack of sleep may lead to a 
+                     negative attitude at work and home, further aggravating any existing factors leading to our work-life imbalance</p>
+                    <h4>Recomended sleep time</h4>
+                    <p>National Sleep Foundation’s Sleep Duration Recommendations:</p>
+                    <table style="border: 1px solid black;">
+                      <tr>
+                        <th>Age</th>
+                        <th>Recommended</th>
+                        <th>May be appropriate</th>
+                        <th>Not recommended</th>
+                      </tr>
+                      <tr>
+                        <td>Young Adults(18-25 years)</td>
+                        <td>7 to 9 hours</td>
+                        <td>6 hours,10 to 11 hours </td>
+                        <td>Less than 6 hours, More than 11 hours</td>
+                      </tr>
+                      <tr>
+                        <td>Adults(26-64 years)</td>
+                        <td>7 to 9 hours</td>
+                        <td>6 hours, 10 hours</td>
+                        <td>Less than 6 hours, More than 10 hours</td>
+                      </tr>
+                    </table>  
+                </div>
+                
+                <div id="Exercise" class="tabcontent">
+                      <h4>Why Exercise Is The Key To Work-Life Balance</h4>
+                      <ul>
+                          <li>When you exercise, you can release some of the stress that’s getting all pent up inside. 
+                          And the less stress you feel, the more enjoyable you’ll find your office or your home.</li>
+                          <li>When you exercise, you boost your self-efficacy, the confidence you have that you can get
+                          things done. What’s more, folks with high self-efficacy are more likely to face the various 
+                          tasks to be met in the day as challenges to be mastered. </li>
+                      </ul>
+                      <h4>Australian National Health Survey</h4>
+                      <p>More men than women aged 18-64 years participated in sufficient physical activity in the last week (57.7% compared with 53.3%). 
+                        Similar proportions of men and women were inactive in 2014-15 (15.2% and 14.4% respectively).
+                        <br>
+                        Of men aged 18-64 years, 57.7% participated in sufficient physical activity in the last week, 
+                        compared with 53.3% of women of the same age. Similar proportions of men and women were inactive in 2014-15 (15.2% and 14.4% respectively).
+                        <br>
+                        For adults aged 18-64 years, physical activity guidelines recommend 150-300 minutes of moderate or 75-150 minutes of vigorous 
+                        physical activity, or an equivalent combination of both, per week. The guidelines also recommend that adults aged 18-64 years 
+                        do muscle strengthening activities on at least 2 days of each week
+                        </p>
+                        <h4>Australian male exercise data</h4>
+                        <iframe  width=100% height=580 src="/maleexercisegraph" frameborder=0 marginwidth="50">
+                        </iframe>
+                        <h4>Australian female exercise data</h4>
+                        <iframe  width=100% height=580 src="/femaleexercisegraph" frameborder=0 marginwidth="50">
+                        </iframe>
+                </div>
+                
+                <div id="Leisure" class="tabcontent">
+                  <h4>The Lost Key to and Real Work-Life Balance: Leisure Management Skills</h4>
+                  <p> leisure management acknowledges the importance of rest and relaxation- that one can’t short-change leisure, 
+                  and that “time off” is a vital component of the human experience. Curiously, too much of the same leisure activity, 
+                  however enjoyable, can lead to monotony. Thus, effective leisure management requires varying one’s activities. </p>
+                  <h4>How Australian spend their time data</h4>
+                  <p>Australian spent average 2.79 hours per day on social, recreation and leisure pre day</p>
+                  <iframe  width=100% height=1000 src="/timetreemap" frameborder=0 marginwidth="50">
+                  </iframe>
+                </div>
+                
+                <script>
+                function openPage(pageName,elmnt,color) {
+                    var i, tabcontent, tablinks;
+                    tabcontent = document.getElementsByClassName("tabcontent");
+                    for (i = 0; i < tabcontent.length; i++) {
+                        tabcontent[i].style.display = "none";
+                    }
+                    tablinks = document.getElementsByClassName("tablink");
+                    for (i = 0; i < tablinks.length; i++) {
+                        tablinks[i].style.backgroundColor = "";
+                    }
+                    document.getElementById(pageName).style.display = "block";
+                    elmnt.style.backgroundColor = color;
+                
+                }
+                // Get the element with id="defaultOpen" and click on it
+                document.getElementById("defaultOpen").click();
+                </script>
+            </div>
+        </div>
+    </div>
+<% include partials/footer %>

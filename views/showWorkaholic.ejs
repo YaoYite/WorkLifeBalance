@@ -5,11 +5,9 @@
         <div class="row">
           <div class="col-lg-8 col-md-10 mx-auto">
             <div class="page-heading">
-              <h1>The detail infomation of the person</h1>
-              <span class="subheading">Personal information and records</span>
+              <h1>The records of <%= workaholic.name %></h1>
+              <!--<span class="subheading">Personal information and tracking records</span>-->
             </div
-          </div>
-        </div>
       </div>
     </header>
           <% var familysum = 0;  %> 
@@ -43,12 +41,11 @@
           <p>Hobby: <%= workaholic.hobby %></p>
           <br>
           <% if(currentUser && workaholic.user.id.equals(currentUser._id)){ %>
-          <a class="btn btn-xs btn-warning" href="/workaholics/<%= workaholic._id %>/edit">Edit workaholic</a>
+          <a class="btn btn-xs btn-warning" href="/workaholics/<%= workaholic._id %>/edit">Edit Profile</a>
           <form id="delete-form" action="/workaholics/<%= workaholic._id %>?_method=DELETE" method="POST">
-              <button class="btn btn-xs btn-danger">Delete workaholic</button>
+              <button class="btn btn-xs btn-danger">Delete Profile</button>
           </form>
           <% }%>
-          
           <p>      </p>
           <br>
       </div>
@@ -97,8 +94,8 @@
             <div class="col-sm-12">  
             <a href = "/workaholics/<%= workaholic._id %>/dailys/new" class="btn btn-success">Add new daily tracks</a>
     <br>
-        <p><%= workaholic.name %> spends <%= familyavg %> hours on average everyday with family</p>
-        <p><%= workaholic.name %> spends <%= hobbyavg %> hours on average everyday on their hobbies</p>
+        <p><%= workaholic.name %> spend <%= familyavg %> hours average everyday on family</p>
+        <p><%= workaholic.name %> spend <%= hobbyavg %> hours average everyday on hobby</p>
         <hr>
           <table class="display" id="example" style="width:100%">
         <thead>
