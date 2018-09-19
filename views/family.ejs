@@ -12,26 +12,111 @@
         </div>
       </div>
     </header>
-
-    <!-- Main Content -->
-    <article>
-      <div class="container">
+    
+    <div class="container">
         <div class="row">
-          <div class="col-lg-8 col-md-10 mx-auto">
-              1.Find mutual hobbies<br>
-              Everyone will have their own hobbies. If you're able to find mutual hobbies with your partner, you could find it easier to persuade them to spend time with you on something both of you will enjoy.<br><br>
-              2.Understand your spouse’s job<br>
-              It is helpful to know about your partner’s work, and why they can get so much satisfaction from it. The more you understand, the less resentment you feel. Therefore, you're able to provide encouragement at the right time when your spouse needs it.<br><br>
-              3.Prioritize social events<br>
-              When there are many social events you want your spouse to attend, and he or she doesn’t have at that much time, it is important to prioritise the events so that while they might not be able to attend all social event, they'll at least be at the essential ones.<br><br>
-              4.Schedule tech-free time<br>
-              For workaholics, it is hard to walk away from work. When they are free, it is better to be occupied with communication with family rather than being on electrical devices such as phones and computers. It is helpful to have the family put away their electrical devices and focus on having quality family time. Eg. This may be scheduled every Friday night.<br><br>
-              5.Don’t nag<br>
-              No one likes a pest, especially for people who may be under lots of pressure from work. It is important to communicate in a positive way. For example, try to use ‘I feel lonely’ instead of  ‘you never spend time with me’. Communication skills are also necessary for family conversation.<br><br>
-              6.Last resort: Therapy<br>
-              If none of these strategies help in improving the person's work life balance, there may be a need for professional help. </p>
-          </div>
+            <div class="col-lg-12 col-md-12 mx-auto">
+                <style>
+                * {box-sizing: border-box}
+                
+                /* Set height of body and the document to 100% */
+                body, html {
+                    height: 100%;
+                    margin: 0;
+                    font-family: Arial;
+                }
+                
+                /* Style tab links */
+                .tablink {
+                    background-color: #666;
+                    color: white;
+                    float: left;
+                    border: none;
+                    outline: none;
+                    cursor: pointer;
+                    padding: 14px 16px;
+                    font-size: 17px;
+                    width: 25%;
+                }
+                
+                .tablink:hover {
+                    /*background-color: #777;*/
+                    background-color: #929593;
+                }
+                
+                /* Style the tab content (and add height:100% for full page content) */
+                .tabcontent {
+                    color: black;
+                    display: none;
+                    padding: 100px 20px;
+                    height: 100%;
+                }
+                
+                #Home {background-color: white;}
+                #News {background-color: white;}
+                #Contact {background-color: white;}
+                #About {background-color: white;}
+                
+                table, th, td {
+                    border: 1px solid black;
+                    border-collapse: collapse;
+                }
+                th, td {
+                    padding: 5px;
+                }
+                th {
+                    text-align: left;
+                }
+                </style>
+                </head>
+                <body>
+                <button class="tablink" onclick="openPage('hobby', this, 'DodgerBlue')" id="defaultOpen">Find Mutual Hobbies</button>
+                <button class="tablink" onclick="openPage('relationships', this, 'DodgerBlue')">Family relationships</button>
+                <button class="tablink" onclick="openPage('record', this, 'DodgerBlue')">Record</button>
+                
+                <div id="hobby" class="tabcontent">
+                    <h4>Find Mutual Hobbies</h4>
+                      <p>"Workaholics often feel like they have to be doing something," says Bryan Robinson, former professor emeritus 
+                      at University of North Carolina at Charlotte who has studied the effects of workaholism on family life. "[Hobbies 
+                      a family can do together] help them connect with you." Even something as simple as walking around the neighborhood can work. </p>
+                </div>
+                
+                <div id="relationships" class="tabcontent">
+                    <h4>Hobbies strengthen your family relationships.</h4>
+                    <p>Once you find a hobby that you love, you can share it with loved one, and spend more time together. 
+                    If there is not a new hobby that you both want to start together, invite your family member to join you in your current hobby or 
+                    join your family member's current hobby.
+                    Maybe you have developed a love for painting. Ask your spouse to join you and see what you all can come up with together. 
+                    This will help you spend time together while you are painting, and then even more time afterward while you are enjoying whatever you 
+                    decided to make.</p>
+                </div>
+                
+                <div id="record" class="tabcontent">
+                  <h4>Start recording</h4>
+                  <p>Record your loved one's time spent on family and hobbies is important for imporving your loved one's work life balance. With record, it is 
+                  easier for you to see the trend and the progression of your loved one's work life situation.</p>
+                  <a href="/workaholics" class="btn btn-info btn-xs">Start Record</a>
+                </div>
+          
+                <script>
+                function openPage(pageName,elmnt,color) {
+                    var i, tabcontent, tablinks;
+                    tabcontent = document.getElementsByClassName("tabcontent");
+                    for (i = 0; i < tabcontent.length; i++) {
+                        tabcontent[i].style.display = "none";
+                    }
+                    tablinks = document.getElementsByClassName("tablink");
+                    for (i = 0; i < tablinks.length; i++) {
+                        tablinks[i].style.backgroundColor = "";
+                    }
+                    document.getElementById(pageName).style.display = "block";
+                    elmnt.style.backgroundColor = color;
+                }
+                // Get the element with id="defaultOpen" and click on it
+                document.getElementById("defaultOpen").click();
+                </script>
+            </div>
         </div>
-      </div>
-    </article>
+    </div>
+
 <% include partials/footer %>

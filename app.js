@@ -198,8 +198,7 @@ app.get("/workaholics/:id",isLoggedIn, function(req, res){
         if(err){
             console.log(err);
         } else {
-            // console.log(foundWorkaholic)
-            //render show template with that workaholic
+
             res.render("showWorkaholic", {workaholic: foundWorkaholic});
         }
     });
@@ -212,6 +211,16 @@ app.get("/workaholics/:id/edit",checkWorkaholicOwnership , function(req, res){
             console.log(err);
         } else {
         res.render("editWorkaholic", {workaholic: foundWorkaholic})
+        };
+    });
+});
+
+app.get("/workaholics/:id/detail",checkWorkaholicOwnership , function(req, res){
+    Workaholic.findById(req.params.id, function(err, foundWorkaholic){
+        if(err){
+            console.log(err);
+        } else {
+        res.render("detailWorkaholic", {workaholic: foundWorkaholic})
         };
     });
 });
@@ -270,7 +279,19 @@ app.get("/workaholics/:id/dailys/:daily_id/edit",isLoggedIn,function(req, res){
 });
 
 app.put("/workaholics/:id/dailys/:daily_id",isLoggedIn, function(req, res){
-   Daily.findByIdAndUpdate(req.params.daily_id, req.body.daily, function(err, updatedDaily){
+    var date = req.body.date;
+    var familyhour = Number(req.body.familyhour);
+    var familyminutes = Number(req.body.familyminutes);
+    var hobbyhour = Number(req.body.hobbyhour);
+    var hobbyminutes = Number(req.body.hobbyminutes);
+    console.log(familyhour);
+    console.log(typeof familyhour);
+    var familyhour = Number(familyhour) + Number(familyminutes/60);
+    var hobbyhour = Number(hobbyhour) + Number(hobbyminutes/60);
+    console.log(familyhour);
+    console.log(typeof familyhour);
+    var newDaily = {date: date, family: familyhour, hobbies: hobbyhour};
+   Daily.findByIdAndUpdate(req.params.daily_id, newDaily, function(err, updatedDaily){
       if(err){
           res.redirect("back");
       } else {
@@ -302,13 +323,24 @@ app.get("/workaholics/:id/dailys/new",isLoggedIn, function(req, res){
 });
 
 app.post("/workaholics/:id/dailys",isLoggedIn, function(req, res){
-   //lookup workaholics using ID
-   Workaholic.findById(req.params.id, function(err, workaholic){
+    var date = req.body.date;
+    var familyhour = Number(req.body.familyhour);
+    var familyminutes = Number(req.body.familyminutes);
+    var hobbyhour = Number(req.body.hobbyhour);
+    var hobbyminutes = Number(req.body.hobbyminutes);
+    console.log(familyhour);
+    console.log(typeof familyhour);
+    var familyhour = Number(familyhour) + Number(familyminutes/60);
+    var hobbyhour = Number(hobbyhour) + Number(hobbyminutes/60);
+    console.log(familyhour);
+    console.log(typeof familyhour);
+    var newDaily = {date: date, family: familyhour, hobbies: hobbyhour};
+    Workaholic.findById(req.params.id, function(err, workaholic){
        if(err){
            console.log(err);
            res.redirect("/workaholics");
        } else {
-        Daily.create(req.body.daily, function(err, daily){
+        Daily.create(newDaily, function(err, daily){
            if(err){
                console.log(err);
            } else {

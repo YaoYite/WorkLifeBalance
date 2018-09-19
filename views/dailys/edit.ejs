@@ -19,7 +19,7 @@
             <form action="/workaholics/<%= workaholic_id %>/dailys/<%= daily._id %>?_method=PUT" method="POST">
                 <div class="form-group">
                   <label for="datepicker">Date</label>
-                  <input type="date" required class="form-control" id="datepicker" name="daily[date]" value="<%= daily.date %>">
+                  <input type="date" required class="form-control" id="datepicker" name="date" value="<%= daily.date %>">
                 </div>
                 <p>              </p>
                 <div class="col-sm-8">
@@ -29,7 +29,7 @@
                 </div>
                 <div class="form-group ">
                   <label for="inputFamily">How much time does he/she spend with family (hour)</label>
-                  <select id="inputFamily" required min="0" max="24" class="form-control" name="daily[family]" >
+                  <select id="inputFamily" required min="0" max="24" class="form-control" name="familyhour" >
                     <option selected ><%= daily.family %></option>
                     <option>0</option>
                     <option>1</option>
@@ -42,12 +42,17 @@
                     <option>8</option>
                     <option>9</option>
                     <option>10</option>
-                    <option>11</option>
-                    <option>12</option>
-                    <option>13</option>
-                    <option>14</option>
-                    <option>15</option>
-                    <option>16</option>
+                  </select>
+                </div>
+                <div class="form-group ">
+                  <label for="inputfminutes">and minutes</label>
+                  <select id="inputfminutes" required min="0" max="24" class="form-control" name="familyminutes">
+                    <option selected >0</option>
+                    <option>10</option>
+                    <option>20</option>
+                    <option>30</option>
+                    <option>40</option>
+                    <option>50</option>
                   </select>
                 </div>
                 <p>              </p>
@@ -58,7 +63,7 @@
                 </div>
                 <div class="form-group ">
                   <label for="inputHobbies">How much time does he/she spend on hobby (hour)</label>
-                  <select id="inputHobbies" required min="0" max="24"class="form-control" name="daily[hobbies]" >
+                  <select id="inputHobbies" required min="0" max="24"class="form-control" name="hobbyhour" >
                     <option selected><%= daily.hobbies %></option>
                     <option>0</option>
                     <option>1</option>
@@ -71,12 +76,17 @@
                     <option>8</option>
                     <option>9</option>
                     <option>10</option>
-                    <option>11</option>
-                    <option>12</option>
-                    <option>13</option>
-                    <option>14</option>
-                    <option>15</option>
-                    <option>16</option>
+                  </select>
+                </div>
+                <div class="form-group ">
+                  <label for="inputhminutes">and minutes</label>
+                  <select id="inputhminutes" required min="0" max="24" class="form-control" name="hobbyminutes">
+                    <option selected >0</option>
+                    <option>10</option>
+                    <option>20</option>
+                    <option>30</option>
+                    <option>40</option>
+                    <option>50</option>
                   </select>
                 </div>
             <button type="submit" class="btn btn-primary">Submit</button>

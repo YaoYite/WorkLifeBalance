@@ -1,0 +1,29 @@
+<% include partials/header %>
+<header class="masthead" style="background-image: url('/img/track-min.jpeg')">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="page-heading">
+              <h1>The detal of <%= workaholic.name %></h1>
+              <!--<span class="subheading">Edit Profile</span>-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12"> 
+            <p>Name: <%= workaholic.name %></p>
+            <p>Email: <%= workaholic.email %></p>
+            <p>Gender: <%=  workaholic.gender %></p>
+            <p>Age: <%= workaholic.age %></p>
+            <p>Relation: <%= workaholic.relation %></p>
+            <p>Occupation: <%= workaholic.occupation %></p>
+            <p>Hobby: <%= workaholic.hobby %></p>
+            </div>
+        </div>
+    </div>
+<% include partials/footer %>

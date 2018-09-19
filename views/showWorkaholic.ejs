@@ -7,7 +7,7 @@
             <div class="page-heading">
               <h1>The records of <%= workaholic.name %></h1>
               <!--<span class="subheading">Personal information and tracking records</span>-->
-            </div
+            </div>
       </div>
     </header>
           <% var familysum = 0;  %> 
@@ -27,29 +27,50 @@
           <% }); %>
           <% var hobbyavg = hobbysum/hobbycount;  %>
           <% var hobbyavg = hobbyavg.toFixed(2);  %>
-          
-          
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-6">     
-          <p>Name: <%= workaholic.name %></p>
-          <p>Email: <%= workaholic.email %></p>
-          <p>Gender: <%=  workaholic.gender %></p>
-          <p>Age: <%= workaholic.age %></p>
-          <p>Relation: <%= workaholic.relation %></p>
-          <p>Occupation: <%= workaholic.occupation %></p>
-          <p>Hobby: <%= workaholic.hobby %></p>
-          <br>
-          <% if(currentUser && workaholic.user.id.equals(currentUser._id)){ %>
-          <a class="btn btn-xs btn-warning" href="/workaholics/<%= workaholic._id %>/edit">Edit Profile</a>
-          <form id="delete-form" action="/workaholics/<%= workaholic._id %>?_method=DELETE" method="POST">
-              <button class="btn btn-xs btn-danger">Delete Profile</button>
-          </form>
-          <% }%>
-          <p>      </p>
-          <br>
-      </div>
-      <div class="col-sm-6">
+
+    <div class="container" id = "1">
+          <div class="row">
+            <div class="col-sm-12">  
+            <a href = "/workaholics/<%= workaholic._id %>/dailys/new" class="btn btn-success">Add new daily tracks</a>
+    <br>
+        <p><%= workaholic.name %> spend <%= familyavg %> hours average everyday on family</p>
+        <p><%= workaholic.name %> spend <%= hobbyavg %> hours average everyday on hobby</p>
+        <hr>
+          <table class="display" id="example" style="width:100%">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Family (hour)</th>
+                <th>Hobby (hour)</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+          <% workaholic.dailys.forEach(function(daily){ %>
+            <tr>
+                <td><%= daily.date %></td>
+                <td><%= daily.family.toFixed(2) %></td>
+                <td><%= daily.hobbies.toFixed(2) %></td>
+                <td>
+                    <!--<a type = "button" class="btn btn-info" href="/workaholics/<%=workaholic._id %>/dailys/<%=daily._id %>/show">Detail</a>-->
+                    <a type = "button" class="btn btn-warning " href="/workaholics/<%=workaholic._id %>/dailys/<%=daily._id %>/edit">Edit</a>
+                    <form id="delete-form" action="/workaholics/<%=workaholic._id %>/dailys/<%=daily._id %>?_method=DELETE" method="POST">
+                          <input type="submit" value = "Delete" type = "button" class="btn btn-danger">
+                    </form>
+                </td>
+            </tr>
+            <% }) %>
+            </tbody>
+        <tfoot>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </tfoot>
+    </table>
+        </div>
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
           <script type="text/javascript">
             google.charts.load("current", {packages:['corechart']});
@@ -82,59 +103,32 @@
               chart.draw(view, options);
           }
           </script>
-        <div id="columnchart_values" style="width: 500px; height: 400px;"></div>
-      </div>
-    </div>
-  </div>
-  
-  <hr>
-    
-    <div class="container">
-          <div class="row">
-            <div class="col-sm-12">  
-            <a href = "/workaholics/<%= workaholic._id %>/dailys/new" class="btn btn-success">Add new daily tracks</a>
-    <br>
-        <p><%= workaholic.name %> spend <%= familyavg %> hours average everyday on family</p>
-        <p><%= workaholic.name %> spend <%= hobbyavg %> hours average everyday on hobby</p>
+        <div class="col-sm-12" id="columnchart_values" style="width: 500px; height: 600px;"></div>
         <hr>
-          <table class="display" id="example" style="width:100%">
-        <thead>
-            <tr>
-                <th>Date</th>
-                <th>Family (hour)</th>
-                <th>Hobby (hour)</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-          <% workaholic.dailys.forEach(function(daily){ %>
-            <tr>
-                <td><%= daily.date %></td>
-                <td><%= daily.family %></td>
-                <td><%= daily.hobbies %></td>
-                <td>
-                    <!--<a type = "button" class="btn btn-info" href="/workaholics/<%=workaholic._id %>/dailys/<%=daily._id %>/show">Detail</a>-->
-                    <a type = "button" class="btn btn-warning " href="/workaholics/<%=workaholic._id %>/dailys/<%=daily._id %>/edit">Edit</a>
-                    <form id="delete-form" action="/workaholics/<%=workaholic._id %>/dailys/<%=daily._id %>?_method=DELETE" method="POST">
-                          <input type="submit" value = "Delete" type = "button" class="btn btn-danger">
-                    </form>
-                </td>
-            </tr>
-            <% }) %>
-            </tbody>
-        <tfoot>
-            <tr>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-            </tr>
-        </tfoot>
-    </table>
-          
-          
+        <div class="col-sm-12">     
+          <% if(currentUser && workaholic.user.id.equals(currentUser._id)){ %>
+          <a class="btn btn-xs btn-info" href="/workaholics/<%= workaholic._id %>/detail">The detail of <%= workaholic.name %> Profile</a>
+          <a class="btn btn-xs btn-warning" href="/workaholics/<%= workaholic._id %>/edit">Edit <%= workaholic.name %> Profile</a>
+          <form id="delete-form" action="/workaholics/<%= workaholic._id %>?_method=DELETE" method="POST">
+              <button class="btn btn-xs btn-danger">Delete <%= workaholic.name %> Profile</button>
+          </form>
+          <% }%>
+          <p>      </p>
+          <br>
         </div>
       </div>
     </div>
+<!--======================================================================================================================-->
+<!--trend chart-->
+<div class="container">
+<script src="https://d3js.org/d3.v3.min.js"></script>
+<script>
+var data = <%= workaholic.dailys %>;
+
+</script>
+<p><%= workaholic.dailys %></p>
+</div>
+<!--======================================================================================================================-->
+    
     
 <% include partials/footer %>
