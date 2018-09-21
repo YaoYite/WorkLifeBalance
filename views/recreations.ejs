@@ -1,0 +1,52 @@
+<% include partials/header %>
+<header class="masthead" style="background-image: url('/img/track-min.jpeg')">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="page-heading">
+              <h1>Sports and recreation facility in Victoria</h1>
+              <!--<span class="subheading">Personal information and tracking records</span>-->
+            </div>
+      </div>
+    </header>
+
+    <div class="container" id = "1">
+          <div class="row">
+            <div class="col-sm-12">  
+
+          <table class="display" id="example" style="width:100%">
+        <thead>
+            <tr>
+                <th>Facility Name</th>
+                <th>Postcode</th>
+                <th>Type</th>
+                <th>Detail</th>
+            </tr>
+        </thead>
+        <tbody>
+          <% recreations.forEach(function(recreation){ %>
+            <tr>
+                <td><%= recreation.FacilityName %></td>
+                <td><%= recreation.Postcode %></td>
+                <td><%= recreation.SportsPlayed %></td>
+                <td>
+                    <a href = "/recreations/<%= recreation._id %>">Detail</a>
+                </td>
+            </tr>
+            <% }) %>
+            </tbody>
+        <tfoot>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </tfoot>
+    </table>
+        </div>
+        </div>
+      </div>
+    
+<% include partials/footer %>

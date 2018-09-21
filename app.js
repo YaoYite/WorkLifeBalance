@@ -7,10 +7,12 @@ var passport = require("passport");
 var LocalStrategy = require("passport-local");
 var passportLocalMongoose = require("passport-local-mongoose");
 var methodOverride = require("method-override");
+var request = require("request");
 
 var User = require("./models/user");
 var Workaholic = require("./models/workaholic");
 var Daily = require("./models/daily");
+var Recreation = require("./models/recreation");
 var nodemailer = require("nodemailer");
 
 app.use( express.static( "public" ) );
@@ -41,6 +43,74 @@ app.use(function(req, res, next){
 //=======================
 //Routes
 //=======================
+var city = "Melbourne";
+var url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=05b978ac528aee237d04a45fc54c6545`;
+
+app.get("/weather", function(req, res){
+    
+    request(url, function(error, response, body){
+       var weather_json = JSON.parse(body);
+       console.log(weather_json);
+       
+       var weather = {
+            city : city,
+            temperature : Math.round((weather_json.main.temp-32)/1.8),
+            description : weather_json.weather[0].description,
+            icon : weather_json.weather[0].icon
+        };
+        
+        var weather_data = {weather:weather};
+        
+       res.render("weather.ejs", weather_data);
+    });
+});
+
+var zip = 3163;
+var townname = "Carnegie";
+app.get("/zipweather", function(req, res){
+    
+    var url1 = `http://api.openweathermap.org/data/2.5/weather?zip=${zip},au&units=imperial&appid=05b978ac528aee237d04a45fc54c6545`;
+    
+    request(url1, function(error, response, body){
+       var weather_json = JSON.parse(body);
+       console.log(weather_json);
+       
+       var weather = {
+            city: zip,
+            temperature : Math.round((weather_json.main.temp-32)/1.8),
+            description : weather_json.weather[0].description,
+            icon : weather_json.weather[0].icon
+        };
+        var weather_data = {weather:weather};
+        
+       res.render("weather.ejs", weather_data);
+    });
+});
+
+
+app.get("/recreations", function(req, res){
+
+    // Get all recreations info from DB
+    Recreation.find({}, function(err, allRecreations){
+      if(err){
+          console.log(err);
+      } else {
+          res.render("recreations",{recreations:allRecreations});
+      }
+    });
+});
+
+app.get("/recreations/:id", function(req, res){
+    //find the workaholic with provided ID
+    Recreation.findById(req.params.id, function(err, foundRecreation){
+      if(err){
+          res.redirect("back");
+      } else {
+          window.zip = foundRecreation.Postcode;
+          res.render("showRecreation",{recreation:foundRecreation});
+   };
+});
+});
 
 app.get("/", function(req, res){
     res.render("landing.ejs");
@@ -198,7 +268,6 @@ app.get("/workaholics/:id",isLoggedIn, function(req, res){
         if(err){
             console.log(err);
         } else {
-
             res.render("showWorkaholic", {workaholic: foundWorkaholic});
         }
     });
