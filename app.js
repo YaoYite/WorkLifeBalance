@@ -115,7 +115,9 @@ app.get("/arts/:id", function(req, res){
 
 app.get("/recreations", function(req, res){
     // Get all recreations info from DB
-    Recreation.find(req.query, function(err, allRecreations){
+    var postcode = req.query.postcode;
+    var sport = req.query.sport;
+    Recreation.find({Postcode:postcode,SportsPlayed:{"$regex":sport,"$options":"i"}}, function(err, allRecreations){
       if(err){
           console.log(err);
       } else {
@@ -145,6 +147,10 @@ app.get("/recreations/:id", function(req, res){
           res.render("showRecreation",{recreation:foundRecreation});
    };
 });
+});
+
+app.get("/life", function(req, res){
+    res.render("life.ejs");
 });
 
 app.get("/", function(req, res){
