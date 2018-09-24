@@ -13,6 +13,7 @@ var User = require("./models/user");
 var Workaholic = require("./models/workaholic");
 var Daily = require("./models/daily");
 var Recreation = require("./models/recreation");
+var Art = require("./models/art");
 var nodemailer = require("nodemailer");
 
 app.use( express.static( "public" ) );
@@ -66,16 +67,18 @@ app.get("/weather", function(req, res){
 });
 
 var zip = 3163;
-var townname = "Carnegie";
-app.get("/zipweather", function(req, res){
-    
+app.get("/zipweather/:id", function(req, res){
+    zip = req.params.id;
     var url1 = `http://api.openweathermap.org/data/2.5/weather?zip=${zip},au&units=imperial&appid=05b978ac528aee237d04a45fc54c6545`;
     
     request(url1, function(error, response, body){
        var weather_json = JSON.parse(body);
-       console.log(weather_json);
        
-       var weather = {
+       if(weather_json.main == undefined){
+        // res.render('zipweather.ejs', {weather:null,error: 'Sorry, We can not find the weather data'});
+        res.send("Sorry, We can not find the weather data");
+      } else {
+        var weather = {
             city: zip,
             temperature : Math.round((weather_json.main.temp-32)/1.8),
             description : weather_json.weather[0].description,
@@ -83,15 +86,47 @@ app.get("/zipweather", function(req, res){
         };
         var weather_data = {weather:weather};
         
-       res.render("weather.ejs", weather_data);
+       res.render("zipweather.ejs", weather_data);
+      }
     });
 });
 
+app.get("/arts", function(req, res){
+    // Get all recreations info from DB
+    Art.find({}, function(err, allArts){
+      if(err){
+          console.log(err);
+      } else {
+          res.render("arts",{arts:allArts});
+      }
+    });
+});
+
+app.get("/arts/:id", function(req, res){
+    //find the workaholic with provided ID
+    Art.findById(req.params.id, function(err, foundArt){
+      if(err){
+          res.redirect("back");
+      } else {
+          res.render("showArt",{art:foundArt});
+   };
+});
+});
 
 app.get("/recreations", function(req, res){
-
     // Get all recreations info from DB
-    Recreation.find({}, function(err, allRecreations){
+    Recreation.find(req.query, function(err, allRecreations){
+      if(err){
+          console.log(err);
+      } else {
+          res.render("recreations",{recreations:allRecreations});
+      }
+    });
+});
+
+app.get("/recreations/:postcode/:type", function(req, res){
+    // Get all recreations info from DB
+    Recreation.find({Postcode:req.params.postcode,SportsPlayed:{"$regex":req.params.type,"$options":"i"}}, function(err, allRecreations){
       if(err){
           console.log(err);
       } else {
@@ -106,7 +141,7 @@ app.get("/recreations/:id", function(req, res){
       if(err){
           res.redirect("back");
       } else {
-          window.zip = foundRecreation.Postcode;
+          zip = foundRecreation.Postcode;
           res.render("showRecreation",{recreation:foundRecreation});
    };
 });

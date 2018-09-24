@@ -5,7 +5,7 @@
         <div class="row">
           <div class="col-lg-8 col-md-10 mx-auto">
             <div class="page-heading">
-              <h1>Sports and recreation facility in Victoria</h1>
+              <h1>Arts in Melbourne</h1>
               <!--<span class="subheading">Personal information and tracking records</span>-->
             </div>
       </div>
@@ -18,27 +18,24 @@
           <table class="display" id="example" style="width:100%">
         <thead>
             <tr>
-                <th>Facility Name</th>
-                <th>Postcode</th>
-                <th>Type</th>
-                <th>Detail</th>
+                <th>Theme</th>
+                <th>Name</th>
+                <th>Weather & Direction</th>
             </tr>
         </thead>
         <tbody>
-          <% recreations.forEach(function(recreation){ %>
+          <% arts.forEach(function(art){ %>
             <tr>
-                <td><%= recreation.FacilityName %></td>
-                <td><%= recreation.Postcode %></td>
-                <td><%= recreation.SportsPlayed %></td>
+                <td><%= art.SubTheme %></td>
+                <td><%= art.FeatureName %></td>
                 <td>
-                    <a href = "/recreations/<%= recreation._id %>"><i class="material-icons">info</i></a>
+                    <a href = "/arts/<%= art._id %>"><i class="material-icons">cloud</i><i class="material-icons">commute</i></a>
                 </td>
             </tr>
             <% }) %>
             </tbody>
         <tfoot>
             <tr>
-                <th></th>
                 <th></th>
                 <th></th>
                 <th></th>

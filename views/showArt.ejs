@@ -1,0 +1,36 @@
+<% include partials/header %>
+<header class="masthead" style="background-image: url('/img/daily-min.jpeg')">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="page-heading">
+                <h1><%= art.FeatureName %></h1>
+              <span class="subheading"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+        <div class="container">
+      <div class="row">
+        <div class="col-lg-6 col-md-6 mx-auto">
+            <p>Theme: <%= art.SubTheme %></p>
+            <p>Name: <%= art.FeatureName %></p>
+        </div>
+        <div class="col-lg-6 col-md-6 mx-auto">
+            <iframe src="/weather" scrolling="no" height="175px" width="100%" frameborder=0 marginwidth="50"></iframe> 
+        </div>
+        <div class="col-lg-12 col-md-12 mx-auto">
+            <p>                 </p>
+        </div>
+        <div class="col-lg-12 col-md-12 mx-auto">
+            <div class="mapouter"><div class="gmap_canvas"><iframe width="100%" height="500px" id="gmap_canvas" src="https://maps.google.com/maps?q=<%= art.FeatureName %>&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://www.pureblack.de">webdesign agentur</a></div><style>.mapouter{text-align:right;height:500px;width:100%;}.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:100%;}</style></div>
+            <br>
+            <a href = "/arts" class = "btn btn-secondary">Go back</a>
+        </div>
+      </div>
+    </div>
+   
+<% include partials/footer %>

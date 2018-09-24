@@ -15,8 +15,8 @@
 
         <div class="container">
       <div class="row">
-        <div class="col-lg-12 col-md-12 mx-auto">
-            <p>Adress: <%= recreation.SuburbTown %> <%= recreation.StreetName %> <%= recreation.StreetType %> <%= recreation.StreetNo %> </p>
+        <div class="col-lg-6 col-md-6 mx-auto">
+          <p>Adress: <%= recreation.SuburbTown %> <%= recreation.StreetName %> <%= recreation.StreetType %> <%= recreation.StreetNo %> </p>
           <p>Type of recreation facility: <%= recreation.SportsPlayed %></p>
           <p>Number of courts: <%= recreation.NumberFieldCourts %></p>
           <p>Type of field surface: <%= recreation.FieldSurfaceType %></p>
@@ -24,10 +24,18 @@
           <p>Facility Condition: <%= recreation.FacilityCondition %></p>
           <p>Facility Upgrade Age: <%= recreation.FacilityUpgradeAge %></p>
           <p>Changerooms: <%= recreation.Changerooms %></p>
+        </div>
+        <div class="col-lg-6 col-md-6 mx-auto">
+          <% if (recreation.Postcode){ %>
+          <p>Real time weather info of <%= recreation.SuburbTown %></p>
+          <iframe src="/zipweather/<%= recreation.Postcode %>" scrolling="no" height="175px" width="100%" frameborder=0 marginwidth="50"></iframe> 
+          <% } %>
+        </div>
+        <div class="col-lg-12 col-md-12 mx-auto">
           <div class="mapouter"><div class="gmap_canvas"><iframe width="100%" height="500px" id="gmap_canvas" src="https://maps.google.com/maps?q=<%= recreation.FacilityName %>&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://www.pureblack.de">webdesign agentur</a></div><style>.mapouter{text-align:right;height:500px;width:100%;}.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:100%;}</style></div>
           <a href = "/recreations" class = "btn btn-secondary">Go back</a>
         </div>
       </div>
     </div>
-   
+    <br>
 <% include partials/footer %>
