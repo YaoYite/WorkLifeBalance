@@ -50,7 +50,7 @@
             <select id="leisure">
             <option value="0-3">0-3</option>
             <option value="4-6">4-6</option>
-            <option value="ge7">&#8805 7</option>
+            <option value="ge7">&#8805 6</option>
             </select>
             <br><br>
             <button href = "#result" type="button" class = "btn btn-success btn-xs" onclick="assess()">Get Assessment Result</button>
@@ -62,6 +62,8 @@
             <p id="result2"></p >
             <p id="result3"></p >
             <p id="result4"></p >
+            <br>
+            <a href="/family" class="btn btn-info btn-xs">Help Your Family</a>
             <script>
             function assess() {
                 document.getElementById("result").innerHTML = "Assessment Result: ";
@@ -114,10 +116,10 @@
                 document.getElementById("result3").innerHTML = text3;
                 if(le=="0-3")
                 {risk = risk+6;
-                    text4 ="Leisure time is not enough at all, at least 7 hours is recommended. ";}
+                    text4 ="Leisure time is not enough at all, at least 6 hours is recommended. ";}
                 else if(le=="4-6")
                 {risk = risk+3;
-                    text4 ="Leisure time is acceptable but not enough, at least 7 hours is recommended. ";}
+                    text4 ="Leisure time is acceptable but not enough, at least 6 hours is recommended. ";}
                 else if(le=="ge7")
                 {risk = risk+0;
                     text4 ="Leisure time is ideal. ";}

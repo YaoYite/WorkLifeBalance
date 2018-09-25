@@ -44,6 +44,10 @@ app.use(function(req, res, next){
 //=======================
 //Routes
 //=======================
+app.get("/carousel", function(req, res){
+    res.render("carousel.ejs");
+});
+
 var city = "Melbourne";
 var url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=05b978ac528aee237d04a45fc54c6545`;
 

@@ -33,8 +33,12 @@
             <div class="col-sm-12">  
             <a href = "/workaholics/<%= workaholic._id %>/dailys/new" class="btn btn-success">Add new daily tracks</a>
     <br>
+    <% if(!familyavg == null){ %>
         <p><%= workaholic.name %> spend <%= familyavg %> hours average everyday on family</p>
+    <% } %>
+    <% if(!hobbyavg == null){ %>
         <p><%= workaholic.name %> spend <%= hobbyavg %> hours average everyday on hobby</p>
+    <% } %>
         <hr>
           <table class="display" id="example" style="width:100%">
         <thead>
@@ -120,14 +124,12 @@
     </div>
 <!--======================================================================================================================-->
 <!--trend chart-->
-<div class="container">
-<script src="https://d3js.org/d3.v3.min.js"></script>
-<script>
-var data = <%= workaholic.dailys %>;
+<% var list1 = []; %>
+<% workaholic.dailys.forEach(function(daily){ %>
+<% list1.push(daily); %>
+<% }); %>
 
-</script>
-<p><%= workaholic.dailys %></p>
-</div>
+
 <!--======================================================================================================================-->
     
     
