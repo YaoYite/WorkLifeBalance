@@ -161,15 +161,15 @@
 <% } %>
 <!--======================================================================================================================-->
 
-<% if(workaholic.dailys.length > 50 ){ %>
+<% if(workaholic.dailys.length > 49 ){ %>
 <!DOCTYPE html>
 <meta charset="utf-8">
 <style>
-#select{
-	position:absolute;
-	top:10px;
-	left:10px;
-}
+/*#select{*/
+/*	position:absolute;*/
+/*	top:10px;*/
+/*	left:10px;*/
+/*}*/
     .axis path,
     .axis line {
         fill: none;
@@ -720,239 +720,9 @@
         function month(){
             var data = [
     { 
-        "date": "<%= test[0]["date"] %>", 
-        "family":<%= test[0]["family"] %>, 
-        "hobbies":<%= test[0]["hobbies"] %>, 
-    },
-    { 
-        "date": "<%= test[1]["date"] %>", 
-        "family":<%= test[1]["family"] %>, 
-        "hobbies":<%= test[1]["hobbies"] %>, 
-    },
-    { 
-        "date": "<%= test[2]["date"] %>", 
-        "family":<%= test[2]["family"] %>, 
-        "hobbies":<%= test[2]["hobbies"] %>, 
-    },
-    { 
-        "date": "<%= test[3]["date"] %>", 
-        "family":<%= test[3]["family"] %>, 
-        "hobbies":<%= test[3]["hobbies"] %>, 
-    },
-    { 
-        "date": "<%= test[4]["date"] %>", 
-        "family":<%= test[4]["family"] %>, 
-        "hobbies":<%= test[4]["hobbies"] %>, 
-    },
-    { 
-        "date": "<%= test[5]["date"] %>", 
-        "family":<%= test[5]["family"] %>, 
-        "hobbies":<%= test[5]["hobbies"] %>, 
-    },
-    { 
-        "date": "<%= test[6]["date"] %>", 
-        "family":<%= test[6]["family"] %>, 
-        "hobbies":<%= test[6]["hobbies"] %>, 
-    },
-    { 
-        "date": "<%= test[7]["date"] %>", 
-        "family":<%= test[7]["family"] %>, 
-        "hobbies":<%= test[7]["hobbies"] %>, 
-    },
-    { 
-        "date": "<%= test[8]["date"] %>", 
-        "family":<%= test[8]["family"] %>, 
-        "hobbies":<%= test[8]["hobbies"] %>, 
-    },
-    { 
-        "date": "<%= test[9]["date"] %>", 
-        "family":<%= test[9]["family"] %>, 
-        "hobbies":<%= test[9]["hobbies"] %>, 
-    },
-    { 
-        "date": "<%= test[10]["date"] %>", 
-        "family":<%= test[10]["family"] %>, 
-        "hobbies":<%= test[10]["hobbies"] %>, 
-    },
-    { 
-        "date": "<%= test[11]["date"] %>", 
-        "family":<%= test[11]["family"] %>, 
-        "hobbies":<%= test[11]["hobbies"] %>, 
-    },
-    { 
-        "date": "<%= test[12]["date"] %>", 
-        "family":<%= test[12]["family"] %>, 
-        "hobbies":<%= test[12]["hobbies"] %>, 
-    },
-    { 
-        "date": "<%= test[13]["date"] %>", 
-        "family":<%= test[13]["family"] %>, 
-        "hobbies":<%= test[13]["hobbies"] %>, 
-    },
-    { 
-        "date": "<%= test[14]["date"] %>", 
-        "family":<%= test[14]["family"] %>, 
-        "hobbies":<%= test[14]["hobbies"] %>, 
-    },
-    { 
-        "date": "<%= test[15]["date"] %>", 
-        "family":<%= test[15]["family"] %>, 
-        "hobbies":<%= test[15]["hobbies"] %>, 
-    },
-    { 
-        "date": "<%= test[16]["date"] %>", 
-        "family":<%= test[16]["family"] %>, 
-        "hobbies":<%= test[16]["hobbies"] %>, 
-    },
-    { 
-        "date": "<%= test[17]["date"] %>", 
-        "family":<%= test[17]["family"] %>, 
-        "hobbies":<%= test[17]["hobbies"] %>, 
-    },
-    { 
-        "date": "<%= test[18]["date"] %>", 
-        "family":<%= test[18]["family"] %>, 
-        "hobbies":<%= test[18]["hobbies"] %>, 
-    },
-    { 
-        "date": "<%= test[19]["date"] %>", 
-        "family":<%= test[19]["family"] %>, 
-        "hobbies":<%= test[19]["hobbies"] %>, 
-    },
-    { 
-        "date": "<%= test[20]["date"] %>", 
-        "family":<%= test[20]["family"] %>, 
-        "hobbies":<%= test[20]["hobbies"] %>, 
-    },
-    { 
-        "date": "<%= test[21]["date"] %>", 
-        "family":<%= test[21]["family"] %>, 
-        "hobbies":<%= test[21]["hobbies"] %>, 
-    },
-    { 
-        "date": "<%= test[22]["date"] %>", 
-        "family":<%= test[22]["family"] %>, 
-        "hobbies":<%= test[22]["hobbies"] %>, 
-    },
-    { 
-        "date": "<%= test[23]["date"] %>", 
-        "family":<%= test[23]["family"] %>, 
-        "hobbies":<%= test[23]["hobbies"] %>, 
-    },
-    { 
-        "date": "<%= test[24]["date"] %>", 
-        "family":<%= test[24]["family"] %>, 
-        "hobbies":<%= test[24]["hobbies"] %>, 
-    },
-    { 
-        "date": "<%= test[25]["date"] %>", 
-        "family":<%= test[25]["family"] %>, 
-        "hobbies":<%= test[25]["hobbies"] %>, 
-    },
-    { 
-        "date": "<%= test[26]["date"] %>", 
-        "family":<%= test[26]["family"] %>, 
-        "hobbies":<%= test[26]["hobbies"] %>, 
-    },
-    { 
-        "date": "<%= test[27]["date"] %>", 
-        "family":<%= test[27]["family"] %>, 
-        "hobbies":<%= test[27]["hobbies"] %>, 
-    },
-    { 
-        "date": "<%= test[28]["date"] %>", 
-        "family":<%= test[28]["family"] %>, 
-        "hobbies":<%= test[28]["hobbies"] %>, 
-    },
-    { 
-        "date": "<%= test[29]["date"] %>", 
-        "family":<%= test[29]["family"] %>, 
-        "hobbies":<%= test[29]["hobbies"] %>, 
-    },
-    { 
-        "date": "<%= test[30]["date"] %>", 
-        "family":<%= test[30]["family"] %>, 
-        "hobbies":<%= test[30]["hobbies"] %>, 
-    },
-    { 
-        "date": "<%= test[31]["date"] %>", 
-        "family":<%= test[31]["family"] %>, 
-        "hobbies":<%= test[31]["hobbies"] %>, 
-    },
-    { 
-        "date": "<%= test[32]["date"] %>", 
-        "family":<%= test[32]["family"] %>, 
-        "hobbies":<%= test[32]["hobbies"] %>, 
-    },
-    { 
-        "date": "<%= test[33]["date"] %>", 
-        "family":<%= test[33]["family"] %>, 
-        "hobbies":<%= test[33]["hobbies"] %>, 
-    },
-    { 
-        "date": "<%= test[34]["date"] %>", 
-        "family":<%= test[34]["family"] %>, 
-        "hobbies":<%= test[34]["hobbies"] %>, 
-    },
-    { 
-        "date": "<%= test[35]["date"] %>", 
-        "family":<%= test[35]["family"] %>, 
-        "hobbies":<%= test[35]["hobbies"] %>, 
-    },
-    { 
-        "date": "<%= test[36]["date"] %>", 
-        "family":<%= test[36]["family"] %>, 
-        "hobbies":<%= test[36]["hobbies"] %>, 
-    },
-    { 
-        "date": "<%= test[37]["date"] %>", 
-        "family":<%= test[37]["family"] %>, 
-        "hobbies":<%= test[37]["hobbies"] %>, 
-    },
-    { 
-        "date": "<%= test[38]["date"] %>", 
-        "family":<%= test[38]["family"] %>, 
-        "hobbies":<%= test[38]["hobbies"] %>, 
-    },
-    { 
-        "date": "<%= test[39]["date"] %>", 
-        "family":<%= test[39]["family"] %>, 
-        "hobbies":<%= test[39]["hobbies"] %>, 
-    },
-    { 
-        "date": "<%= test[40]["date"] %>", 
-        "family":<%= test[40]["family"] %>, 
-        "hobbies":<%= test[40]["hobbies"] %>, 
-    },
-    { 
-        "date": "<%= test[41]["date"] %>", 
-        "family":<%= test[41]["family"] %>, 
-        "hobbies":<%= test[41]["hobbies"] %>, 
-    },
-    { 
-        "date": "<%= test[42]["date"] %>", 
-        "family":<%= test[42]["family"] %>, 
-        "hobbies":<%= test[42]["hobbies"] %>, 
-    },
-    { 
-        "date": "<%= test[43]["date"] %>", 
-        "family":<%= test[43]["family"] %>, 
-        "hobbies":<%= test[43]["hobbies"] %>, 
-    },
-    { 
-        "date": "<%= test[44]["date"] %>", 
-        "family":<%= test[44]["family"] %>, 
-        "hobbies":<%= test[44]["hobbies"] %>, 
-    },
-    { 
-        "date": "<%= test[45]["date"] %>", 
-        "family":<%= test[45]["family"] %>, 
-        "hobbies":<%= test[45]["hobbies"] %>, 
-    },
-    { 
-        "date": "<%= test[46]["date"] %>", 
-        "family":<%= test[46]["family"] %>, 
-        "hobbies":<%= test[46]["hobbies"] %>, 
+        "date": "<%= test[49]["date"] %>", 
+        "family":<%= test[49]["family"] %>, 
+        "hobbies":<%= test[49]["hobbies"] %>, 
     },
     { 
         "date": "<%= test[48]["date"] %>", 
@@ -960,9 +730,244 @@
         "hobbies":<%= test[48]["hobbies"] %>, 
     },
     { 
-        "date": "<%= test[49]["date"] %>", 
-        "family":<%= test[49]["family"] %>, 
-        "hobbies":<%= test[49]["hobbies"] %>, 
+        "date": "<%= test[47]["date"] %>", 
+        "family":<%= test[47]["family"] %>, 
+        "hobbies":<%= test[47]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[46]["date"] %>", 
+        "family":<%= test[46]["family"] %>, 
+        "hobbies":<%= test[46]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[45]["date"] %>", 
+        "family":<%= test[45]["family"] %>, 
+        "hobbies":<%= test[45]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[44]["date"] %>", 
+        "family":<%= test[44]["family"] %>, 
+        "hobbies":<%= test[44]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[43]["date"] %>", 
+        "family":<%= test[43]["family"] %>, 
+        "hobbies":<%= test[43]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[42]["date"] %>", 
+        "family":<%= test[42]["family"] %>, 
+        "hobbies":<%= test[42]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[41]["date"] %>", 
+        "family":<%= test[41]["family"] %>, 
+        "hobbies":<%= test[41]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[40]["date"] %>", 
+        "family":<%= test[40]["family"] %>, 
+        "hobbies":<%= test[40]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[39]["date"] %>", 
+        "family":<%= test[39]["family"] %>, 
+        "hobbies":<%= test[39]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[38]["date"] %>", 
+        "family":<%= test[38]["family"] %>, 
+        "hobbies":<%= test[38]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[37]["date"] %>", 
+        "family":<%= test[37]["family"] %>, 
+        "hobbies":<%= test[37]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[36]["date"] %>", 
+        "family":<%= test[36]["family"] %>, 
+        "hobbies":<%= test[36]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[35]["date"] %>", 
+        "family":<%= test[35]["family"] %>, 
+        "hobbies":<%= test[35]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[34]["date"] %>", 
+        "family":<%= test[34]["family"] %>, 
+        "hobbies":<%= test[34]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[33]["date"] %>", 
+        "family":<%= test[33]["family"] %>, 
+        "hobbies":<%= test[33]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[32]["date"] %>", 
+        "family":<%= test[32]["family"] %>, 
+        "hobbies":<%= test[32]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[31]["date"] %>", 
+        "family":<%= test[31]["family"] %>, 
+        "hobbies":<%= test[31]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[30]["date"] %>", 
+        "family":<%= test[30]["family"] %>, 
+        "hobbies":<%= test[30]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[29]["date"] %>", 
+        "family":<%= test[29]["family"] %>, 
+        "hobbies":<%= test[29]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[28]["date"] %>", 
+        "family":<%= test[28]["family"] %>, 
+        "hobbies":<%= test[28]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[27]["date"] %>", 
+        "family":<%= test[27]["family"] %>, 
+        "hobbies":<%= test[27]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[26]["date"] %>", 
+        "family":<%= test[26]["family"] %>, 
+        "hobbies":<%= test[26]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[25]["date"] %>", 
+        "family":<%= test[25]["family"] %>, 
+        "hobbies":<%= test[25]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[24]["date"] %>", 
+        "family":<%= test[24]["family"] %>, 
+        "hobbies":<%= test[24]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[23]["date"] %>", 
+        "family":<%= test[23]["family"] %>, 
+        "hobbies":<%= test[23]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[22]["date"] %>", 
+        "family":<%= test[22]["family"] %>, 
+        "hobbies":<%= test[22]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[21]["date"] %>", 
+        "family":<%= test[21]["family"] %>, 
+        "hobbies":<%= test[21]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[20]["date"] %>", 
+        "family":<%= test[20]["family"] %>, 
+        "hobbies":<%= test[20]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[19]["date"] %>", 
+        "family":<%= test[19]["family"] %>, 
+        "hobbies":<%= test[19]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[18]["date"] %>", 
+        "family":<%= test[18]["family"] %>, 
+        "hobbies":<%= test[18]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[17]["date"] %>", 
+        "family":<%= test[17]["family"] %>, 
+        "hobbies":<%= test[17]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[16]["date"] %>", 
+        "family":<%= test[16]["family"] %>, 
+        "hobbies":<%= test[16]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[15]["date"] %>", 
+        "family":<%= test[15]["family"] %>, 
+        "hobbies":<%= test[15]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[14]["date"] %>", 
+        "family":<%= test[14]["family"] %>, 
+        "hobbies":<%= test[14]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[13]["date"] %>", 
+        "family":<%= test[13]["family"] %>, 
+        "hobbies":<%= test[13]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[12]["date"] %>", 
+        "family":<%= test[12]["family"] %>, 
+        "hobbies":<%= test[12]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[11]["date"] %>", 
+        "family":<%= test[11]["family"] %>, 
+        "hobbies":<%= test[11]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[10]["date"] %>", 
+        "family":<%= test[10]["family"] %>, 
+        "hobbies":<%= test[10]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[9]["date"] %>", 
+        "family":<%= test[9]["family"] %>, 
+        "hobbies":<%= test[9]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[8]["date"] %>", 
+        "family":<%= test[8]["family"] %>, 
+        "hobbies":<%= test[8]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[7]["date"] %>", 
+        "family":<%= test[7]["family"] %>, 
+        "hobbies":<%= test[7]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[6]["date"] %>", 
+        "family":<%= test[6]["family"] %>, 
+        "hobbies":<%= test[6]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[5]["date"] %>", 
+        "family":<%= test[5]["family"] %>, 
+        "hobbies":<%= test[5]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[4]["date"] %>", 
+        "family":<%= test[4]["family"] %>, 
+        "hobbies":<%= test[4]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[3]["date"] %>", 
+        "family":<%= test[3]["family"] %>, 
+        "hobbies":<%= test[3]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[2]["date"] %>", 
+        "family":<%= test[2]["family"] %>, 
+        "hobbies":<%= test[2]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[1]["date"] %>", 
+        "family":<%= test[1]["family"] %>, 
+        "hobbies":<%= test[1]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[0]["date"] %>", 
+        "family":<%= test[0]["family"] %>, 
+        "hobbies":<%= test[0]["hobbies"] %>, 
     }
 ];
             d3.select(".lc").remove();
