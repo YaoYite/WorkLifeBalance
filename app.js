@@ -398,12 +398,8 @@ app.put("/workaholics/:id/dailys/:daily_id",isLoggedIn, function(req, res){
     var familyminutes = Number(req.body.familyminutes);
     var hobbyhour = Number(req.body.hobbyhour);
     var hobbyminutes = Number(req.body.hobbyminutes);
-    console.log(familyhour);
-    console.log(typeof familyhour);
     var familyhour = Number(familyhour) + Number(familyminutes/60);
     var hobbyhour = Number(hobbyhour) + Number(hobbyminutes/60);
-    console.log(familyhour);
-    console.log(typeof familyhour);
     var newDaily = {date: date, family: familyhour, hobbies: hobbyhour};
    Daily.findByIdAndUpdate(req.params.daily_id, newDaily, function(err, updatedDaily){
       if(err){

@@ -83,9 +83,9 @@
               var data = google.visualization.arrayToDataTable([
                 ["Element", "Average Hours per day", { role: "style" } ],
                 ["Australian average family time per day", 4.16, "green"],
-                ["This person's average family time per day", <%= familyavg %>, "green"],
+                ["<%= workaholic.name %>'s average family time per day", <%= familyavg %>, "green"],
                 ["Australian average Hobby time per day", 2.79, "blue"],
-                ["This person's average Hobby time per day", <%= hobbyavg %>, "blue"]
+                ["<%= workaholic.name %>'s average Hobby time per day", <%= hobbyavg %>, "blue"]
               ]);
         
               var view = new google.visualization.DataView(data);
@@ -123,14 +123,1567 @@
       </div>
     </div>
 <!--======================================================================================================================-->
-<!--trend chart-->
-<% var list1 = []; %>
-<% workaholic.dailys.forEach(function(daily){ %>
-<% list1.push(daily); %>
-<% }); %>
+<!--recent trend chart-->
+<% var test = workaholic.dailys %>
+<% test.sort(function(a, b){ %>
+<%    var dateA=new Date(a.date), dateB=new Date(b.date) %>
+<%    return dateB-dateA %>
+<% }) %>
 
+<% if(workaholic.dailys.length > 6 ){ %>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
 
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+            ['Date', 'Family', 'Hobbies'],
+            ["<%= test[6]["date"] %>",<%= test[6]["family"].toFixed(2) %>,<%= test[6]["hobbies"].toFixed(2) %>],
+            ["<%= test[5]["date"] %>",<%= test[5]["family"].toFixed(2) %>,<%= test[5]["hobbies"].toFixed(2) %>],
+            ["<%= test[4]["date"] %>",<%= test[4]["family"].toFixed(2) %>,<%= test[4]["hobbies"].toFixed(2) %>],
+            ["<%= test[3]["date"] %>",<%= test[3]["family"].toFixed(2) %>,<%= test[3]["hobbies"].toFixed(2) %>],  
+            ["<%= test[2]["date"] %>",<%= test[2]["family"].toFixed(2) %>,<%= test[2]["hobbies"].toFixed(2) %>],
+            ["<%= test[1]["date"] %>",<%= test[1]["family"].toFixed(2) %>,<%= test[1]["hobbies"].toFixed(2) %>],
+            ["<%= test[0]["date"] %>",<%= test[0]["family"].toFixed(2) %>,<%= test[0]["hobbies"].toFixed(2) %>],
+        ]);
+
+        var options = {
+          title: 'Recent 7 days trend',
+          curveType: 'function',
+          legend: { position: 'bottom' }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+    <div id="curve_chart" style="width: 900px; height: 500px"></div>
+<% } %>
 <!--======================================================================================================================-->
+
+<% if(workaholic.dailys.length > 89 ){ %>
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+#select{
+	position:absolute;
+	top:10px;
+	left:10px;
+}
+    .axis path,
+    .axis line {
+        fill: none;
+        stroke: black;
+        stroke-width: 2;
+        shape-rendering: crispEdges;
+    }
+</style>
+
+<body>
+    <svg></svg>
+    <button type="button" onclick="day()" style="position:absolute; left:100px; top:20px">Daily</button>
+    <button type="button" onclick="month()" style="position:absolute; left:100px; top:40px">Monthly</button>
+    <input type="checkbox" id="family" checked value="yes" style="position:absolute; left:760px; top:98px"> 
+    <input type="checkbox" id="hobby" checked value="yes" style="position:absolute; left:760px; top:118px"> 
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script>
+        
+        var margin = {top: 20, right: 20, bottom: 30, left: 40},
+            width = 1200 - margin.left - margin.right,
+            height = 800 - margin.top - margin.bottom;
+        var svg = d3.select('svg')
+                    .attr("width", width + margin.left + margin.right)
+                    .attr("height", height + margin.top + margin.bottom)
+
+        var tooltip1 = d3.select("body")
+            .append("div")
+            .attr("class", "tooltip")
+            .style("position", "absolute")
+            .style("text-align", "center")
+            .style("color", "white")
+            .style("width", "120px")
+            .style("height", "13px")
+            .style("padding", "5px")
+            .style("border", "2px")
+            .style("font-size", "12px")
+            .style("font-family", "Futura")
+            .style("background", "black")
+            .style("visibility", "hidden")
+        var tooltip2 = d3.select("body")
+            .append("div")
+            .attr("class", "tooltip")
+            .style("position", "absolute")
+            .style("text-align", "center")
+            .style("color", "white")
+            .style("width", "120px")
+            .style("height", "13px")
+            .style("padding", "5px")
+            .style("border", "2px")
+            .style("font-size", "12px")
+            .style("font-family", "Futura")
+            .style("background", "black")
+            .style("visibility", "hidden")
+        
+        day();
+        
+        
+        function day(){
+            var data = [
+    { 
+        "date": "<%= test[0]["date"] %>", 
+        "family":<%= test[0]["family"] %>, 
+        "hobbies":<%= test[0]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[1]["date"] %>", 
+        "family":<%= test[1]["family"] %>, 
+        "hobbies":<%= test[1]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[2]["date"] %>", 
+        "family":<%= test[2]["family"] %>, 
+        "hobbies":<%= test[2]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[3]["date"] %>", 
+        "family":<%= test[3]["family"] %>, 
+        "hobbies":<%= test[3]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[4]["date"] %>", 
+        "family":<%= test[4]["family"] %>, 
+        "hobbies":<%= test[4]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[5]["date"] %>", 
+        "family":<%= test[5]["family"] %>, 
+        "hobbies":<%= test[5]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[6]["date"] %>", 
+        "family":<%= test[6]["family"] %>, 
+        "hobbies":<%= test[6]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[7]["date"] %>", 
+        "family":<%= test[7]["family"] %>, 
+        "hobbies":<%= test[7]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[8]["date"] %>", 
+        "family":<%= test[8]["family"] %>, 
+        "hobbies":<%= test[8]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[9]["date"] %>", 
+        "family":<%= test[9]["family"] %>, 
+        "hobbies":<%= test[9]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[10]["date"] %>", 
+        "family":<%= test[10]["family"] %>, 
+        "hobbies":<%= test[10]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[11]["date"] %>", 
+        "family":<%= test[11]["family"] %>, 
+        "hobbies":<%= test[11]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[12]["date"] %>", 
+        "family":<%= test[12]["family"] %>, 
+        "hobbies":<%= test[12]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[13]["date"] %>", 
+        "family":<%= test[13]["family"] %>, 
+        "hobbies":<%= test[13]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[14]["date"] %>", 
+        "family":<%= test[14]["family"] %>, 
+        "hobbies":<%= test[14]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[15]["date"] %>", 
+        "family":<%= test[15]["family"] %>, 
+        "hobbies":<%= test[15]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[16]["date"] %>", 
+        "family":<%= test[16]["family"] %>, 
+        "hobbies":<%= test[16]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[17]["date"] %>", 
+        "family":<%= test[17]["family"] %>, 
+        "hobbies":<%= test[17]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[18]["date"] %>", 
+        "family":<%= test[18]["family"] %>, 
+        "hobbies":<%= test[18]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[19]["date"] %>", 
+        "family":<%= test[19]["family"] %>, 
+        "hobbies":<%= test[19]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[20]["date"] %>", 
+        "family":<%= test[20]["family"] %>, 
+        "hobbies":<%= test[20]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[21]["date"] %>", 
+        "family":<%= test[21]["family"] %>, 
+        "hobbies":<%= test[21]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[22]["date"] %>", 
+        "family":<%= test[22]["family"] %>, 
+        "hobbies":<%= test[22]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[23]["date"] %>", 
+        "family":<%= test[23]["family"] %>, 
+        "hobbies":<%= test[23]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[24]["date"] %>", 
+        "family":<%= test[24]["family"] %>, 
+        "hobbies":<%= test[24]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[25]["date"] %>", 
+        "family":<%= test[25]["family"] %>, 
+        "hobbies":<%= test[25]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[26]["date"] %>", 
+        "family":<%= test[26]["family"] %>, 
+        "hobbies":<%= test[26]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[27]["date"] %>", 
+        "family":<%= test[27]["family"] %>, 
+        "hobbies":<%= test[27]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[28]["date"] %>", 
+        "family":<%= test[28]["family"] %>, 
+        "hobbies":<%= test[28]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[29]["date"] %>", 
+        "family":<%= test[29]["family"] %>, 
+        "hobbies":<%= test[29]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[30]["date"] %>", 
+        "family":<%= test[30]["family"] %>, 
+        "hobbies":<%= test[30]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[31]["date"] %>", 
+        "family":<%= test[31]["family"] %>, 
+        "hobbies":<%= test[31]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[32]["date"] %>", 
+        "family":<%= test[32]["family"] %>, 
+        "hobbies":<%= test[32]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[33]["date"] %>", 
+        "family":<%= test[33]["family"] %>, 
+        "hobbies":<%= test[33]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[34]["date"] %>", 
+        "family":<%= test[34]["family"] %>, 
+        "hobbies":<%= test[34]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[35]["date"] %>", 
+        "family":<%= test[35]["family"] %>, 
+        "hobbies":<%= test[35]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[36]["date"] %>", 
+        "family":<%= test[36]["family"] %>, 
+        "hobbies":<%= test[36]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[37]["date"] %>", 
+        "family":<%= test[37]["family"] %>, 
+        "hobbies":<%= test[37]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[38]["date"] %>", 
+        "family":<%= test[38]["family"] %>, 
+        "hobbies":<%= test[38]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[39]["date"] %>", 
+        "family":<%= test[39]["family"] %>, 
+        "hobbies":<%= test[39]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[40]["date"] %>", 
+        "family":<%= test[40]["family"] %>, 
+        "hobbies":<%= test[40]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[41]["date"] %>", 
+        "family":<%= test[41]["family"] %>, 
+        "hobbies":<%= test[41]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[42]["date"] %>", 
+        "family":<%= test[42]["family"] %>, 
+        "hobbies":<%= test[42]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[43]["date"] %>", 
+        "family":<%= test[43]["family"] %>, 
+        "hobbies":<%= test[43]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[44]["date"] %>", 
+        "family":<%= test[44]["family"] %>, 
+        "hobbies":<%= test[44]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[45]["date"] %>", 
+        "family":<%= test[45]["family"] %>, 
+        "hobbies":<%= test[45]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[46]["date"] %>", 
+        "family":<%= test[46]["family"] %>, 
+        "hobbies":<%= test[46]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[48]["date"] %>", 
+        "family":<%= test[48]["family"] %>, 
+        "hobbies":<%= test[48]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[49]["date"] %>", 
+        "family":<%= test[49]["family"] %>, 
+        "hobbies":<%= test[49]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[50]["date"] %>", 
+        "family":<%= test[50]["family"] %>, 
+        "hobbies":<%= test[50]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[51]["date"] %>", 
+        "family":<%= test[51]["family"] %>, 
+        "hobbies":<%= test[51]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[52]["date"] %>", 
+        "family":<%= test[52]["family"] %>, 
+        "hobbies":<%= test[52]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[53]["date"] %>", 
+        "family":<%= test[53]["family"] %>, 
+        "hobbies":<%= test[53]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[54]["date"] %>", 
+        "family":<%= test[54]["family"] %>, 
+        "hobbies":<%= test[54]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[55]["date"] %>", 
+        "family":<%= test[55]["family"] %>, 
+        "hobbies":<%= test[55]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[56]["date"] %>", 
+        "family":<%= test[56]["family"] %>, 
+        "hobbies":<%= test[56]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[57]["date"] %>", 
+        "family":<%= test[57]["family"] %>, 
+        "hobbies":<%= test[57]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[58]["date"] %>", 
+        "family":<%= test[58]["family"] %>, 
+        "hobbies":<%= test[58]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[59]["date"] %>", 
+        "family":<%= test[59]["family"] %>, 
+        "hobbies":<%= test[59]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[60]["date"] %>", 
+        "family":<%= test[60]["family"] %>, 
+        "hobbies":<%= test[60]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[61]["date"] %>", 
+        "family":<%= test[61]["family"] %>, 
+        "hobbies":<%= test[61]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[62]["date"] %>", 
+        "family":<%= test[62]["family"] %>, 
+        "hobbies":<%= test[62]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[63]["date"] %>", 
+        "family":<%= test[63]["family"] %>, 
+        "hobbies":<%= test[63]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[64]["date"] %>", 
+        "family":<%= test[64]["family"] %>, 
+        "hobbies":<%= test[64]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[65]["date"] %>", 
+        "family":<%= test[65]["family"] %>, 
+        "hobbies":<%= test[65]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[66]["date"] %>", 
+        "family":<%= test[66]["family"] %>, 
+        "hobbies":<%= test[66]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[67]["date"] %>", 
+        "family":<%= test[67]["family"] %>, 
+        "hobbies":<%= test[67]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[68]["date"] %>", 
+        "family":<%= test[68]["family"] %>, 
+        "hobbies":<%= test[68]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[69]["date"] %>", 
+        "family":<%= test[69]["family"] %>, 
+        "hobbies":<%= test[69]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[70]["date"] %>", 
+        "family":<%= test[70]["family"] %>, 
+        "hobbies":<%= test[70]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[71]["date"] %>", 
+        "family":<%= test[71]["family"] %>, 
+        "hobbies":<%= test[71]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[72]["date"] %>", 
+        "family":<%= test[72]["family"] %>, 
+        "hobbies":<%= test[72]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[73]["date"] %>", 
+        "family":<%= test[73]["family"] %>, 
+        "hobbies":<%= test[73]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[74]["date"] %>", 
+        "family":<%= test[74]["family"] %>, 
+        "hobbies":<%= test[74]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[75]["date"] %>", 
+        "family":<%= test[75]["family"] %>, 
+        "hobbies":<%= test[75]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[76]["date"] %>", 
+        "family":<%= test[76]["family"] %>, 
+        "hobbies":<%= test[76]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[77]["date"] %>", 
+        "family":<%= test[77]["family"] %>, 
+        "hobbies":<%= test[77]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[78]["date"] %>", 
+        "family":<%= test[78]["family"] %>, 
+        "hobbies":<%= test[78]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[79]["date"] %>", 
+        "family":<%= test[79]["family"] %>, 
+        "hobbies":<%= test[79]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[80]["date"] %>", 
+        "family":<%= test[80]["family"] %>, 
+        "hobbies":<%= test[80]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[81]["date"] %>", 
+        "family":<%= test[81]["family"] %>, 
+        "hobbies":<%= test[81]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[82]["date"] %>", 
+        "family":<%= test[82]["family"] %>, 
+        "hobbies":<%= test[82]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[83]["date"] %>", 
+        "family":<%= test[83]["family"] %>, 
+        "hobbies":<%= test[83]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[84]["date"] %>", 
+        "family":<%= test[84]["family"] %>, 
+        "hobbies":<%= test[84]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[85]["date"] %>", 
+        "family":<%= test[85]["family"] %>, 
+        "hobbies":<%= test[85]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[86]["date"] %>", 
+        "family":<%= test[86]["family"] %>, 
+        "hobbies":<%= test[86]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[87]["date"] %>", 
+        "family":<%= test[87]["family"] %>, 
+        "hobbies":<%= test[87]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[88]["date"] %>", 
+        "family":<%= test[88]["family"] %>, 
+        "hobbies":<%= test[88]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[89]["date"] %>", 
+        "family":<%= test[89]["family"] %>, 
+        "hobbies":<%= test[89]["hobbies"] %>, 
+    },
+];
+            d3.select(".lc").remove();
+         
+                    
+        var formatDate = d3.time.format("%Y-%m-%d");
+
+                    var lc = svg.append('g').attr("class", "lc");
+                    var linechart = lc.append("g")
+                        .attr("transform", "translate(100,100)")
+                        .attr("class", "linechart");
+
+                    var y = d3.scale.linear()
+                        .domain([0, 8])
+                        .range([400, 0]);
+
+                    var x = d3.time.scale()
+                        .domain(d3.extent(data, function(d) { return formatDate.parse(d["date"]); }))
+                        .range([0, 600]);
+                        
+
+                    var yAxis = d3.svg.axis()
+                        .orient("left")
+                        .scale(y);
+
+                    var xAxis = d3.svg.axis()
+                        .orient("bottom")
+                        .scale(x)
+                        .tickFormat(d3.time.format("%Y-%m-%d"));
+                     
+                    var line = d3.svg.line()
+                        .x(function (data) {
+                            return x(formatDate.parse(data["date"]));
+                        })
+                        .y(function (data) {
+                            return y(data["family"]);
+                        })
+                        .interpolate("linear");
     
+                    var line2 = d3.svg.line()
+                        .x(function (data) {
+                            return x(formatDate.parse(data["date"]));
+                        })
+                        .y(function (data) {
+                            return y(data["hobbies"]);
+                        })
+                        .interpolate("linear");
+
+                    var path = linechart.append("path")
+                        .style("visibility", "visible")
+                        .attr("class", "linechart_line")
+                        .attr("stroke", "orange")
+                        .attr("stroke-width", "3")
+                        .attr("fill", "none")
+                        .attr("d", function (d) {
+                            return line(data);
+                        });
+    
+                    var path2 = linechart.append("path")
+                        .style("visibility", "visible")
+                        .attr("class", "linechart_line2")
+                        .attr("stroke", "lightskyblue")
+                        .attr("stroke-width", "3")
+                        .attr("fill", "none")
+                        .attr("d", function (d) {
+                            return line2(data);
+                        });
+                    
+                    var length = path[0][0].getTotalLength();
+    
+                    d3.selectAll(".linechart_line")
+                        .attr("stroke-dasharray", length + " " + length)
+                        .attr("stroke-dashoffset", length)
+                        .transition()
+                        .duration(5000)
+                        .ease("linear")
+                        .attr("stroke-dashoffset", 0);
+    
+                    var length2 = path2[0][0].getTotalLength();
+    
+                    d3.selectAll(".linechart_line2")
+                        .attr("stroke-dasharray", length2 + " " + length2)
+                        .attr("stroke-dashoffset", length2)
+                        .transition()
+                        .duration(5000)
+                        .ease("linear")
+                        .attr("stroke-dashoffset", 0);
+
+                    linechart.append("g")
+                        .attr("class", "axis x")
+                        .attr("transform", "translate(0," + 400 + ")")
+                        .call(xAxis)
+                        .selectAll("text")
+                        .style("text-anchor", "end")
+                        .attr("dx", "-.8em")
+                        .attr("dy", ".15em")
+                        .attr("transform", function (d) {
+                            return "rotate(-65)"
+                        });
+
+                    linechart.append("g")
+                        .attr("class", "axis y")
+                        .call(yAxis)
+                        .append("text")
+                        .attr("transform", "rotate(-90)")
+                        .attr("x", -110)
+                        .attr("y", -45)
+                        .attr("dy", ".71em")
+                        .style("text-anchor", "end")
+                        .text("Duration (hours)");
+
+                    linechart.append("text")
+                        .text("Daily Trend")
+                        .style('font-family', 'Futura')
+                        .style('font-size', '18px')
+                        .attr("text-anchor", "middle")
+                        .attr("class", "graph-title")
+                        .attr("y", -20)
+                        .attr("x", 300);
+
+                    //point
+                    var point = linechart.append("g")
+                        .style("visibility", "visible")
+                        .attr("class", "line-point");
+    
+                    point.selectAll('dot')
+                        .data(data)
+                        .enter().append('circle')
+                        .attr("cx", function (data) {
+                            return x(formatDate.parse(data["date"]));
+                        })
+                        .attr("cy", function (data) {
+                            return y(data["family"]);
+                        })
+                        .attr("r", 3)
+                        .style("fill", "orange")
+                        .style("stroke", "orange")
+                        .on('mouseover', function (data) {
+                            d3.select(this).attr('r', 5).style("fill", "red");
+                            tooltip1.style("visibility", "visible").text("Date: "+data["date"]);
+                            tooltip2.style("visibility", "visible").text("Duration: "+data["family"]+" hours");
+                        })
+                        .on('mouseout', function (data) {
+                            d3.select(this).attr('r', 3).style("fill", "orange");
+                            tooltip1.style("visibility", "hidden");
+                            tooltip2.style("visibility", "hidden");
+                        })
+                        .on('mousemove', function (data) {
+                            d3.select(this).attr('r', 5).style("fill", "red");
+                            tooltip1.style("top", (event.pageY - 9) + "px").style("left", (event.pageX + 10) + "px");
+                            tooltip2.style("top", (event.pageY + 14) + "px").style("left", (event.pageX + 10) + "px");
+                        });
+                        
+                    var point2 = linechart.append("g")
+                        .style("visibility", "visible")
+                        .attr("class", "line-point2");
+    
+                    point2.selectAll('dot')
+                        .data(data)
+                        .enter().append('circle')
+                        .attr("cx", function (data) {
+                            return x(formatDate.parse(data["date"]));
+                        })
+                        .attr("cy", function (data) {
+                            return y(data["hobbies"]);
+                        })
+                        .attr("r", 3)
+                        .style("fill", "lightskyblue")
+                        .style("stroke", "lightskyblue")
+                        .on('mouseover', function (data) {
+                            d3.select(this).attr('r', 5).style("fill", "blue");
+                            tooltip1.style("visibility", "visible").text("Date: "+data["date"]);
+                            tooltip2.style("visibility", "visible").text("Duration: "+data["hobbies"]+" hours");
+                        })
+                        .on('mouseout', function (data) {
+                            d3.select(this).attr('r', 3).style("fill", "lightskyblue");
+                            tooltip1.style("visibility", "hidden");
+                            tooltip2.style("visibility", "hidden");
+                        })
+                        .on('mousemove', function (data) {
+                            d3.select(this).attr('r', 5).style("fill", "blue");
+                            tooltip1.style("top", (event.pageY - 9) + "px").style("left", (event.pageX + 10) + "px");
+                            tooltip2.style("top", (event.pageY + 14) + "px").style("left", (event.pageX + 10) + "px");
+                        });
+                    
+                    var legendVals = ['family','hobby'];
+                    var color = ['orange','lightskyblue'];
+                    var legend = lc.append("g")
+                            .attr("font-family", "sans-serif")
+                            .attr("font-size", 10)
+                            .selectAll(".legend")
+                            .data(legendVals)
+                            .enter().append("g")                                
+                                .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+
+                    legend.append("rect")
+                            .attr("x", 700)
+                            .attr("y", 90)
+                            .attr("width", 18)
+                            .attr("height", 18)
+                            .attr("fill", function (d, i) 
+                                  {
+                                    return color[i];
+                                    });
+
+                    legend.append("text")
+                            .attr("x", 725)
+                            .attr("y", 100)
+                            .attr("dy", "0.32em")
+                            .text(function(d) { return d; });
+    
+                d3.select("#family").on("change",change1);
+  
+                d3.select("#hobby").on("change",change2);
+    
+                    function change1(){
+                        if(d3.select(".linechart_line").style("visibility")=="visible")
+                        {
+                                d3.select(".linechart_line").style("visibility", "hidden");
+                                d3.select(".line-point").style("visibility", "hidden");
+                        }
+                        else
+                        {
+                                d3.select(".linechart_line").style("visibility", "visible");
+                                d3.select(".line-point").style("visibility", "visible");
+                        }
+                    }
+    
+                    function change2(){
+                        if(d3.select(".linechart_line2").style("visibility")=="visible")
+                        {
+                                d3.select(".linechart_line2").style("visibility", "hidden");
+                                d3.select(".line-point2").style("visibility", "hidden");
+                        }
+                        else
+                        {
+                                d3.select(".linechart_line2").style("visibility", "visible");
+                                d3.select(".line-point2").style("visibility", "visible");
+                        }
+                    }
+                    
+               
+        }
+    //monthly trend
+        function month(){
+            var data = [
+    { 
+        "date": "<%= test[0]["date"] %>", 
+        "family":<%= test[0]["family"] %>, 
+        "hobbies":<%= test[0]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[1]["date"] %>", 
+        "family":<%= test[1]["family"] %>, 
+        "hobbies":<%= test[1]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[2]["date"] %>", 
+        "family":<%= test[2]["family"] %>, 
+        "hobbies":<%= test[2]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[3]["date"] %>", 
+        "family":<%= test[3]["family"] %>, 
+        "hobbies":<%= test[3]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[4]["date"] %>", 
+        "family":<%= test[4]["family"] %>, 
+        "hobbies":<%= test[4]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[5]["date"] %>", 
+        "family":<%= test[5]["family"] %>, 
+        "hobbies":<%= test[5]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[6]["date"] %>", 
+        "family":<%= test[6]["family"] %>, 
+        "hobbies":<%= test[6]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[7]["date"] %>", 
+        "family":<%= test[7]["family"] %>, 
+        "hobbies":<%= test[7]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[8]["date"] %>", 
+        "family":<%= test[8]["family"] %>, 
+        "hobbies":<%= test[8]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[9]["date"] %>", 
+        "family":<%= test[9]["family"] %>, 
+        "hobbies":<%= test[9]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[10]["date"] %>", 
+        "family":<%= test[10]["family"] %>, 
+        "hobbies":<%= test[10]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[11]["date"] %>", 
+        "family":<%= test[11]["family"] %>, 
+        "hobbies":<%= test[11]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[12]["date"] %>", 
+        "family":<%= test[12]["family"] %>, 
+        "hobbies":<%= test[12]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[13]["date"] %>", 
+        "family":<%= test[13]["family"] %>, 
+        "hobbies":<%= test[13]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[14]["date"] %>", 
+        "family":<%= test[14]["family"] %>, 
+        "hobbies":<%= test[14]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[15]["date"] %>", 
+        "family":<%= test[15]["family"] %>, 
+        "hobbies":<%= test[15]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[16]["date"] %>", 
+        "family":<%= test[16]["family"] %>, 
+        "hobbies":<%= test[16]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[17]["date"] %>", 
+        "family":<%= test[17]["family"] %>, 
+        "hobbies":<%= test[17]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[18]["date"] %>", 
+        "family":<%= test[18]["family"] %>, 
+        "hobbies":<%= test[18]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[19]["date"] %>", 
+        "family":<%= test[19]["family"] %>, 
+        "hobbies":<%= test[19]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[20]["date"] %>", 
+        "family":<%= test[20]["family"] %>, 
+        "hobbies":<%= test[20]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[21]["date"] %>", 
+        "family":<%= test[21]["family"] %>, 
+        "hobbies":<%= test[21]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[22]["date"] %>", 
+        "family":<%= test[22]["family"] %>, 
+        "hobbies":<%= test[22]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[23]["date"] %>", 
+        "family":<%= test[23]["family"] %>, 
+        "hobbies":<%= test[23]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[24]["date"] %>", 
+        "family":<%= test[24]["family"] %>, 
+        "hobbies":<%= test[24]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[25]["date"] %>", 
+        "family":<%= test[25]["family"] %>, 
+        "hobbies":<%= test[25]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[26]["date"] %>", 
+        "family":<%= test[26]["family"] %>, 
+        "hobbies":<%= test[26]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[27]["date"] %>", 
+        "family":<%= test[27]["family"] %>, 
+        "hobbies":<%= test[27]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[28]["date"] %>", 
+        "family":<%= test[28]["family"] %>, 
+        "hobbies":<%= test[28]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[29]["date"] %>", 
+        "family":<%= test[29]["family"] %>, 
+        "hobbies":<%= test[29]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[30]["date"] %>", 
+        "family":<%= test[30]["family"] %>, 
+        "hobbies":<%= test[30]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[31]["date"] %>", 
+        "family":<%= test[31]["family"] %>, 
+        "hobbies":<%= test[31]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[32]["date"] %>", 
+        "family":<%= test[32]["family"] %>, 
+        "hobbies":<%= test[32]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[33]["date"] %>", 
+        "family":<%= test[33]["family"] %>, 
+        "hobbies":<%= test[33]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[34]["date"] %>", 
+        "family":<%= test[34]["family"] %>, 
+        "hobbies":<%= test[34]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[35]["date"] %>", 
+        "family":<%= test[35]["family"] %>, 
+        "hobbies":<%= test[35]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[36]["date"] %>", 
+        "family":<%= test[36]["family"] %>, 
+        "hobbies":<%= test[36]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[37]["date"] %>", 
+        "family":<%= test[37]["family"] %>, 
+        "hobbies":<%= test[37]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[38]["date"] %>", 
+        "family":<%= test[38]["family"] %>, 
+        "hobbies":<%= test[38]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[39]["date"] %>", 
+        "family":<%= test[39]["family"] %>, 
+        "hobbies":<%= test[39]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[40]["date"] %>", 
+        "family":<%= test[40]["family"] %>, 
+        "hobbies":<%= test[40]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[41]["date"] %>", 
+        "family":<%= test[41]["family"] %>, 
+        "hobbies":<%= test[41]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[42]["date"] %>", 
+        "family":<%= test[42]["family"] %>, 
+        "hobbies":<%= test[42]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[43]["date"] %>", 
+        "family":<%= test[43]["family"] %>, 
+        "hobbies":<%= test[43]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[44]["date"] %>", 
+        "family":<%= test[44]["family"] %>, 
+        "hobbies":<%= test[44]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[45]["date"] %>", 
+        "family":<%= test[45]["family"] %>, 
+        "hobbies":<%= test[45]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[46]["date"] %>", 
+        "family":<%= test[46]["family"] %>, 
+        "hobbies":<%= test[46]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[48]["date"] %>", 
+        "family":<%= test[48]["family"] %>, 
+        "hobbies":<%= test[48]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[49]["date"] %>", 
+        "family":<%= test[49]["family"] %>, 
+        "hobbies":<%= test[49]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[50]["date"] %>", 
+        "family":<%= test[50]["family"] %>, 
+        "hobbies":<%= test[50]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[51]["date"] %>", 
+        "family":<%= test[51]["family"] %>, 
+        "hobbies":<%= test[51]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[52]["date"] %>", 
+        "family":<%= test[52]["family"] %>, 
+        "hobbies":<%= test[52]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[53]["date"] %>", 
+        "family":<%= test[53]["family"] %>, 
+        "hobbies":<%= test[53]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[54]["date"] %>", 
+        "family":<%= test[54]["family"] %>, 
+        "hobbies":<%= test[54]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[55]["date"] %>", 
+        "family":<%= test[55]["family"] %>, 
+        "hobbies":<%= test[55]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[56]["date"] %>", 
+        "family":<%= test[56]["family"] %>, 
+        "hobbies":<%= test[56]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[57]["date"] %>", 
+        "family":<%= test[57]["family"] %>, 
+        "hobbies":<%= test[57]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[58]["date"] %>", 
+        "family":<%= test[58]["family"] %>, 
+        "hobbies":<%= test[58]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[59]["date"] %>", 
+        "family":<%= test[59]["family"] %>, 
+        "hobbies":<%= test[59]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[60]["date"] %>", 
+        "family":<%= test[60]["family"] %>, 
+        "hobbies":<%= test[60]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[61]["date"] %>", 
+        "family":<%= test[61]["family"] %>, 
+        "hobbies":<%= test[61]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[62]["date"] %>", 
+        "family":<%= test[62]["family"] %>, 
+        "hobbies":<%= test[62]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[63]["date"] %>", 
+        "family":<%= test[63]["family"] %>, 
+        "hobbies":<%= test[63]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[64]["date"] %>", 
+        "family":<%= test[64]["family"] %>, 
+        "hobbies":<%= test[64]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[65]["date"] %>", 
+        "family":<%= test[65]["family"] %>, 
+        "hobbies":<%= test[65]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[66]["date"] %>", 
+        "family":<%= test[66]["family"] %>, 
+        "hobbies":<%= test[66]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[67]["date"] %>", 
+        "family":<%= test[67]["family"] %>, 
+        "hobbies":<%= test[67]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[68]["date"] %>", 
+        "family":<%= test[68]["family"] %>, 
+        "hobbies":<%= test[68]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[69]["date"] %>", 
+        "family":<%= test[69]["family"] %>, 
+        "hobbies":<%= test[69]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[70]["date"] %>", 
+        "family":<%= test[70]["family"] %>, 
+        "hobbies":<%= test[70]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[71]["date"] %>", 
+        "family":<%= test[71]["family"] %>, 
+        "hobbies":<%= test[71]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[72]["date"] %>", 
+        "family":<%= test[72]["family"] %>, 
+        "hobbies":<%= test[72]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[73]["date"] %>", 
+        "family":<%= test[73]["family"] %>, 
+        "hobbies":<%= test[73]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[74]["date"] %>", 
+        "family":<%= test[74]["family"] %>, 
+        "hobbies":<%= test[74]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[75]["date"] %>", 
+        "family":<%= test[75]["family"] %>, 
+        "hobbies":<%= test[75]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[76]["date"] %>", 
+        "family":<%= test[76]["family"] %>, 
+        "hobbies":<%= test[76]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[77]["date"] %>", 
+        "family":<%= test[77]["family"] %>, 
+        "hobbies":<%= test[77]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[78]["date"] %>", 
+        "family":<%= test[78]["family"] %>, 
+        "hobbies":<%= test[78]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[79]["date"] %>", 
+        "family":<%= test[79]["family"] %>, 
+        "hobbies":<%= test[79]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[80]["date"] %>", 
+        "family":<%= test[80]["family"] %>, 
+        "hobbies":<%= test[80]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[81]["date"] %>", 
+        "family":<%= test[81]["family"] %>, 
+        "hobbies":<%= test[81]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[82]["date"] %>", 
+        "family":<%= test[82]["family"] %>, 
+        "hobbies":<%= test[82]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[83]["date"] %>", 
+        "family":<%= test[83]["family"] %>, 
+        "hobbies":<%= test[83]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[84]["date"] %>", 
+        "family":<%= test[84]["family"] %>, 
+        "hobbies":<%= test[84]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[85]["date"] %>", 
+        "family":<%= test[85]["family"] %>, 
+        "hobbies":<%= test[85]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[86]["date"] %>", 
+        "family":<%= test[86]["family"] %>, 
+        "hobbies":<%= test[86]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[87]["date"] %>", 
+        "family":<%= test[87]["family"] %>, 
+        "hobbies":<%= test[87]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[88]["date"] %>", 
+        "family":<%= test[88]["family"] %>, 
+        "hobbies":<%= test[88]["hobbies"] %>, 
+    },
+    { 
+        "date": "<%= test[89]["date"] %>", 
+        "family":<%= test[89]["family"] %>, 
+        "hobbies":<%= test[89]["hobbies"] %>, 
+    },
+];
+            d3.select(".lc").remove();
+        
+            var months = {
+            'Jan' : '01',
+            'Feb' : '02',
+            'Mar' : '03',
+            'Apr' : '04',
+            'May' : '05',
+            'Jun' : '06',
+            'Jul' : '07',
+            'Aug' : '08',
+            'Sep' : '09',
+            'Oct' : '10',
+            'Nov' : '11',
+            'Dec' : '12'
+            }
+            var months2 = {
+            '01' : 'Jan',
+            '02' : 'Feb',
+            '03' : 'Mar',
+            '04' : 'Apr',
+            '05' : 'May',
+            '06' : 'Jun',
+            '07' : 'Jul',
+            '08' : 'Aug',
+            '09' : 'Sep',
+            '10' : 'Oct',
+            '11' : 'Nov',
+            '12' : 'Dec'
+            }
+           
+            var monthList = new Array();
+            var formatDate = d3.time.format("%Y-%m-%d");
+             var formatDate2 = d3.time.format("%Y-%m");
+            var formatDate3 = d3.time.format("%b %Y");
+            for (var i = 0; i < data.length; i++)
+                {
+                    var dd = formatDate.parse(data[i]["date"]);
+                    var month = months[dd.toString().substr(4,3)];
+                    var year = dd.toString().substr(11,4);
+                    var my = year+"-"+month;
+                    monthList.push(my);  
+                }
+            
+            var monthListUni = [monthList[0]];
+            for(var i=1; i<monthList.length; i++)
+            {
+                if(monthList[i] !== monthListUni[monthListUni.length-1])
+                    {
+                        monthListUni.push(monthList[i]);
+                    }
+            } 
+            
+            var monthData = new Array();
+            for(var i = 0; i < monthListUni.length; i++)
+            {
+                var monthyear = monthListUni[i];
+                var cont = 0;
+                var familyMonthTotal = 0;
+                var hobbyMonthTotal = 0;
+                for (var j = 0; j < data.length; j++)
+                {
+                    var date = data[j]["date"];
+                    if(date.substr(0,7) == monthyear)
+                       {
+                           cont = cont + 1;
+                           familyMonthTotal = familyMonthTotal + data[j]["family"];
+                           hobbyMonthTotal = hobbyMonthTotal + data[j]["hobbies"];
+                       }
+                }
+                var familyMonthAvg = familyMonthTotal/cont;
+                var hobbyMonthAvg = hobbyMonthTotal/cont;
+                var monthRecord = {"time":formatDate2.parse(monthyear), "familyMonthAvg":familyMonthAvg.toFixed(2), "hobbyMonthAvg":hobbyMonthAvg.toFixed(2)};
+                monthData.push(monthRecord);
+            }
+            console.log(monthData);
+                    var lc = svg.append('g').attr("class", "lc");
+                    var linechart = lc.append("g")
+                        .attr("transform", "translate(100,100)")
+                        .attr("class", "linechart");
+
+                    var y = d3.scale.linear()
+                        .domain([0, 8])
+                        .range([400, 0]);
+
+                    var x = d3.time.scale()
+                        .domain([monthData[0]["time"],monthData[monthData.length-1]["time"]])
+                        .range([0, 600]);
+
+                    var yAxis = d3.svg.axis()
+                        .orient("left")
+                        .scale(y);
+
+                    var xAxis = d3.svg.axis()
+                        .orient("bottom")
+                        .scale(x)
+                        .ticks(d3.time.months)
+                        .tickSize(16, 0)
+                        .tickFormat(d3.time.format("%b %Y"));
+                        
+                    var line = d3.svg.line()
+                        .x(function (monthData) {
+                            return x(monthData["time"]);
+                        })
+                        .y(function (monthData) {
+                            return y(monthData["familyMonthAvg"]);
+                        })
+                        .interpolate("linear");
+    
+                    var line2 = d3.svg.line()
+                        .x(function (monthData) {
+                            return x(monthData["time"]);
+                        })
+                        .y(function (monthData) {
+                            return y(monthData["hobbyMonthAvg"]);
+                        })
+                        .interpolate("linear");
+
+                    var path = linechart.append("path")
+                        .style("visibility", "visible")
+                        .attr("class", "linechart_line")
+                        .attr("stroke", "orange")
+                        .attr("stroke-width", "3")
+                        .attr("fill", "none")
+                        .attr("d", function (d) {
+                            return line(monthData);
+                        });
+    
+                    var path2 = linechart.append("path")
+                        .style("visibility", "visible")
+                        .attr("class", "linechart_line2")
+                        .attr("stroke", "lightskyblue")
+                        .attr("stroke-width", "3")
+                        .attr("fill", "none")
+                        .attr("d", function (d) {
+                            return line2(monthData);
+                        });
+                    
+                    var length = path[0][0].getTotalLength();
+    
+                    d3.selectAll(".linechart_line")
+                        .attr("stroke-dasharray", length + " " + length)
+                        .attr("stroke-dashoffset", length)
+                        .transition()
+                        .duration(5000)
+                        .ease("linear")
+                        .attr("stroke-dashoffset", 0);
+    
+                    var length2 = path2[0][0].getTotalLength();
+    
+                    d3.selectAll(".linechart_line2")
+                        .attr("stroke-dasharray", length2 + " " + length2)
+                        .attr("stroke-dashoffset", length2)
+                        .transition()
+                        .duration(5000)
+                        .ease("linear")
+                        .attr("stroke-dashoffset", 0);
+
+                    linechart.append("g")
+                        .attr("class", "axis x")
+                        .attr("transform", "translate(0," + 400 + ")")
+                        .call(xAxis)
+                        .selectAll("text")
+                        .style("text-anchor", "end")
+                        .attr("dx", "-.8em")
+                        .attr("dy", ".15em")
+                        .attr("transform", function (d) {
+                            return "rotate(-45)"
+                        });
+
+                    linechart.append("g")
+                        .attr("class", "axis y")
+                        .call(yAxis)
+                        .append("text")
+                        .attr("transform", "rotate(-90)")
+                        .attr("x", -110)
+                        .attr("y", -45)
+                        .attr("dy", ".71em")
+                        .style("text-anchor", "end")
+                        .text("Duration (hours)");
+
+                    linechart.append("text")
+                        .text("Monthly Trend")
+                        .style('font-family', 'Futura')
+                        .style('font-size', '18px')
+                        .attr("text-anchor", "middle")
+                        .attr("class", "graph-title")
+                        .attr("y", -20)
+                        .attr("x", 300);
+
+                    //point
+                    var point = linechart.append("g")
+                        .style("visibility", "visible")
+                        .attr("class", "line-point");
+    
+                    point.selectAll('dot')
+                        .data(monthData)
+                        .enter().append('circle')
+                        .attr("cx", function (monthData) {
+                            return x(monthData["time"]);
+                        })
+                        .attr("cy", function (monthData) {
+                            return y(monthData["familyMonthAvg"]);
+                        })
+                        .attr("r", 3)
+                        .style("fill", "orange")
+                        .style("stroke", "orange")
+                        .on('mouseover', function (monthData) {
+                            d3.select(this).attr('r', 5).style("fill", "red");
+                            tooltip1.style("visibility", "visible").text("Month: "+formatDate3(monthData["time"]));
+                            tooltip2.style("visibility", "visible").text("Duration: "+monthData["familyMonthAvg"]+" hours");
+                        })
+                        .on('mouseout', function (monthData) {
+                            d3.select(this).attr('r', 3).style("fill", "orange");
+                            tooltip1.style("visibility", "hidden");
+                            tooltip2.style("visibility", "hidden");
+                        })
+                        .on('mousemove', function (monthData) {
+                            d3.select(this).attr('r', 5).style("fill", "red");
+                            tooltip1.style("top", (event.pageY - 9) + "px").style("left", (event.pageX + 10) + "px");
+                            tooltip2.style("top", (event.pageY + 14) + "px").style("left", (event.pageX + 10) + "px");
+                        });
+                        
+                    var point2 = linechart.append("g")
+                        .style("visibility", "visible")
+                        .attr("class", "line-point2");
+    
+                    point2.selectAll('dot')
+                        .data(monthData)
+                        .enter().append('circle')
+                        .attr("cx", function (monthData) {
+                            return x(monthData["time"]);
+                        })
+                        .attr("cy", function (monthData) {
+                            return y(monthData["hobbyMonthAvg"]);
+                        })
+                        .attr("r", 3)
+                        .style("fill", "lightskyblue")
+                        .style("stroke", "lightskyblue")
+                        .on('mouseover', function (monthData) {
+                            d3.select(this).attr('r', 5).style("fill", "blue");
+                            tooltip1.style("visibility", "visible").text("Month: "+formatDate3(monthData["time"]));
+                            tooltip2.style("visibility", "visible").text("Duration: "+monthData["hobbyMonthAvg"]+" hours");
+                        })
+                        .on('mouseout', function (monthData) {
+                            d3.select(this).attr('r', 3).style("fill", "lightskyblue");
+                            tooltip1.style("visibility", "hidden");
+                            tooltip2.style("visibility", "hidden");
+                        })
+                        .on('mousemove', function (monthData) {
+                            d3.select(this).attr('r', 5).style("fill", "blue");
+                            tooltip1.style("top", (event.pageY - 9) + "px").style("left", (event.pageX + 10) + "px");
+                            tooltip2.style("top", (event.pageY + 14) + "px").style("left", (event.pageX + 10) + "px");
+                        });
+                    
+                    var legendVals = ['family','hobby'];
+                    var color = ['orange','lightskyblue'];
+                    var legend = lc.append("g")
+                            .attr("font-family", "sans-serif")
+                            .attr("font-size", 10)
+                            .selectAll(".legend")
+                            .data(legendVals)
+                            .enter().append("g")                                
+                                .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+
+                    legend.append("rect")
+                            .attr("x", 700)
+                            .attr("y", 90)
+                            .attr("width", 18)
+                            .attr("height", 18)
+                            .attr("fill", function (d, i) 
+                                  {
+                                    return color[i];
+                                    });
+
+                    legend.append("text")
+                            .attr("x", 725)
+                            .attr("y", 100)
+                            .attr("dy", "0.32em")
+                            .text(function(d) { return d; });
+    
+                d3.select("#family").on("change",change1);
+  
+                d3.select("#hobby").on("change",change2); 
+    
+                    function change1(){
+                        if(d3.select(".linechart_line").style("visibility")=="visible")
+                        {
+                                d3.select(".linechart_line").style("visibility", "hidden");
+                                d3.select(".line-point").style("visibility", "hidden");
+                        }
+                        else
+                        {
+                                d3.select(".linechart_line").style("visibility", "visible");
+                                d3.select(".line-point").style("visibility", "visible");
+                        }
+                    }
+    
+                    function change2(){
+                        if(d3.select(".linechart_line2").style("visibility")=="visible")
+                        {
+                                d3.select(".linechart_line2").style("visibility", "hidden");
+                                d3.select(".line-point2").style("visibility", "hidden");
+                        }
+                        else
+                        {
+                                d3.select(".linechart_line2").style("visibility", "visible");
+                                d3.select(".line-point2").style("visibility", "visible");
+                        }
+                    }
+        
+      
+        }        
+    </script>
+</body>
+</html
+<% } %>
+<!--======================================================================================================================-->
     
 <% include partials/footer %>
