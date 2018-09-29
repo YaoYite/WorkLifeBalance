@@ -83,7 +83,7 @@
                     text1 ="This work duration is out of the acceptable range, 10 percent possibility to raise relationship problems. ";}
                 else if(wt=="gt60")
                 {risk = risk+12;
-                    text1 ="This work duration is crazy and there is 30 percent possibility to raise relationship problems. ";}
+                    text1 ="This work duration is way outside the recommended hours, there is 30 percent possibility to raise relationship problems. ";}
                 document.getElementById("result1").innerHTML = text1;
                 if(st=="lt6")
                 {risk = risk+6;
@@ -93,7 +93,7 @@
                     text2 ="This sleep duration is acceptable, but ideal durations is 7-9 hours. ";}
                 else if(st=="7-9")
                 {risk = risk+0;
-                    text2 ="This sleep duration is ideal!";}
+                    text2 ="This sleep duration is ideal.";}
                 else if(st=="9-10")
                 {risk = risk+3;
                     text2 ="This sleep duration is acceptable, but ideal duration is 7-9 hours. ";}
