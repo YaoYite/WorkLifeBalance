@@ -85,10 +85,10 @@
                         <h3>Search sports and recreation facility</h3>
                     
                         <label for="postcode"><b>Zip code</b></label>
-                        <input type="text" placeholder="Enter Postcode" name="postcode" title="You must enter valid postcode" required>
+                        <input type="text" placeholder="Enter Postcode" pattern="[0-9]+" name="postcode" title="4 digit number" maxlength="4" required>
                     
                         <label for="sport"><b>Sports played</b></label>
-                        <input type="text" placeholder="Enter Favorite Sports, type nothing get all" name="sport" title="Enter nothing to get all kinds of sport">
+                        <input type="text" placeholder="Enter Favorite Sports, type nothing get all" maxlength="20" pattern="[A-Za-z ]+" name="sport" title="Only letters allowed">
                     
                         <button type="submit" class="btn">GO</button>
                         <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
