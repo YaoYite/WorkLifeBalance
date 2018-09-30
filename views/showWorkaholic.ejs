@@ -117,6 +117,9 @@
         <div class="col-sm-12" id="columnchart_values" style="width: 500px; height: 600px;"></div>
         <hr>
         <div class="col-sm-12">     
+        <% if(workaholic.dailys.length > 49 ){ %>
+        <p>The short term trend graph will be shown after at least 7 records, The long term trend graph will be shown after at least 50 records</p>
+        <% } %>
         </div>
       </div>
     </div>
