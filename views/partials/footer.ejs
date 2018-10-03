@@ -37,8 +37,11 @@
             <li><a href="/register">Register</a></li>
             <li><a href="/login">Log In</a></li>
             <li><a href="/workaholics">Check Your Record</a></li>
-            <li><a href="#">User Profile</a></li>
-            <li><a href="/logout">Log Out</a></li>
+            <li><a href="/userprofile">User Profile</a></li>
+            <% if(currentUser){ %>
+              <a class="nav-link" href="/userprofile"><%= currentUser.username %>'s profile</a>
+              <a class="nav-link" href="/logout">Log Out</a>
+            <% } %>
           </ul>
       </div>
     </div>

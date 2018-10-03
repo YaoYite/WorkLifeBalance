@@ -14,25 +14,21 @@
     <div class="container" id = "1">
           <div class="row">
             <div class="col-sm-12">  
-
+              <p><i class="material-icons">arrow_downward</i>Click the name to see real time weather, map and facility detailed info</p>
           <table class="display" id="example" style="width:100%">
         <thead>
             <tr>
                 <th>Facility Name</th>
                 <th>Postcode</th>
                 <th>Type</th>
-                <th>Detail</th>
             </tr>
         </thead>
         <tbody>
           <% recreations.forEach(function(recreation){ %>
             <tr>
-                <td><%= recreation.FacilityName %></td>
+                <td><a href = "/recreations/<%= recreation._id %>"><%= recreation.FacilityName %></a></td>
                 <td><%= recreation.Postcode %></td>
                 <td><%= recreation.SportsPlayed %></td>
-                <td>
-                    <a href = "/recreations/<%= recreation._id %>"><i class="material-icons">info</i></a>
-                </td>
             </tr>
             <% }) %>
             </tbody>
@@ -41,7 +37,6 @@
                 <th>Facility Name</th>
                 <th>Postcode</th>
                 <th>Type</th>
-                <th></th>
             </tr>
         </tfoot>
     </table>

@@ -14,23 +14,19 @@
     <div class="container" id = "1">
           <div class="row">
             <div class="col-sm-12">  
-
+              <p><i class="material-icons">arrow_downward</i>Click the name to see real time weather and map info</p>
           <table class="display" id="example" style="width:100%">
         <thead>
             <tr>
                 <th>Name</th>
                 <th>Theme</th>
-                <th>Weather & Direction</th>
             </tr>
         </thead>
         <tbody>
           <% arts.forEach(function(art){ %>
             <tr>
-                <td><%= art.FeatureName %></td>
+                <td><a href = "/arts/<%= art._id %>"><%= art.FeatureName %></a></td>
                 <td><%= art.SubTheme %></td>
-                <td>
-                    <a href = "/arts/<%= art._id %>"><i class="material-icons">cloud</i><i class="material-icons">commute</i></a>
-                </td>
             </tr>
             <% }) %>
             </tbody>
@@ -38,7 +34,6 @@
             <tr>
                 <th>Name</th>
                 <th>Theme</th>
-                <th></th>
             </tr>
         </tfoot>
     </table>
