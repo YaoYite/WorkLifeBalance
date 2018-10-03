@@ -131,16 +131,16 @@ app.get("/recreations", function(req, res){
     });
 });
 
-app.get("/recreations/:type", function(req, res){
-    // Get all recreations info from DB
-    Recreation.find({SportsPlayed:{"$regex":req.params.type,"$options":"i"}}, function(err, allRecreations){
-      if(err){
-          console.log(err);
-      } else {
-          res.render("recreations",{recreations:allRecreations});
-      }
-    });
-});
+// app.get("/recreations/:type", function(req, res){
+//     // Get all recreations info from DB
+//     Recreation.find({SportsPlayed:{"$regex":req.params.type,"$options":"i"}}, function(err, allRecreations){
+//       if(err){
+//           console.log(err);
+//       } else {
+//           res.render("recreations",{recreations:allRecreations});
+//       }
+//     });
+// });
 
 app.get("/recreations/:id", function(req, res){
     //find the workaholic with provided ID
@@ -159,7 +159,7 @@ app.get("/life", function(req, res){
 });
 
 app.get("/", function(req, res){
-    res.render("landing.ejs");
+    res.render("index.ejs");
 });
 
 app.get("/facts", function(req, res){
