@@ -8,6 +8,8 @@ var LocalStrategy = require("passport-local");
 var passportLocalMongoose = require("passport-local-mongoose");
 var methodOverride = require("method-override");
 var request = require("request");
+var moment = require('moment');
+
 
 var User = require("./models/user");
 var Workaholic = require("./models/workaholic");
@@ -119,9 +121,8 @@ app.get("/arts/:id", function(req, res){
 
 app.get("/recreations", function(req, res){
     // Get all recreations info from DB
-    var postcode = req.query.postcode;
     var sport = req.query.sport;
-    Recreation.find({Postcode:postcode,SportsPlayed:{"$regex":sport,"$options":"i"}}, function(err, allRecreations){
+    Recreation.find({SportsPlayed:{"$regex":sport,"$options":"i"}}, function(err, allRecreations){
       if(err){
           console.log(err);
       } else {
@@ -130,9 +131,9 @@ app.get("/recreations", function(req, res){
     });
 });
 
-app.get("/recreations/:postcode/:type", function(req, res){
+app.get("/recreations/:type", function(req, res){
     // Get all recreations info from DB
-    Recreation.find({Postcode:req.params.postcode,SportsPlayed:{"$regex":req.params.type,"$options":"i"}}, function(err, allRecreations){
+    Recreation.find({SportsPlayed:{"$regex":req.params.type,"$options":"i"}}, function(err, allRecreations){
       if(err){
           console.log(err);
       } else {
@@ -422,12 +423,12 @@ app.delete("/workaholics/:id/dailys/:daily_id",isLoggedIn, function(req, res){
 });
 
 app.get("/workaholics/:id/dailys/new",isLoggedIn, function(req, res){
-    // find campground by id
     Workaholic.findById(req.params.id, function(err, workaholic){
         if(err){
             console.log(err);
         } else {
-             res.render("dailys/new.ejs", {workaholic: workaholic});
+
+            res.render("dailys/new.ejs", {workaholic: workaholic});
         }
     })
 });

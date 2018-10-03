@@ -82,14 +82,40 @@
                     </a>
                     <div class="form-popup" id="myForm">
                       <form action="/recreations" class="form-container">
-                        <h3>Search sports and recreation facility</h3>
-                    
-                        <label for="postcode"><b>Zip code</b></label>
-                        <input type="text" placeholder="Enter Postcode" pattern="[0-9]+" name="postcode" title="4 digit number" maxlength="4" required>
-                    
-                        <label for="sport"><b>Sports played</b></label>
-                        <input type="text" placeholder="Enter Favorite Sports, type nothing get all" maxlength="20" pattern="[A-Za-z ]+" name="sport" title="Only letters allowed">
-                    
+                        <label for="sport"><h3>Your favourite sport</h3></label>
+                        <!--<input type="text" placeholder="Enter Favorite Sports, type nothing get all" maxlength="20" pattern="[A-Za-z ]+" name="sport" title="Only letters allowed">-->
+                        <select id="sport" class="form-control" name="sport">
+                          <option selected >Football</option>
+                          <option>Gym</option>
+                          <option>Tennis</option>
+                          <option>Soccer</option>
+                          <option>Cricket</option>
+                          <option>Cycling</option>
+                          <option>Bowl</option>
+                          <option>Skating</option>
+                          <option>Swimming</option>
+                          <option>Surf</option>
+                          <option>Netball</option>
+                          <option>Golf</option>
+                          <option>Rugby</option>
+                          <option>Volleyball</option>
+                          <option>BMX</option>
+                          <option>Basketball</option>
+                          <option>Equestrian</option>
+                          <option>Table Tennis</option>
+                          <option>Motor sport</option>
+                          <option>Baseball</option>
+                          <option>Martial Arts</option>
+                          <option>Sailing</option>
+                          <option>Badminton</option>
+                          <option>Boxing</option>
+                          <option>Squash</option>
+                          <option>Hockey</option>
+                          <option>billiard</option>
+                          <option>Lacrosse</option>
+                          <option>Softball</option>
+                        </select>
+                        <br>
                         <button type="submit" class="btn">GO</button>
                         <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
                       </form>
