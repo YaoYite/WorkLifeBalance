@@ -521,6 +521,9 @@ app.get("/userprofile", isLoggedIn, function(req, res){
     });
 });
 
+app.use(function(req, res){
+   res.render("404"); 
+});
 
 function isLoggedIn(req, res, next){
     if(req.isAuthenticated()){
