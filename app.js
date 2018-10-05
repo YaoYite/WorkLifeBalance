@@ -462,9 +462,6 @@ app.post("/workaholics/:id/dailys",isLoggedIn, function(req, res){
         });
        }
    });
-   //create new daily
-   //connect new daily to workaholic
-   //redirect workaholic show page
 });
 
 // ===============================================

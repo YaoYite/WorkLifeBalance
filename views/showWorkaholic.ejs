@@ -36,7 +36,9 @@
             <a href = "/workaholics/<%= workaholic._id %>/dailys/new" class="btn btn-success">Add new daily tracks</a>
             <% if(currentUser && workaholic.user.id.equals(currentUser._id)){ %>
           <a class="btn btn-xs btn-info" href="/workaholics/<%= workaholic._id %>/detail">The detail of <%= workaholic.name %> Profile</a>
+          <% }%>
           <a class="btn btn-xs btn-info" href="#columnchart_values">Check comparison graph</a>
+          <% if(workaholic.dailys.length > 6 ){ %>
           <a class="btn btn-xs btn-info" href="#trendgraph">Check trend graphs</a>
           <% }%>
     <br>
@@ -63,7 +65,6 @@
                 <td><%= daily.family.toFixed(2) %></td>
                 <td><%= daily.hobbies.toFixed(2) %></td>
                 <td>
-                    <!--<a type = "button" class="btn btn-info" href="/workaholics/<%=workaholic._id %>/dailys/<%=daily._id %>/show">Detail</a>-->
                     <a type = "button" class="btn btn-warning " href="/workaholics/<%=workaholic._id %>/dailys/<%=daily._id %>/edit">Edit</a>
                     <form id="delete-form" action="/workaholics/<%=workaholic._id %>/dailys/<%=daily._id %>?_method=DELETE" method="POST">
                           <input type="submit" value = "Delete" type = "button" class="btn btn-danger">
@@ -162,7 +163,7 @@
     </script>
             <div class="col-sm-12" id = "trendgraph"> 
                 <% if(workaholic.dailys.length > 49 ){ %>
-                    <p>The short term trend graph will be shown after at least 7 records, The long term trend graph will be shown after at least 50 records</p>
+                    <p>The short term trend graph will be shown after at least 7 records, The long term trend graph will be shown after at least 40 records</p>
                 <% } %>
                 <div id="curve_chart" style="width: 900px; height: 500px"></div>
             </div>

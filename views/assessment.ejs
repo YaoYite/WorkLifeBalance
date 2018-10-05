@@ -53,17 +53,14 @@
             <option value="ge7">&#8805 6</option>
             </select>
             <br><br>
-            <button href = "#result" type="button" class = "btn btn-success btn-xs" onclick="assess()">Get Assessment Result</button>
-            <br>
-            <hr />
-            <h3 id="result">Please click button above to view results</h3>
+            <button type="button" class = "btn btn-success btn-xs" onclick="assess()">Get Assessment Result</button>
+            <p>After click the button, the result will be shown below</p>
+            <hr>
             <h4 id="risk"></h4>
             <p id="result1"></p >
             <p id="result2"></p >
             <p id="result3"></p >
             <p id="result4"></p >
-            <br>
-            <a href="/family" class="btn btn-info btn-xs">Help Your Family</a>
             <script>
             function assess() {
                 document.getElementById("result").innerHTML = "Assessment Result: ";
@@ -127,9 +124,9 @@
                 if(risk<=9)
                    {riskAssess = "Low risk: Work life balance is good, don't worry.";}
                 else if(risk<=18)
-                    {riskAssess = "Medium risk: Be careful in work life balance, or some mental problems may raise.";}
+                    {riskAssess = "Medium risk: Be careful in work life balance, or some mental problems may raise. Click How to Help on top to get more info.";}
                 else
-                    {riskAssess = "High risk: Serious imbalance between work and life, high possibility to raise mental problems";}
+                    {riskAssess = "High risk: Serious imbalance between work and life, high possibility to raise mental problems. Click How to Help on top to get more info.";}
                 document.getElementById("risk").innerHTML = riskAssess;
             }
             </script>
