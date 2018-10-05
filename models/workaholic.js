@@ -8,13 +8,13 @@ var WorkaholicSchema = new mongoose.Schema({
       },
       username: String
    },
-    name: {type:String,match:"[A-Za-z0-9 ]+",minlength:1,maxlength:20},
-    email: {type:String,maxlength:50},
-    gender: {type:String,match:"[A-Za-z0-9 ]+",minlength:1,maxlength:20},
-    age: {type: Number,min:0,max:100},
-    relation: {type:String,match:"[A-Za-z0-9 ]+",minlength:1,maxlength:20},
-    occupation: {type:String,match:"[A-Za-z0-9 ]+",minlength:1,maxlength:20},
-    hobby: {type:String,match:"[A-Za-z0-9 ]+",minlength:1,maxlength:20},
+    name: String,
+    email: String,
+    gender: String,
+    age: Number,
+    relation: String,
+    occupation: String,
+    hobby: String,
     dailys:[
         {
             type: mongoose.Schema.Types.ObjectId,
