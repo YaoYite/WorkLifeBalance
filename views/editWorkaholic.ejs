@@ -5,8 +5,7 @@
         <div class="row">
           <div class="col-lg-8 col-md-10 mx-auto">
             <div class="page-heading">
-              <h1>Edit </h1>
-              <span class="subheading">Edit Profile</span>
+              <h1>Edit <%= workaholic.name %>'s profile</h1>
             </div>
           </div>
         </div>
@@ -16,7 +15,6 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto"> 
-        <h1 style="text-align: center">Edit <%= workaholic.name %></h1>
             <form action="/workaholics/<%= workaholic._id %>?_method=PUT" method="POST">
                 <div class="form-group">
                   <label for="inputName4">Name</label>
@@ -56,16 +54,8 @@
                   <label for="inputRelation">What is his/her favourate hobby?</label>
                   <select id="inputRelation" required class="form-control" name = "workaholic[hobby]">
                     <option selected><%= workaholic.hobby %></option>
-                    <option>Watch TV, a video or DVD</option>
-                    <option>Have a cup of tea or coffee</option>
-                    <option>Go on a holiday or travelling</option>
-                    <option>Go out to a restaurant</option>
-                    <option>Throwing or attending a BBQ</option>
-                    <option>Listening to music or radio</option>
-                    <option>Go to the cinema</option>
-                    <option>Cooking or Baking</option>
-                    <option>Shopping</option>
-                    <option>Participating in sports and active recreation</option>
+                    <option>Arts</option>
+                    <option>Sports</option>
                   </select>
                 </div>
               <button type="submit" class="btn btn-primary">Submit</button>

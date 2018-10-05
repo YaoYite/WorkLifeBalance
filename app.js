@@ -484,7 +484,7 @@ app.post("/register", function(req, res){
     User.register(new User({username: req.body.username,email:req.body.email}), req.body.password, function(err, user){
         if(err){
             console.log(err);
-            return res.render('register');
+            return res.render('registerfail',{err:err});
         }
         passport.authenticate("local")(req, res, function(){
            res.redirect("/workaholics");
@@ -501,7 +501,7 @@ app.get("/login", function(req, res){
 //middleware
 app.post("/login", passport.authenticate("local", {
     successRedirect: "/workaholics",
-    failureRedirect: "/login"
+    failureRedirect: "/loginfail"
 }) ,function(req, res){
 });
 
@@ -520,6 +520,15 @@ app.get("/userprofile", isLoggedIn, function(req, res){
        }
     });
 });
+
+app.get("/loginfail", function(req, res){
+    res.render("loginfail.ejs");
+});
+
+app.get("/registerfail", function(req, res){
+    res.render("registerfail.ejs");
+});
+
 
 app.use(function(req, res){
    res.render("404"); 

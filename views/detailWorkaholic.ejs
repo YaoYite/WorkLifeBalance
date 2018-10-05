@@ -22,6 +22,14 @@
             <p>Relation: <%= workaholic.relation %></p>
             <p>Occupation: <%= workaholic.occupation %></p>
             <p>Hobby: <%= workaholic.hobby %></p>
+            <br>
+            <a class="btn btn-xs btn-warning" href="/workaholics/<%= workaholic._id %>/edit">Edit <%= workaholic.name %> Profile</a>
+            <form id="delete-form" action="/workaholics/<%= workaholic._id %>?_method=DELETE" method="POST">
+              <button class="btn btn-xs btn-danger">Delete <%= workaholic.name %> Profile</button>
+            </form>
+            <br>
+            <br>
+            <a href="/workaholics/<%= workaholic._id %>"  class = "btn btn-secondary">Go Back</a>
             </div>
         </div>
     </div>

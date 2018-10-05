@@ -1,0 +1,30 @@
+<% include partials/header %>
+<header class="masthead" style="background-image: url('/img/life-min.jpeg')">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="page-heading">
+              <h1>Login failed, please try again</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <form action="/login" method="POST">
+          <input type="text" required maxlength="50" name="username" pattern="[A-Za-z0-9]+" title="Only number and letters allowed, no white space" placeholder="username">
+          <input type="password" required name="password" placeholder="password">
+          <button class = "btn btn-primary btn-sm">Login</button>
+          </form>
+          <p>If you do not have an account, please sign up</p>
+          <a href="/register" class = "btn btn-primary btn-sm">Sign Up</a>
+
+        </div>
+      </div>
+    </div>
+    
+<% include partials/footer %>

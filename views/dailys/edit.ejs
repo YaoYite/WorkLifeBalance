@@ -30,7 +30,7 @@
                 <div class="form-group ">
                   <label for="inputFamily">How much time does he/she spend with family (hour)</label>
                   <select id="inputFamily" required min="0" max="24" class="form-control" name="familyhour" >
-                    <option selected ><%= daily.family %></option>
+                    <option selected ><%= daily.family.toFixed(2) %></option>
                     <option>0</option>
                     <option>1</option>
                     <option>2</option>
@@ -61,7 +61,7 @@
                 <div class="form-group ">
                   <label for="inputHobbies">How much time does he/she spend on hobby (hour)</label>
                   <select id="inputHobbies" required min="0" max="24"class="form-control" name="hobbyhour" >
-                    <option selected><%= daily.hobbies %></option>
+                    <option selected><%= daily.hobbies.toFixed(2) %></option>
                     <option>0</option>
                     <option>1</option>
                     <option>2</option>

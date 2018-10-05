@@ -3,25 +3,7 @@
       <div class="footer-middle">
   <div class="container">
     <div class="row">
-      <div class="col-md-4 col-sm-6">
-          <h6>Company Information</h6>
-          <address>
-								<ul class = "footerlist">
-									<li>
-                    Problem Solvers:<br>
-										Address: ####### #######<br>
-										###### ##### ### #####<br>
-									</li>
-									<li>
-										Phone: ###############
-									</li>
-									<li>
-									  Email: #####@#####.com
-									</li>
-								</ul>
-							</address>
-      </div>
-      <div class="col-md-4 col-sm-6" class="copyright">
+      <div class="col-md-6 col-sm-12" class="copyright">
           <h6>Popular links</h6>
           <ul class = "footerlist">
             <li><a href="/index">Home</a></li>
@@ -31,7 +13,7 @@
             <li><a href="/life">Recommendations for enjoy life</a></li>
           </ul>
       </div>
-      <div class="col-md-4 col-sm-6" >
+      <div class="col-md-6 col-sm-12" >
           <h6>Record your family's activities</h6>
           <ul class = "footerlist">
             <li><a href="/register">Register</a></li>
@@ -39,8 +21,8 @@
             <li><a href="/workaholics">Check Your Record</a></li>
             <li><a href="/userprofile">User Profile</a></li>
             <% if(currentUser){ %>
-              <li><a class="nav-link" href="/userprofile"><%= currentUser.username %>'s profile</a></li>
-              <li><a class="nav-link" href="/logout">Log Out</a></li>
+              <li><a href="/userprofile"><%= currentUser.username %>'s profile</a></li>
+              <li><a href="/logout">Log Out</a></li>
             <% } %>
           </ul>
       </div>

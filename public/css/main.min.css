@@ -3,14 +3,14 @@ body{font-size:20px;color:#212529;font-family: 'Open Sans', 'Helvetica Neue', He
 }.footerlist{color:#6c757d;font-size:15px;padding-left:0;list-style:none;}
 /* Add a black background color to the top navigation */
 .topnav {
-    background-color: #333;
+    background-color: #666;
     overflow: hidden;
 }
 
 /* Style the links inside the navigation bar */
 .topnav a {
     float: left;
-    color: #f2f2f2;
+    color: white;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
@@ -19,13 +19,13 @@ body{font-size:20px;color:#212529;font-family: 'Open Sans', 'Helvetica Neue', He
 
 /* Change the color of links on hover */
 .topnav a:hover {
-    background-color: #ddd;
+    background-color: DodgerBlue;
     color: black;
 }
 
 /* Add a color to the active/current link */
 .topnav a.active {
-    background-color: #4CAF50;
+    background-color: #666;
     color: white;
 }
 

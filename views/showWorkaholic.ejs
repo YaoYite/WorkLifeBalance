@@ -8,7 +8,9 @@
               <h1><%= workaholic.name %>'s Leisure Dashboard</h1>
               <!--<span class="subheading">Personal information and tracking records</span>-->
             </div>
-      </div>
+        </div>
+    </div>
+    </div>
     </header>
           <% var familysum = 0;  %> 
           <% var familycount = 0;  %> 
@@ -28,16 +30,14 @@
           <% var hobbyavg = hobbysum/hobbycount;  %>
           <% var hobbyavg = hobbyavg.toFixed(2);  %>
 
-    <div class="container" id = "1">
+    <div class="container">
           <div class="row">
             <div class="col-sm-12">  
             <a href = "/workaholics/<%= workaholic._id %>/dailys/new" class="btn btn-success">Add new daily tracks</a>
             <% if(currentUser && workaholic.user.id.equals(currentUser._id)){ %>
           <a class="btn btn-xs btn-info" href="/workaholics/<%= workaholic._id %>/detail">The detail of <%= workaholic.name %> Profile</a>
-          <a class="btn btn-xs btn-warning" href="/workaholics/<%= workaholic._id %>/edit">Edit <%= workaholic.name %> Profile</a>
-          <form id="delete-form" action="/workaholics/<%= workaholic._id %>?_method=DELETE" method="POST">
-              <button class="btn btn-xs btn-danger">Delete <%= workaholic.name %> Profile</button>
-          </form>
+          <a class="btn btn-xs btn-info" href="#columnchart_values">Check comparison graph</a>
+          <a class="btn btn-xs btn-info" href="#trendgraph">Check trend graphs</a>
           <% }%>
     <br>
     <% if(!familyavg == null){ %>
@@ -82,6 +82,8 @@
         </tfoot>
     </table>
         </div>
+    </div>
+</div>
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
           <script type="text/javascript">
             google.charts.load("current", {packages:['corechart']});
@@ -114,15 +116,13 @@
               chart.draw(view, options);
           }
           </script>
+<div class = "container" >
+    <div class = "row">
         <div class="col-sm-12" id="columnchart_values" style="width: 500px; height: 600px;"></div>
         <hr>
         <div class="col-sm-12">     
-        <% if(workaholic.dailys.length > 49 ){ %>
-        <p>The short term trend graph will be shown after at least 7 records, The long term trend graph will be shown after at least 50 records</p>
-        <% } %>
         </div>
-      </div>
-    </div>
+      
 <!--======================================================================================================================-->
 <!--recent trend chart-->
 <% var test = workaholic.dailys %>
@@ -160,19 +160,16 @@
         chart.draw(data, options);
       }
     </script>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12"> 
+            <div class="col-sm-12" id = "trendgraph"> 
+                <% if(workaholic.dailys.length > 49 ){ %>
+                    <p>The short term trend graph will be shown after at least 7 records, The long term trend graph will be shown after at least 50 records</p>
+                <% } %>
                 <div id="curve_chart" style="width: 900px; height: 500px"></div>
             </div>
-        </div>
-    </div>
 <% } %>
 <!--======================================================================================================================-->
 
-<% if(workaholic.dailys.length > 49 ){ %>
-<!DOCTYPE html>
-<meta charset="utf-8">
+<% if(workaholic.dailys.length > 39 ){ %>
 <style>
 /*#select{*/
 /*	position:absolute;*/
@@ -188,8 +185,6 @@
     }
 </style>
 
-<div class="container">
-          <div class="row">
             <div class="col-sm-12"> 
     <svg></svg>
     <button type="button" onclick="day()" style="position:absolute; left:100px; top:20px">Daily</button>
@@ -442,51 +437,6 @@
         "date": "<%= test[39]["date"] %>", 
         "family":<%= test[39]["family"] %>, 
         "hobbies":<%= test[39]["hobbies"] %>, 
-    },
-    { 
-        "date": "<%= test[40]["date"] %>", 
-        "family":<%= test[40]["family"] %>, 
-        "hobbies":<%= test[40]["hobbies"] %>, 
-    },
-    { 
-        "date": "<%= test[41]["date"] %>", 
-        "family":<%= test[41]["family"] %>, 
-        "hobbies":<%= test[41]["hobbies"] %>, 
-    },
-    { 
-        "date": "<%= test[42]["date"] %>", 
-        "family":<%= test[42]["family"] %>, 
-        "hobbies":<%= test[42]["hobbies"] %>, 
-    },
-    { 
-        "date": "<%= test[43]["date"] %>", 
-        "family":<%= test[43]["family"] %>, 
-        "hobbies":<%= test[43]["hobbies"] %>, 
-    },
-    { 
-        "date": "<%= test[44]["date"] %>", 
-        "family":<%= test[44]["family"] %>, 
-        "hobbies":<%= test[44]["hobbies"] %>, 
-    },
-    { 
-        "date": "<%= test[45]["date"] %>", 
-        "family":<%= test[45]["family"] %>, 
-        "hobbies":<%= test[45]["hobbies"] %>, 
-    },
-    { 
-        "date": "<%= test[46]["date"] %>", 
-        "family":<%= test[46]["family"] %>, 
-        "hobbies":<%= test[46]["hobbies"] %>, 
-    },
-    { 
-        "date": "<%= test[48]["date"] %>", 
-        "family":<%= test[48]["family"] %>, 
-        "hobbies":<%= test[48]["hobbies"] %>, 
-    },
-    { 
-        "date": "<%= test[49]["date"] %>", 
-        "family":<%= test[49]["family"] %>, 
-        "hobbies":<%= test[49]["hobbies"] %>, 
     }
 ];
             d3.select(".lc").remove();
@@ -733,56 +683,6 @@
     //monthly trend
         function month(){
             var data = [
-    { 
-        "date": "<%= test[49]["date"] %>", 
-        "family":<%= test[49]["family"] %>, 
-        "hobbies":<%= test[49]["hobbies"] %>, 
-    },
-    { 
-        "date": "<%= test[48]["date"] %>", 
-        "family":<%= test[48]["family"] %>, 
-        "hobbies":<%= test[48]["hobbies"] %>, 
-    },
-    { 
-        "date": "<%= test[47]["date"] %>", 
-        "family":<%= test[47]["family"] %>, 
-        "hobbies":<%= test[47]["hobbies"] %>, 
-    },
-    { 
-        "date": "<%= test[46]["date"] %>", 
-        "family":<%= test[46]["family"] %>, 
-        "hobbies":<%= test[46]["hobbies"] %>, 
-    },
-    { 
-        "date": "<%= test[45]["date"] %>", 
-        "family":<%= test[45]["family"] %>, 
-        "hobbies":<%= test[45]["hobbies"] %>, 
-    },
-    { 
-        "date": "<%= test[44]["date"] %>", 
-        "family":<%= test[44]["family"] %>, 
-        "hobbies":<%= test[44]["hobbies"] %>, 
-    },
-    { 
-        "date": "<%= test[43]["date"] %>", 
-        "family":<%= test[43]["family"] %>, 
-        "hobbies":<%= test[43]["hobbies"] %>, 
-    },
-    { 
-        "date": "<%= test[42]["date"] %>", 
-        "family":<%= test[42]["family"] %>, 
-        "hobbies":<%= test[42]["hobbies"] %>, 
-    },
-    { 
-        "date": "<%= test[41]["date"] %>", 
-        "family":<%= test[41]["family"] %>, 
-        "hobbies":<%= test[41]["hobbies"] %>, 
-    },
-    { 
-        "date": "<%= test[40]["date"] %>", 
-        "family":<%= test[40]["family"] %>, 
-        "hobbies":<%= test[40]["hobbies"] %>, 
-    },
     { 
         "date": "<%= test[39]["date"] %>", 
         "family":<%= test[39]["family"] %>, 
@@ -1298,7 +1198,6 @@
       
         }        
     </script>
-</html
 <% } %>
 <!--======================================================================================================================-->
     
