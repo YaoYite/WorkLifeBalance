@@ -50,13 +50,15 @@
             <select id="leisure">
             <option value="0-3">0-3</option>
             <option value="4-6">4-6</option>
-            <option value="ge7">&#8805 6</option>
+            <option value="ge7">&#8805 7</option>
             </select>
             <br><br>
-            <button type="button" class = "btn btn-success btn-xs" onclick="assess()">Get Assessment Result</button>
-            <p>After click the button, the result will be shown below</p>
-            <hr>
-            <h4 id="risk"></h4>
+            <button href = "#result" type="button" class = "btn btn-success btn-xs" onclick="assess()">Get Assessment Result</button>
+            <br>
+            <hr />
+            <h3 id="result">Please click button above to view results</h3>
+            <h4 id="risk" ></h4>
+            <a id="helplink"></a>
             <p id="result1"></p >
             <p id="result2"></p >
             <p id="result3"></p >
@@ -80,7 +82,7 @@
                     text1 ="This work duration is out of the acceptable range, 10 percent possibility to raise relationship problems. ";}
                 else if(wt=="gt60")
                 {risk = risk+12;
-                    text1 ="This work duration is way outside the recommended hours, there is 30 percent possibility to raise relationship problems. ";}
+                    text1 ="This work duration is crazy and there is 30 percent possibility to raise relationship problems. ";}
                 document.getElementById("result1").innerHTML = text1;
                 if(st=="lt6")
                 {risk = risk+6;
@@ -90,7 +92,7 @@
                     text2 ="This sleep duration is acceptable, but ideal durations is 7-9 hours. ";}
                 else if(st=="7-9")
                 {risk = risk+0;
-                    text2 ="This sleep duration is ideal.";}
+                    text2 ="This sleep duration is ideal!";}
                 else if(st=="9-10")
                 {risk = risk+3;
                     text2 ="This sleep duration is acceptable, but ideal duration is 7-9 hours. ";}
@@ -113,10 +115,10 @@
                 document.getElementById("result3").innerHTML = text3;
                 if(le=="0-3")
                 {risk = risk+6;
-                    text4 ="Leisure time is not enough at all, at least 6 hours is recommended. ";}
+                    text4 ="Leisure time is not enough at all, at least 7 hours is recommended. ";}
                 else if(le=="4-6")
                 {risk = risk+3;
-                    text4 ="Leisure time is acceptable but not enough, at least 6 hours is recommended. ";}
+                    text4 ="Leisure time is acceptable but not enough, at least 7 hours is recommended. ";}
                 else if(le=="ge7")
                 {risk = risk+0;
                     text4 ="Leisure time is ideal. ";}
@@ -124,10 +126,19 @@
                 if(risk<=9)
                    {riskAssess = "Low risk: Work life balance is good, don't worry.";}
                 else if(risk<=18)
-                    {riskAssess = "Medium risk: Be careful in work life balance, or some mental problems may raise. Click How to Help on top to get more info.";}
+                    {riskAssess = "Medium risk: Be careful in work life balance, or some mental problems may raise.";inlinestyle="color:red;";}
                 else
-                    {riskAssess = "High risk: Serious imbalance between work and life, high possibility to raise mental problems. Click How to Help on top to get more info.";}
+                    {riskAssess = "High risk: Serious imbalance between work and life, high possibility to raise mental problems.";inlinestyle="color:red;"}
                 document.getElementById("risk").innerHTML = riskAssess;
+                document.getElementById("risk").style = inlinestyle;
+                if(risk>9)
+                   {
+                       linkname = "How To Help >>";
+                       link = "/family";
+                   }
+                document.getElementById("helplink").innerHTML = linkname;
+                document.getElementById("helplink").href = link;
+                
             }
             </script>
         </div>
