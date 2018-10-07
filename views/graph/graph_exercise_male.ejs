@@ -6,9 +6,9 @@
 	position:absolute;
 	top:1px;
 	left:1px;
-	width:180px;
-	height:35px;
-	font-size:20px;
+	width:130px;
+	height:30px;
+	font-size:10px;
 }
     .axis path,
     .axis line {
@@ -52,13 +52,26 @@
             .style("font-family", "Futura")
             .style("background", "black")
             .style("visibility", "hidden")
-      
-       d3.csv("/csv/exercise_male.csv", function (data) {
-                  
+  
+        emBarchart("18 to 24");
+        efBarchart("18 to 24");
+        d3.select('#select')
+			.on("change", function () {
+            d3.select('.wg').remove();
+            d3.select('.eg').remove();
+				var se = document.getElementById("select");
+                var age = se.options[se.selectedIndex].value;
+          emBarchart(age);
+            efBarchart(age);
+                
+                });
+        
+        function emBarchart(age) {
+                d3.csv("/csv/exercise_male.csv", function (data) {
                     
                     var wg = svg.append('g').attr("class", "wg");
                     var barchart = wg.append("g")
-                        .attr("transform", "translate(100,50)")
+                        .attr("transform", "translate(50,50)")
                         .attr("class", "barchart");
 
 
@@ -66,10 +79,10 @@
                         .domain(data.map(function (d) {
                             return d['Whether participated in sufficient activity in last week (duration only)(c)'];
                         }))
-                        .rangeRoundBands([0, 600], .6);
+                        .rangeRoundBands([0, 530], .6);
 
                     var y = d3.scale.linear()
-                        .domain([0, d3.max(data, function(d) { return d["18 to 24"]; })])
+                        .domain([0, 50])
                         .range([400, 0]);
                     
                     var xAxis = d3.svg.axis()
@@ -96,6 +109,15 @@
                         .attr("dy", ".71em")
                         .style("text-anchor", "end")
                         .text("Percentage (%)");
+                    
+                    barchart.append("text")
+                        .text("Male")
+                        .style('font-family', 'Futura')
+                        .style('font-size', '24px')
+                        .attr("text-anchor", "middle")
+                        .attr("class", "graph-title")
+                        .attr("y", 5)
+                        .attr("x", 250);
 
                     var bar = barchart.selectAll(".bar")
                         .data(data)
@@ -104,16 +126,16 @@
                         .attr("x", function (d) {
                             return x(d['Whether participated in sufficient activity in last week (duration only)(c)']);
                         })
-                        .attr("y", function(d) { return y(d["18 to 24"]); })
+                        .attr("y", function(d) { return y(d[age]); })
                         .attr("width", x.rangeBand())
-                        .attr("height", function(d) { return 400 - y(d["18 to 24"]); })
+                        .attr("height", function(d) { return 400 - y(d[age]); })
                         .style("fill", '#3366cc');
 
 
                     bar.on("mouseover", function (d) {
                             d3.select(this).style("fill", "orange")
                       
-                        return tooltip.style("visibility", "visible").text(d["18 to 24"]+'%');
+                        return tooltip.style("visibility", "visible").text(d[age]+'%');
                         })
                         .on("mousemove", function (d) {
                             d3.select(this).style("fill", "orange");
@@ -123,24 +145,16 @@
                             d3.select(this).style("fill", '#3366cc');
                             return tooltip.style('visibility', 'hidden');
                         });
-       });
-                      
-        
-        d3.select('#select')
-			.on("change", function () {
-            d3.select('.wg').remove();
-				var se = document.getElementById("select");
-                var age = se.options[se.selectedIndex].value;
-          emBarchart(age);
-                
-                });
-        
-        function emBarchart(age) {
-                d3.csv("/csv/exercise_male.csv", function (data) {
                     
-                    var wg = svg.append('g').attr("class", "wg");
-                    var barchart = wg.append("g")
-                        .attr("transform", "translate(100,50)")
+                    
+                })
+        };
+        function efBarchart(age) {
+                d3.csv("/csv/exercise_female.csv", function (data) {
+                    
+                    var eg = svg.append('g').attr("class", "eg");
+                    var barchart = eg.append("g")
+                        .attr("transform", "translate(650,50)")
                         .attr("class", "barchart");
 
 
@@ -148,10 +162,10 @@
                         .domain(data.map(function (d) {
                             return d['Whether participated in sufficient activity in last week (duration only)(c)'];
                         }))
-                        .rangeRoundBands([0, 600], .6);
+                        .rangeRoundBands([0, 530], .6);
 
                     var y = d3.scale.linear()
-                        .domain([0, d3.max(data, function(d) { return d[age]; })])
+                        .domain([0, 50])
                         .range([400, 0]);
                     
                     var xAxis = d3.svg.axis()
@@ -178,7 +192,16 @@
                         .attr("dy", ".71em")
                         .style("text-anchor", "end")
                         .text("Percentage (%)");
-
+                    
+                    barchart.append("text")
+                        .text("Female")
+                        .style('font-family', 'Futura')
+                        .style('font-size', '24px')
+                        .attr("text-anchor", "middle")
+                        .attr("class", "graph-title")
+                        .attr("y", 5)
+                        .attr("x", 250);
+                    
                     var bar = barchart.selectAll(".bar")
                         .data(data)
                         .enter().append("rect")
