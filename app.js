@@ -159,7 +159,7 @@ app.get("/life", function(req, res){
 });
 
 app.get("/", function(req, res){
-    res.render("index.ejs");
+    res.render("landing.ejs");
 });
 
 app.get("/facts", function(req, res){

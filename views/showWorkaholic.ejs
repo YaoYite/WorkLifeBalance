@@ -35,7 +35,7 @@
             <div class="col-sm-12">  
             <a href = "/workaholics/<%= workaholic._id %>/dailys/new" class="btn btn-success">Add new daily tracks</a>
             <% if(currentUser && workaholic.user.id.equals(currentUser._id)){ %>
-          <a class="btn btn-xs btn-info" href="/workaholics/<%= workaholic._id %>/detail">The detail of <%= workaholic.name %> Profile</a>
+          <a class="btn btn-xs btn-info" href="/workaholics/<%= workaholic._id %>/detail"><%= workaholic.name %>'s Profile</a>
           <% }%>
           <a class="btn btn-xs btn-info" href="#columnchart_values">Check comparison graph</a>
           <% if(workaholic.dailys.length > 6 ){ %>
